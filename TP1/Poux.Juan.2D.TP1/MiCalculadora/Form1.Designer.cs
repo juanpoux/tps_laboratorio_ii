@@ -37,7 +37,8 @@ namespace MiCalculadora
             this.txtNumero2 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.txtResultado = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // button1
@@ -113,21 +114,30 @@ namespace MiCalculadora
             this.comboBox1.Size = new System.Drawing.Size(75, 45);
             this.comboBox1.TabIndex = 8;
             // 
-            // txtResultado
+            // label1
             // 
-            this.txtResultado.Font = new System.Drawing.Font("Segoe UI", 130F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtResultado.Location = new System.Drawing.Point(477, 12);
-            this.txtResultado.Name = "txtResultado";
-            this.txtResultado.Size = new System.Drawing.Size(274, 238);
-            this.txtResultado.TabIndex = 9;
-            this.txtResultado.TextChanged += new System.EventHandler(this.txtResultado_TextChanged);
+            this.label1.Location = new System.Drawing.Point(31, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(422, 36);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "label1";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(473, 14);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(264, 244);
+            this.listBox1.TabIndex = 10;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(763, 276);
-            this.Controls.Add(this.txtResultado);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.txtNumero2);
@@ -155,7 +165,8 @@ namespace MiCalculadora
         private System.Windows.Forms.TextBox txtNumero2;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox txtResultado;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 
