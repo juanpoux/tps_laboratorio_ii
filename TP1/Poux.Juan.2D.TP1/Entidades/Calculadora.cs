@@ -2,6 +2,8 @@
 {
     class Calculadora
     {
+        public Operando operando;
+
         private static char ValidarOperador(char operador)
         {
             char retorno = operador;
@@ -25,6 +27,7 @@
             }
             return retorno;
         }
+
 
         public double Operar(Operando num1, Operando num2, char operador)
         {

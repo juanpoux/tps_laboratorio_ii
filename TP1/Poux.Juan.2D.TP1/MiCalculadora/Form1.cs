@@ -27,5 +27,10 @@ namespace MiCalculadora
         {
 
         }
+
+        private void txtResultado_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

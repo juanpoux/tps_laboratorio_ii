@@ -8,27 +8,32 @@ namespace Entidades
 
         public Operando()
         {
-            this.numero = 0;
+            Numero = 0;
         }
 
         public Operando(double numero)
         {
-            this.numero = numero;
+            Numero = numero;
         }
 
         public Operando(string strNumero)
         {
-            this.numero = double.Parse(strNumero);
+            Numero = double.Parse(strNumero);
             //double.TryParse(strNumero, out this.numero);
         }
 
-        private double Numero
+        public double Numero
         {
             set
             {
                 this.numero = ValidarOperando(value.ToString());
             }
+            get
+            {
+                return this.numero;
+            }
         }
+
 
         private bool EsBinario(string binario)
         {
