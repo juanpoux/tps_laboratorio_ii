@@ -8,12 +8,12 @@ namespace Entidades
 
         public Operando()
         {
-            Numero = 0;
+            this.numero = 0;
         }
 
         public Operando(double numero)
         {
-            Numero = numero;
+            this.numero = numero;
         }
 
         public Operando(string strNumero)

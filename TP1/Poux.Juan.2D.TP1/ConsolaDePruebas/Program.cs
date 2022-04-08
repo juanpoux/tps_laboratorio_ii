@@ -7,9 +7,9 @@ namespace ConsolaDePruebas
     {
         static void Main(string[] args)
         {
-            Operando num1 = new Operando(5988);
+            Operando num1 = new Operando("123a");
 
-            //num1.Numero = "1";
+            ////num1.Numero = "1";
 
             Console.WriteLine(num1.Numero);
         }
