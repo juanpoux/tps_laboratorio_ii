@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Entidades
+﻿namespace Entidades
 {
     public class Operando
     {
