@@ -15,7 +15,7 @@ namespace MiCalculadora
             string texto1 = txtNumero1.Text;
             string texto2 = txtNumero2.Text;
 
-            txtResultado.Text = (int.Parse(texto1) + int.Parse(texto2)).ToString();
+            //txtResultado.Text = (int.Parse(texto1) + int.Parse(texto2)).ToString();
         }
 
         private void txtNumero1_TextChanged(object sender, EventArgs e)
@@ -24,11 +24,6 @@ namespace MiCalculadora
         }
 
         private void txtNumero2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtResultado_TextChanged(object sender, EventArgs e)
         {
 
         }
