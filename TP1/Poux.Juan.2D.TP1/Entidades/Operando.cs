@@ -22,7 +22,7 @@ namespace Entidades
         }
 
         //propiedad que trabaja con tipo string
-        public string Numero
+        private string Numero
         {
             set
             {
@@ -70,22 +70,41 @@ namespace Entidades
             return retorno;
         }
 
-        //public string DecimalBinario(double numero)
-        //{
-        //    int numeroEntero = 
-        //    string retorno = "";
-        //    int resto;
+        public string DecimalBinario(double numero)
+        {
+            int numeroEntero = (int)numero;
+            string retorno = "Valor invalido";
+            int resto;
+            if (numero > 0)
+            {
+                for (int i = numeroEntero; numeroEntero > 0; i--)
+                {
+                    resto = numeroEntero % 2;
 
-        //    for (int i = numeroEntero; numeroEntero > 0; i--)
-        //    {
-        //        resto = numeroEntero % 2;
+                    retorno = resto.ToString() + retorno;
 
-        //        retorno = resto.ToString() + retorno;
+                    numeroEntero /= 2;
+                }
+            }
+            return retorno;
+        }
 
-        //        numeroEntero /= 2;
-        //    }
-        //    return retorno;
-        //}
+        /*
+        public string DecimalBinario(string numero)
+        {
+            int numeroEntero = int.Parse(numero);
+            string retorno = "";
+            int resto;
+            for (int i = numeroEntero; numeroEntero > 0; i--)
+            {
+                resto = numeroEntero % 2;
+
+                retorno = resto.ToString() + retorno;
+
+                numeroEntero /= 2;
+            }
+            return retorno;
+        }*/
 
         private double ValidarOperando(string strNumero)
         {
