@@ -18,22 +18,21 @@ namespace Entidades
 
         public Operando(string strNumero)
         {
-            Numero = double.Parse(strNumero);
-            //double.TryParse(strNumero, out this.numero);
+            this.Numero = strNumero;
         }
 
-        public double Numero
+        //propiedad que trabaja con tipo string
+        public string Numero
         {
             set
             {
-                this.numero = ValidarOperando(value.ToString());
+                this.numero = ValidarOperando(value);
             }
             get
             {
-                return this.numero;
+                return this.numero.ToString();
             }
         }
-
 
         private bool EsBinario(string binario)
         {
@@ -41,7 +40,7 @@ namespace Entidades
             char[] charArray = binario.ToCharArray();
             for (int i = 0; i < charArray.Length; i++)
             {
-                if(charArray[i] != '1' || charArray[i] != '0')
+                if (charArray[i] != '1' || charArray[i] != '0')
                 {
                     retorno = false;
                     break;
@@ -50,32 +49,71 @@ namespace Entidades
             return retorno;
         }
 
-        public static double BinarioDecimal(string binario)
+        public string BinarioDecimal(string binario)
         {
-            //Operando.EsBinario(binario);
-            char[] charBinario = binario.ToCharArray();
-            Array.Reverse(charBinario);
-            int retorno = 0;
-
-            for (int i = 0; i < binario.Length; i++)
+            string retorno = "Valor invalido";
+            if (EsBinario(binario))
             {
-                if (binario[i] == '1')
+                char[] charBinario = binario.ToCharArray();
+                Array.Reverse(charBinario);
+                int conversion = 0;
+
+                for (int i = 0; i < binario.Length; i++)
                 {
-                    retorno += (int)Math.Pow(2, i);
+                    if (binario[i] == '1')
+                    {
+                        conversion += (int)Math.Pow(2, i);
+                    }
                 }
+                retorno = conversion.ToString();
             }
             return retorno;
         }
 
+        //public string DecimalBinario(double numero)
+        //{
+        //    int numeroEntero = 
+        //    string retorno = "";
+        //    int resto;
+
+        //    for (int i = numeroEntero; numeroEntero > 0; i--)
+        //    {
+        //        resto = numeroEntero % 2;
+
+        //        retorno = resto.ToString() + retorno;
+
+        //        numeroEntero /= 2;
+        //    }
+        //    return retorno;
+        //}
+
         private double ValidarOperando(string strNumero)
         {
-            double retorno;
-
-            if(!double.TryParse(strNumero, out retorno))
+            if (!double.TryParse(strNumero, out double retorno))
             {
                 retorno = 0;
             }
             return retorno;
+        }
+
+        public static double operator +(Operando n1, Operando n2)
+        {
+            return n1.numero + n2.numero;
+        }
+
+        public static double operator -(Operando n1, Operando n2)
+        {
+            return n1.numero - n2.numero;
+        }
+
+        public static double operator *(Operando n1, Operando n2)
+        {
+            return n1.numero * n2.numero;
+        }
+
+        public static double operator /(Operando n1, Operando n2)
+        {
+            return n1.numero / n2.numero;
         }
     }
 }

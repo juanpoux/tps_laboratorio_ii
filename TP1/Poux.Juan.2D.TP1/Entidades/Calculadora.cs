@@ -1,38 +1,35 @@
 ﻿namespace Entidades
 {
-    class Calculadora
+    public class Calculadora
     {
-        public Operando operando;
-
         private static char ValidarOperador(char operador)
         {
-            char retorno = operador;
-            switch (operador)
+            if (operador != '*' && operador != '-' && operador != '/')
             {
-                case '+':
-                    retorno = '+';
-                    break;
-                case '-':
-                    retorno = '-';
-                    break;
-                case '*':
-                    retorno = '*';
-                    break;
-                case '/':
-                    retorno = '/';
-                    break;
-                default:
-                    retorno = '+';
-                    break;
+                operador = '+';
             }
-            return retorno;
+            return operador;
         }
 
-
-        public double Operar(Operando num1, Operando num2, char operador)
+        public static double Operar(Operando num1, Operando num2, char operador)
         {
-            double retorno = 0;
+            double retorno;
 
+            switch (operador)
+            {
+                case '-':
+                    retorno = num1 - num2;
+                    break;
+                case '*':
+                    retorno = num1 * num2;
+                    break;
+                case '/':
+                    retorno = num1 / num2;
+                    break;
+                default:
+                    retorno = num1 + num2;
+                    break;
+            }
             return retorno;
         }
     }
