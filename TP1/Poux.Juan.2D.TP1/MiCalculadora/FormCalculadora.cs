@@ -57,18 +57,18 @@ namespace MiCalculadora
             this.Close();
         }
 
-        private void formCalculadora_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //DialogResult resultado = MessageBox.Show("¿Seguro de querer salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //if (resultado == DialogResult.Yes)
-            //{
-            //    e.Cancel = false; //Cancela el evento "Cancelar cierre" o sea, SALE;
-            //}
-            //else
-            //{
-            //    e.Cancel = true; //Confirma el evento "Cancelar cierre" o sea, NO sale;
-            //}
-        }
+        //private void formCalculadora_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    DialogResult resultado = MessageBox.Show("¿Seguro de querer salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        //    if (resultado == DialogResult.Yes)
+        //    {
+        //        e.Cancel = false; //Cancela el evento "Cancelar cierre" o sea, SALE;
+        //    }
+        //    else
+        //    {
+        //        e.Cancel = true; //Confirma el evento "Cancelar cierre" o sea, NO sale;
+        //    }
+        //}
 
         private void formCalculadora_FormClosed(object sender, FormClosedEventArgs e)
         {
