@@ -6,6 +6,9 @@ namespace Entidades
     {
         private double numero;
 
+        /// <summary>
+        /// Constructor sin parametros
+        /// </summary>
         public Operando()
         {
             this.numero = 0;

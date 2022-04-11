@@ -27,7 +27,14 @@ namespace MiCalculadora
             string operando2 = this.txtNumero2.Text;
             string operador = this.cmbOperador.Text;
             double resultado = Operar(operando1, operando2, operador);
-            string textoResultado = $"{operando1} {operador} {operando2} = {resultado}";
+
+            double.TryParse(operando1, out double operadorNum1);
+            double.TryParse(operando2, out double operadorNum2);
+            if (string.IsNullOrWhiteSpace(operador))
+            {
+                operador = "+";
+            }
+            string textoResultado = $"{operadorNum1} {operador} {operadorNum2} = {resultado}";
 
             this.lblResultado.Text = resultado.ToString();
             this.lstOperaciones.Items.Add(textoResultado);
@@ -52,15 +59,15 @@ namespace MiCalculadora
 
         private void formCalculadora_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult resultado = MessageBox.Show("¿Seguro de querer salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (resultado == DialogResult.Yes)
-            {
-                e.Cancel = false; //Cancela el evento "Cancelar cierre" o sea, SALE;
-            }
-            else
-            {
-                e.Cancel = true; //Confirma el evento "Cancelar cierre" o sea, NO sale;
-            }
+            //DialogResult resultado = MessageBox.Show("¿Seguro de querer salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //if (resultado == DialogResult.Yes)
+            //{
+            //    e.Cancel = false; //Cancela el evento "Cancelar cierre" o sea, SALE;
+            //}
+            //else
+            //{
+            //    e.Cancel = true; //Confirma el evento "Cancelar cierre" o sea, NO sale;
+            //}
         }
 
         private void formCalculadora_FormClosed(object sender, FormClosedEventArgs e)
