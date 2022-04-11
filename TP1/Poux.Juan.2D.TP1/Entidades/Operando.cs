@@ -40,7 +40,7 @@ namespace Entidades
             char[] charArray = binario.ToCharArray();
             for (int i = 0; i < charArray.Length; i++)
             {
-                if (charArray[i] != '1' || charArray[i] != '0')
+                if (charArray[i] != '1' && charArray[i] != '0')
                 {
                     retorno = false;
                     break;
@@ -58,9 +58,9 @@ namespace Entidades
                 Array.Reverse(charBinario);
                 int conversion = 0;
 
-                for (int i = 0; i < binario.Length; i++)
+                for (int i = 0; i < charBinario.Length; i++)
                 {
-                    if (binario[i] == '1')
+                    if (charBinario[i] == '1')
                     {
                         conversion += (int)Math.Pow(2, i);
                     }
@@ -72,39 +72,28 @@ namespace Entidades
 
         public string DecimalBinario(double numero)
         {
-            int numeroEntero = (int)numero;
-            string retorno = "Valor invalido";
-            int resto;
-            if (numero > 0)
+            return DecimalBinario(numero.ToString());
+        }
+
+        public string DecimalBinario(string numero)
+        {
+            string retorno = "";
+            if (int.TryParse(numero, out int numeroEntero))
             {
+                int resto;
                 for (int i = numeroEntero; numeroEntero > 0; i--)
                 {
                     resto = numeroEntero % 2;
-
                     retorno = resto.ToString() + retorno;
-
                     numeroEntero /= 2;
                 }
             }
-            return retorno;
-        }
-
-        /*
-        public string DecimalBinario(string numero)
-        {
-            int numeroEntero = int.Parse(numero);
-            string retorno = "";
-            int resto;
-            for (int i = numeroEntero; numeroEntero > 0; i--)
+            else
             {
-                resto = numeroEntero % 2;
-
-                retorno = resto.ToString() + retorno;
-
-                numeroEntero /= 2;
+                retorno = "Valor invalido";
             }
             return retorno;
-        }*/
+        }
 
         private double ValidarOperando(string strNumero)
         {
@@ -132,7 +121,13 @@ namespace Entidades
 
         public static double operator /(Operando n1, Operando n2)
         {
-            return n1.numero / n2.numero;
+            double retorno = double.MinValue;
+
+            if (n2.numero != 0)
+            {
+                retorno = n1.numero / n2.numero;
+            }
+            return retorno;
         }
     }
 }
