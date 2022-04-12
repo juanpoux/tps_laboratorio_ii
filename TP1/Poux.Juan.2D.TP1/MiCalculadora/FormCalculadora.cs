@@ -121,5 +121,6 @@ namespace MiCalculadora
                 this.lstOperaciones.Items.Add(respuesta);
             }
         }
+
     }
 }
