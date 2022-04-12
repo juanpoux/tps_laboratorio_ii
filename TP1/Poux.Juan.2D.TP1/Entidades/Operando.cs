@@ -14,11 +14,19 @@ namespace Entidades
             this.numero = 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="numero"></param>
         public Operando(double numero)
         {
             this.numero = numero;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="strNumero"></param>
         public Operando(string strNumero)
         {
             this.Numero = strNumero;
@@ -37,6 +45,11 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="binario"></param>
+        /// <returns></returns>
         private bool EsBinario(string binario)
         {
             bool retorno = true;
