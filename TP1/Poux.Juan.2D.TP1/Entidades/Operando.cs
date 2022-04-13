@@ -94,7 +94,7 @@ namespace Entidades
         public string DecimalBinario(string numero)
         {
             string retorno = "";
-            if (int.TryParse(numero, out int numeroEntero))
+            if (int.TryParse(numero, out int numeroEntero) && numeroEntero > -1)
             {
                 int resto;
                 for (int i = numeroEntero; numeroEntero > 0; i--)
