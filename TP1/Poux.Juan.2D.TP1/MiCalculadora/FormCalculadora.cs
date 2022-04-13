@@ -49,7 +49,7 @@ namespace MiCalculadora
 
             retorno = Calculadora.Operar(operando1, operando2, operadorChar);
 
-            return retorno;
+            return Math.Round(retorno, 6);
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
