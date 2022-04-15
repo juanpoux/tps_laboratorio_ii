@@ -7,11 +7,19 @@ namespace MiCalculadora
 {
     public partial class formCalculadora : Form
     {
+        /// <summary>
+        /// Inicializa el form
+        /// </summary>
         public formCalculadora()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Carga los operadores al cmbOperador y llama al metodo limpiar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void formCalculadora_Load(object sender, EventArgs e)
         {
             this.cmbOperador.Items.Add(" ");
@@ -19,27 +27,48 @@ namespace MiCalculadora
             this.cmbOperador.Items.Add("-");
             this.cmbOperador.Items.Add("/");
             this.cmbOperador.Items.Add("*");
+            Limpiar();
         }
 
+        /// <summary>
+        /// Al hacer click en btnOperar llama a realizar los calculos y muesta los resultados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOperar_Click(object sender, EventArgs e)
         {
-            string operando1 = this.txtNumero1.Text;
-            string operando2 = this.txtNumero2.Text;
+            string operando1 = this.txtNumero1.Text.Replace(".", ",");
+            string operando2 = this.txtNumero2.Text.Replace(".", ",");
             string operador = this.cmbOperador.Text;
             double resultado = Operar(operando1, operando2, operador);
 
             double.TryParse(operando1, out double operadorNum1);
             double.TryParse(operando2, out double operadorNum2);
+            string textoResultado;
             if (string.IsNullOrWhiteSpace(operador))
             {
                 operador = "+";
             }
-            string textoResultado = $"{operadorNum1} {operador} {operadorNum2} = {resultado}";
-
-            this.lblResultado.Text = resultado.ToString();
+            if (resultado == double.MinValue)
+            {
+                textoResultado = "Valor invalido";
+                this.lblResultado.Text = textoResultado;
+            }
+            else
+            {
+                textoResultado = $"{operadorNum1} {operador} {operadorNum2} = {resultado}";
+                this.lblResultado.Text = resultado.ToString();
+            }
             this.lstOperaciones.Items.Add(textoResultado);
         }
 
+        /// <summary>
+        /// Realiza la operacion entre los valores y operador elejidos por el usuario
+        /// </summary>
+        /// <param name="numero1">primer valor en formato string</param>
+        /// <param name="numero2">segundo valor en formato string</param>
+        /// <param name="operador">operador en formato string</param>
+        /// <returns></returns>
         private static double Operar(string numero1, string numero2, string operador)
         {
             double retorno;
@@ -52,11 +81,21 @@ namespace MiCalculadora
             return Math.Round(retorno, 6);
         }
 
+        /// <summary>
+        /// Intenta cerrar la aplicacion preguntando si realmente desea cerrar o cancelar el cierre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Comienzo del proceso de cierre de la aplicacion, muestra un mensaje para que el usuario decida si cierra o cancela el cierre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void formCalculadora_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult resultado = MessageBox.Show("¿Seguro de querer salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -70,16 +109,29 @@ namespace MiCalculadora
             }
         }
 
+        /// <summary>
+        /// El formulario ya es invisible y cerrando
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void formCalculadora_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //MessageBox.Show("Chauchi");
+
         }
 
+        /// <summary>
+        /// Vuelve a los valores establecidos cmbOperador, lblResultado, txtNumero1 y txtNumero2 borrando los valores previos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
         }
 
+        /// <summary>
+        /// Establece valores en cmbOperador, lblResultado, txtNumero1 y txtNumero2 borrando los valores previos
+        /// </summary>
         private void Limpiar()
         {
             this.cmbOperador.SelectedIndex = 0;
@@ -88,6 +140,11 @@ namespace MiCalculadora
             this.txtNumero2.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Intenta convertir el resultado en numero binario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnConvertirABinario_Click(object sender, EventArgs e)
         {
             Operando numeroDecimal = new Operando();
@@ -105,6 +162,11 @@ namespace MiCalculadora
             }
         }
 
+        /// <summary>
+        /// Intenta convertir el resultado si es un numero binario en numero decimal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnConvertirADecimal_Click(object sender, EventArgs e)
         {
             Operando numeroBinario = new Operando();
