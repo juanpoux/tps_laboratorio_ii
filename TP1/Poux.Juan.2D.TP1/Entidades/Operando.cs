@@ -106,7 +106,11 @@ namespace Entidades
         /// <returns> numero binario en formato string </returns>
         public string DecimalBinario(string numero)
         {
-            string retorno = "0";
+            string retorno = "";
+            if (numero == "0")
+            {
+                retorno = "0";
+            }
             if (int.TryParse(numero, out int numeroEntero) && numeroEntero > -1)
             {
                 int resto;
