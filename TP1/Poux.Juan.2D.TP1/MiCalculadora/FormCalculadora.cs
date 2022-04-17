@@ -147,9 +147,8 @@ namespace MiCalculadora
         /// <param name="e"></param>
         private void btnConvertirABinario_Click(object sender, EventArgs e)
         {
-            Operando numeroDecimal = new Operando();
             string textoNumDecimal = this.lblResultado.Text;
-            this.lblResultado.Text = numeroDecimal.DecimalBinario(textoNumDecimal);
+            this.lblResultado.Text = Operando.DecimalBinario(textoNumDecimal);
             string respuesta = $"{textoNumDecimal} (Decimal) = {this.lblResultado.Text} (Binario)";
 
             if (this.lblResultado.Text == "Valor invalido")
@@ -169,9 +168,8 @@ namespace MiCalculadora
         /// <param name="e"></param>
         private void btnConvertirADecimal_Click(object sender, EventArgs e)
         {
-            Operando numeroBinario = new Operando();
             string textoNumBinario = this.lblResultado.Text;
-            this.lblResultado.Text = numeroBinario.BinarioDecimal(textoNumBinario);
+            this.lblResultado.Text = Operando.BinarioDecimal(textoNumBinario);
             string respuesta = $"{textoNumBinario} (Binario) = {this.lblResultado.Text} (Decimal)";
 
             if (this.lblResultado.Text == "Valor invalido")

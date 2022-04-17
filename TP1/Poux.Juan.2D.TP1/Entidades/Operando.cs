@@ -48,7 +48,7 @@ namespace Entidades
         /// </summary>
         /// <param name="binario"> Numero binario en formato string </param>
         /// <returns> retorna true si esta compuesto solo por '0' y '1', false si encuentra otro caracter </returns>
-        private bool EsBinario(string binario)
+        private static bool EsBinario(string binario)
         {
             bool retorno = true;
             char[] charArray = binario.ToCharArray();
@@ -68,7 +68,7 @@ namespace Entidades
         /// </summary>
         /// <param name="binario"> numero binario en formato string </param>
         /// <returns> retorna el numero convertido en formato string </returns>
-        public string BinarioDecimal(string binario)
+        public static string BinarioDecimal(string binario)
         {
             string retorno = "Valor invalido";
             if (EsBinario(binario))
@@ -94,7 +94,7 @@ namespace Entidades
         /// </summary>
         /// <param name="numero"> numero decimal en formato double</param>
         /// <returns> numero binario en formato string </returns>
-        public string DecimalBinario(double numero)
+        public static string DecimalBinario(double numero)
         {
             return DecimalBinario(numero.ToString());
         }
@@ -104,7 +104,7 @@ namespace Entidades
         /// </summary>
         /// <param name="numero"> numero decimal en formato string </param>
         /// <returns> numero binario en formato string </returns>
-        public string DecimalBinario(string numero)
+        public static string DecimalBinario(string numero)
         {
             string retorno = "";
             if (numero == "0")
