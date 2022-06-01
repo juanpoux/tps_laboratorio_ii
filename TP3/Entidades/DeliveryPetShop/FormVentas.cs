@@ -19,7 +19,6 @@ namespace PruebaTp3Form
         Cliente cliente;
         double acumuladorEfectivo = 0;
         double acumuladorTarjeta = 0;
-        ETipoPago tipoPago;
 
         public FormVentas()
         {
