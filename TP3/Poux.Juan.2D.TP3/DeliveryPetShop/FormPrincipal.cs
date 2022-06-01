@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
 using System.Windows.Forms;
 using Entidades;
 
@@ -33,18 +35,18 @@ namespace PruebaTp3Form
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             this.CargarListaClientes();
-            this.pedido = new Pedido(this.listaClientes[0], false, DateTime.Now);
-            this.listBox1.Items.Add(pedido);
-            this.listaPedidos.Add(pedido);
-            this.pedido = new Pedido(this.listaClientes[1], true, DateTime.Now);
-            this.listBox1.Items.Add(pedido);
-            this.listaPedidos.Add(pedido);
-            this.pedido = new Pedido(this.listaClientes[2], false, DateTime.Now);
-            this.listBox1.Items.Add(pedido);
-            this.listaPedidos.Add(pedido);
-            this.pedido = new Pedido(this.listaClientes[3], true, DateTime.Now);
-            this.listBox1.Items.Add(pedido);
-            this.listaPedidos.Add(pedido);
+            //this.pedido = new Pedido(this.listaClientes[0], false, DateTime.Now);
+            //this.listBox1.Items.Add(pedido);
+            //this.listaPedidos.Add(pedido);
+            //this.pedido = new Pedido(this.listaClientes[1], true, DateTime.Now);
+            //this.listBox1.Items.Add(pedido);
+            //this.listaPedidos.Add(pedido);
+            //this.pedido = new Pedido(this.listaClientes[2], false, DateTime.Now);
+            //this.listBox1.Items.Add(pedido);
+            //this.listaPedidos.Add(pedido);
+            //this.pedido = new Pedido(this.listaClientes[3], true, DateTime.Now);
+            //this.listBox1.Items.Add(pedido);
+            //this.listaPedidos.Add(pedido);
         }
 
         private void btnVerPedido_Click(object sender, EventArgs e)
@@ -60,35 +62,67 @@ namespace PruebaTp3Form
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            this.EscribirClientes();
             this.Close();
         }
 
         private void LeerClientes()
         {
+            try
+            {
+                //string ubicacionYNombreArchivo = Directory.GetCurrentDirectory() + @"\ListaClientes.json";
+                string ubicacionYNombreArchivo = AppDomain.CurrentDomain.BaseDirectory + @"\ListaClientes.json";
+                this.listaClientes = JsonSerializer.Deserialize<List<Cliente>>(File.ReadAllText(ubicacionYNombreArchivo));
+                //clientes = JsonSerializer.Deserialize<List<Cliente>>(File.ReadAllText("/Archivos/ListaClientes.json"));
+                //puede ser asi tambien, sin el directorio BUSCA/LEE el archivo en la carpeta debug
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error en el archivo ubicado en {Directory.GetCurrentDirectory()}", ex);
+            }
+        }
 
+        private void EscribirClientes()
+        {
+            try
+            {
+                JsonSerializerOptions opciones = new System.Text.Json.JsonSerializerOptions();
+                opciones.WriteIndented = true;
+                string ubicacionYNombreArchivo = AppDomain.CurrentDomain.BaseDirectory + @"\ListaClientes.json";
+                //File.WriteAllText(ubicacionYNombreArchivo, JsonSerializer.Serialize(this.listaClientes, opciones));
+                //File.WriteAllText("/Archivos/ListaClientes.json", JsonSerializer.Serialize(clientes, opciones));
+                //puede ser asi tambien, sin el directorio GUARDA/ESCRIBE el archivo en la carpeta debug
+                string a = JsonSerializer.Serialize(this.listaClientes, opciones); 
+                File.WriteAllText(ubicacionYNombreArchivo, JsonSerializer.Serialize(a, opciones));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error en el archivo ubicado en {Directory.GetCurrentDirectory()}", ex);
+            }
         }
 
         private void CargarListaClientes()
         {
-            this.listaClientes = new()
-            {
-                new Cliente("1555500058", "Juan", "Saavedra 352"),
-                new Cliente("1555500063", "Jose", "Saavedra 45677"),
-                new Cliente("1566005555", "Eze", "Laprida 166"),
-                new Cliente("42489055", "Thiago", "Gorriti 588"),
-                new Cliente("42425544", "Carlos", "Loria 266"),
-                new Cliente("1188559445", "Camila", "Colombres 1500"),
-                new Cliente("1166589555", "Pedro", "Sarmiento 8444"),
-                new Cliente("1188469478", "Olivia", "Hipolito Yrigoyen 2669"),
-                new Cliente("1188469478", "Alberto", "Hipolito Yrigoyen 2669"),
-                new Cliente("1188469478", "Sofia", "Hipolito Yrigoyen 2669"),
-                new Cliente("1188469478", "Trinidad", "Hipolito Yrigoyen 2669"),
-                new Cliente("1188469478", "Javier", "Hipolito Yrigoyen 2669"),
-                new Cliente("1188469478", "Tristan", "Hipolito Yrigoyen 2669"),
-                new Cliente("1188469478", "Felipe", "Hipolito Yrigoyen 2669"),
-                new Cliente("1188469478", "Ricardo", "Hipolito Yrigoyen 2669"),
-                new Cliente("41654814", "Juliana", "Vieytes 2344")
-            };
+            this.LeerClientes();
+            //this.listaClientes = new()
+            //{
+            //    new Cliente("1555500058", "Juan", "Saavedra 352"),
+            //    new Cliente("1555500063", "Jose", "Saavedra 45677"),
+            //    new Cliente("1566005555", "Eze", "Laprida 166"),
+            //    new Cliente("42489055", "Thiago", "Gorriti 588"),
+            //    new Cliente("42425544", "Carlos", "Loria 266"),
+            //    new Cliente("1188559445", "Camila", "Colombres 1500"),
+            //    new Cliente("1166589555", "Pedro", "Sarmiento 8444"),
+            //    new Cliente("1188469478", "Olivia", "Hipolito Yrigoyen 2669"),
+            //    new Cliente("1188469478", "Alberto", "Hipolito Yrigoyen 2669"),
+            //    new Cliente("1188469478", "Sofia", "Hipolito Yrigoyen 2669"),
+            //    new Cliente("1188469478", "Trinidad", "Hipolito Yrigoyen 2669"),
+            //    new Cliente("1188469478", "Javier", "Hipolito Yrigoyen 2669"),
+            //    new Cliente("1188469478", "Tristan", "Hipolito Yrigoyen 2669"),
+            //    new Cliente("1188469478", "Felipe", "Hipolito Yrigoyen 2669"),
+            //    new Cliente("1188469478", "Ricardo", "Hipolito Yrigoyen 2669"),
+            //    new Cliente("41654814", "Juliana", "Vieytes 2344")
+            //};
         }
     }
 }

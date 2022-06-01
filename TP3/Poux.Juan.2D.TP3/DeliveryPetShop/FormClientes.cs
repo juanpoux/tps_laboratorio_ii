@@ -47,6 +47,23 @@ namespace PruebaTp3Form
             }
         }
 
+        private void EscribirClientes()
+        {
+            try
+            {
+                JsonSerializerOptions opciones = new System.Text.Json.JsonSerializerOptions();
+                opciones.WriteIndented = true;
+                string ubicacionYNombreArchivo = Directory.GetCurrentDirectory() + @"\ListaClientes.json";
+                File.WriteAllText(ubicacionYNombreArchivo, JsonSerializer.Serialize(this.listaClientes, opciones));
+                //File.WriteAllText("/Archivos/ListaClientes.json", JsonSerializer.Serialize(clientes, opciones));
+                //puede ser asi tambien, sin el directorio GUARDA/ESCRIBE el archivo en la carpeta debug
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error en el archivo ubicado en {Directory.GetCurrentDirectory()}", ex);
+            }
+        }
+
         private void FormClientes_Load(object sender, EventArgs e)
         {
 
