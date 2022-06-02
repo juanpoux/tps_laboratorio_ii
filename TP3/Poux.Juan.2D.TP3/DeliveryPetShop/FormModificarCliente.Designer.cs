@@ -31,6 +31,9 @@ namespace PruebaTp3Form
         {
             this.SuspendLayout();
             // 
+            // btnAceptar
+            // 
+            // 
             // btnCancelar
             // 
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -39,12 +42,11 @@ namespace PruebaTp3Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(283, 281);
+            this.ClientSize = new System.Drawing.Size(304, 276);
             this.Name = "FormModificarCliente";
-            this.Text = "FormModificarCliente";
+            this.Text = "Modificar Datos De Cliente";
             this.Load += new System.EventHandler(this.FormModificarCliente_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

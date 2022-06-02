@@ -28,7 +28,7 @@ namespace PruebaTp3Form
             {
                 //tengo que recibir el pedido y agregarlo a la lista
                 this.listaPedidos.Add(formClientes.pedido);
-                this.listBox1.Items.Add(formClientes.pedido);
+                this.listBox1.Items.Add(formClientes.pedido.ToString());
             }
         }
 

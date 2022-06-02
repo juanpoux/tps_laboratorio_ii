@@ -38,6 +38,8 @@ namespace PruebaTp3Form
             this.btnSalir = new System.Windows.Forms.Button();
             this.txtBuscarPorTelefono = new System.Windows.Forms.TextBox();
             this.txtBuscarPorDireccion = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSeleccionarCliente
@@ -75,9 +77,9 @@ namespace PruebaTp3Form
             this.listBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(12, 41);
+            this.listBox1.Location = new System.Drawing.Point(12, 321);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(647, 404);
+            this.listBox1.Size = new System.Drawing.Size(647, 124);
             this.listBox1.TabIndex = 4;
             // 
             // btnHistorial
@@ -133,11 +135,29 @@ namespace PruebaTp3Form
             this.txtBuscarPorDireccion.TabIndex = 10;
             this.txtBuscarPorDireccion.TextChanged += new System.EventHandler(this.txtBuscarPorDireccion_TextChanged);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 56);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 46;
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.RowTemplate.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(647, 212);
+            this.dataGridView1.TabIndex = 11;
+            // 
             // FormClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 451);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtBuscarPorDireccion);
             this.Controls.Add(this.txtBuscarPorTelefono);
             this.Controls.Add(this.btnSalir);
@@ -150,6 +170,7 @@ namespace PruebaTp3Form
             this.Name = "FormClientes";
             this.Text = "FormClientes";
             this.Load += new System.EventHandler(this.FormClientes_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,5 +186,6 @@ namespace PruebaTp3Form
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.TextBox txtBuscarPorTelefono;
         private System.Windows.Forms.TextBox txtBuscarPorDireccion;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

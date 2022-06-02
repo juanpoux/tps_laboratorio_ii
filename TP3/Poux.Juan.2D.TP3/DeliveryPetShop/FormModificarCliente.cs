@@ -22,10 +22,17 @@ namespace PruebaTp3Form
 
         protected override void btnAceptar_Click(object sender, EventArgs e)
         {
-            this.cliente.Direccion = this.txtDireccion.Text;
-            this.cliente.Nombre = this.txtNombre.Text;
-            this.cliente.Telefono = this.txtTelefono.Text;
-            this.DialogResult = DialogResult.OK;
+            if (base.ValidarCamposCompletos())
+            {
+                this.cliente.Direccion = this.txtDireccion.Text;
+                this.cliente.Nombre = this.txtNombre.Text;
+                this.cliente.Telefono = this.txtTelefono.Text;
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("Debe completar todos los campos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void FormModificarCliente_Load(object sender, EventArgs e)

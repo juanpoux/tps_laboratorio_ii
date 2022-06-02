@@ -8,8 +8,8 @@ namespace Entidades
 {
     public class Cliente
     {
-        private string telefono;
         private string nombre;
+        private string telefono;
         private string direccion;
 
         public string Telefono

@@ -13,7 +13,7 @@ namespace PruebaTp3Form
         public List<Cliente> listaClientes;
         public List<Pedido> listaPedidos;
         public Pedido pedido;
-        public Cliente Cliente;
+        public Cliente cliente;
         string path;
 
         public FormClientes()
@@ -32,7 +32,8 @@ namespace PruebaTp3Form
             int index = this.listBox1.SelectedIndex;
             if (index > -1)
             {
-                FormVentas formVentas = new FormVentas(this.listaClientes[index]);
+                //FormVentas formVentas = new FormVentas(this.listaClientes[index]);
+                FormVentas formVentas = new FormVentas((Cliente)this.listBox1.SelectedItem);
                 formVentas.ShowDialog();
                 switch (formVentas.DialogResult)
                 {
@@ -134,29 +135,34 @@ namespace PruebaTp3Form
             int index = this.listBox1.SelectedIndex;
             if (index > -1)
             {
-                FormModificarCliente formModificarCliente = new FormModificarCliente(this.listaClientes[index]);
+                //FormModificarCliente formModificarCliente = new FormModificarCliente(this.listaClientes[index]);
+                FormModificarCliente formModificarCliente = new FormModificarCliente((Cliente)this.listBox1.SelectedItem);
                 formModificarCliente.ShowDialog();
                 if (formModificarCliente.DialogResult == DialogResult.OK)
                 {
-                    this.listaClientes[index] = formModificarCliente.cliente;
-                    this.Cargar();
+                    this.listBox1.SelectedItem = formModificarCliente.cliente;
                 }
             }
+            this.Cargar();
         }
 
         private void Cargar()
         {
-            this.listBox1.Items.Clear();
-            foreach (Cliente item in this.listaClientes)
-            {
-                this.listBox1.Items.Add(item.ToString());
-            }
+            this.listBox1.DataSource = null;
+            this.dataGridView1.DataSource = null; 
+            this.listBox1.DataSource = this.listaClientes;
+            this.dataGridView1.DataSource = this.listaClientes;
         }
 
         private void btnNuevoCliente_Click(object sender, EventArgs e)
         {
-            FormNuevoCliente formNuevoCliente = new FormNuevoCliente(this);
+            FormNuevoCliente formNuevoCliente = new FormNuevoCliente();
             formNuevoCliente.ShowDialog();
+            if (formNuevoCliente.DialogResult == DialogResult.OK)
+            {
+                this.listaClientes.Add(formNuevoCliente.cliente);
+                this.Cargar();
+            }
         }
 
         private void btnHistorial_Click(object sender, EventArgs e)
@@ -165,7 +171,7 @@ namespace PruebaTp3Form
             if (index > -1)
             {
                 //MessageBox.Show(this.listaClientes[index].MostrarHistorial(), this.listaClientes[index].MostrarCliente());
-                string mensaje = this.listaClientes[index].MostrarCliente();
+                string mensaje = this.listaClientes[index].MostrarCliente() + "\n";
                 bool bandera = false;
                 foreach (Pedido item in this.listaPedidos)
                 {
@@ -195,6 +201,7 @@ namespace PruebaTp3Form
                         this.listBox1.Items.Add(item.ToString());
                     }
                 }
+
             }
             else
             {
@@ -288,7 +295,5 @@ namespace PruebaTp3Form
 
             this.DialogResult = DialogResult.Cancel;
         }
-
-
     }
 }

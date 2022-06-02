@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-        public enum ETipoPago
-        {
-            Efectivo,
-            Tarjeta,
-        }
+    public enum ETipoPago
+    {
+        Efectivo,
+        Tarjeta,
+    }
     public class Alimento
     {
         //Atributos
@@ -88,14 +88,10 @@ namespace Entidades
             this.precioTarj = precioTarj;
         }
 
-        public Alimento(string descripcion, double kilos, double precioEf, double precioTarj, int cantidad)
-        {
-            this.descripcion = descripcion;
-            this.kilos = kilos;
-            this.precioEf = precioEf;
-            this.precioTarj = precioTarj;
-            this.cantidad = cantidad;
-        }
+        //public Alimento(string descripcion, double kilos, double precioEf, double precioTarj, int cantidad) : this(descripcion, kilos, precioEf, precioTarj)
+        //{
+        //    this.cantidad = cantidad;
+        //}
 
         public string MostrarAlimentoConUnidades()
         {
@@ -104,16 +100,23 @@ namespace Entidades
             return sb.ToString();
         }
 
+        public string MostrarAlimento()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"{this.descripcion} - {this.kilos}kg");
+            return sb.ToString();
+        }
+
         public string MostrarAlimentoPorTipoPago(ETipoPago tipoPago)
         {
             StringBuilder sb = new StringBuilder();
-            
+
             sb.Append($"{this.cantidad} - {this.descripcion} - {this.kilos}kg "); /*- {this.precioEf:C} - {this.precioTarj:C}*/
-            if(tipoPago == ETipoPago.Efectivo)
+            if (tipoPago == ETipoPago.Efectivo)
             {
                 sb.Append($"- {this.precioEf:C}");
             }
-            else if(tipoPago == ETipoPago.Tarjeta)
+            else if (tipoPago == ETipoPago.Tarjeta)
             {
                 sb.Append($"- {this.precioTarj:C}");
             }

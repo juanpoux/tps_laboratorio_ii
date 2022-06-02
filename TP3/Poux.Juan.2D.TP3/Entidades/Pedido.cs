@@ -68,6 +68,7 @@ namespace Entidades
             {
                 sb.AppendLine("****** Pedido SIN pagar *******");
             }
+            sb.AppendLine();
             return sb.ToString();
         }
 
@@ -129,7 +130,7 @@ namespace Entidades
             {
                 //sb.Append(" - NO PAGO - ");
             }
-                sb.Append($"{this.diaDeEntrega}");
+                sb.Append($"{this.diaDeEntrega.ToShortDateString()}");
             return sb.ToString();
         }
     }

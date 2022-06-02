@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
@@ -40,27 +42,60 @@ namespace PruebaTp3Form
             this.numericCantidad.Value = 1;//Pruebas
 
             this.alimentosPedido = new List<Alimento>();
-            this.alimentosEnStock = new()
+            this.alimentosEnStock = new List<Alimento>();
+
+            //Leer archivo json
+            try
             {
-                new Alimento("Royal Canin Mini Adult", 7.5, 500, 550),
-                new Alimento("Royal Canin Medium Adult", 15, 900, 990),
-                new Alimento("Royal Canin Maxi Adult", 15, 900, 990),
-                new Alimento("Balanced Adulto Razas Medianas", 20, 800, 890),
-                new Alimento("Balanced Adulto Razas Grandes", 20, 800, 890),
-                new Alimento("Pro Plan Adulto Razas Pequeñas", 7.5, 450, 490),
-                new Alimento("Pro Plan Adulto Razas Medianas", 15, 950, 990),
-                new Alimento("Pro Plan Active Mind Razas Pequeñas", 7.5, 550, 590),
-                new Alimento("Pro Plan Active Mind Razas Medianas", 15, 950, 990)
-            };
+                //string ubicacionYNombreArchivo = AppDomain.CurrentDomain.BaseDirectory + @"\ListaClientes.json";
+                string ubicacionYNombreArchivo = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\ListaAlimentos.js";
+                this.alimentosEnStock = JsonSerializer.Deserialize<List<Alimento>>(File.ReadAllText(ubicacionYNombreArchivo));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //this.alimentosEnStock = new()
+            //{
+            //    new Alimento("Royal Canin Mini Adult", 7.5, 500, 550),
+            //    new Alimento("Royal Canin Medium Adult", 15, 900, 990),
+            //    new Alimento("Royal Canin Maxi Adult", 15, 900, 990),
+            //    new Alimento("Balanced Adulto Razas Medianas", 20, 800, 890),
+            //    new Alimento("Balanced Adulto Razas Grandes", 20, 800, 890),
+            //    new Alimento("Pro Plan Adulto Razas Pequeñas", 7.5, 450, 490),
+            //    new Alimento("Pro Plan Adulto Razas Medianas", 15, 950, 990),
+            //    new Alimento("Pro Plan Active Mind Razas Pequeñas", 7.5, 550, 590),
+            //    new Alimento("Pro Plan Active Mind Razas Medianas", 15, 950, 990)
+
+            //};
+
+            //try
+            //{
+            //    JsonSerializerOptions opciones = new JsonSerializerOptions();
+            //    opciones.WriteIndented = true;
+            //    string ubicacionYNombreArchivo = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\ListaAlimentos.json";
+            //    File.WriteAllText(ubicacionYNombreArchivo, JsonSerializer.Serialize(this.alimentosEnStock, opciones));
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
 
             Dictionary<string, Alimento> valoresCombo = new Dictionary<string, Alimento>();
             foreach (Alimento item in alimentosEnStock)
             {
-                valoresCombo.Add(item.Descripcion, item);
+                valoresCombo.Add(item.Descripcion + item.Kilos, item);
             }
             this.cboProducto.DisplayMember = "Key";
             this.cboProducto.ValueMember = "Value";
             this.cboProducto.DataSource = valoresCombo.ToArray();
+
+            foreach (Alimento item in alimentosEnStock)
+            {
+                //this.listBoxProductosEnStock.Items.Add(item.MostrarAlimento());
+                this.listBoxProductosEnStock.Items.Add(item.MostrarAlimento());
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -90,11 +125,11 @@ namespace PruebaTp3Form
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            if (this.cboProducto.SelectedIndex == -1)
-            {
-                MessageBox.Show("Debe seleccionar un producto");
-            }
-            else if (this.numericCantidad.Value == 0)
+            //if (this.cboProducto.SelectedIndex == -1)
+            //{
+            //    MessageBox.Show("Debe seleccionar un producto");
+            //}
+            if (this.numericCantidad.Value == 0)
             {
                 MessageBox.Show("Debe seleccionar una cantidad");
             }
@@ -102,10 +137,16 @@ namespace PruebaTp3Form
             {
                 MessageBox.Show("Debe seleccionar un medio de pago");
             }
+            else if (this.listBoxProductosEnStock.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un producto");
+            }
             else
             {
+                int index = this.listBoxProductosEnStock.SelectedIndex;
+                Alimento alimentoPerro = this.alimentosEnStock[index];
                 int cantidad = (int)this.numericCantidad.Value;
-                Alimento alimentoPerro = this.DevolverAlimentoSeleccionado();
+                //Alimento alimentoPerro = this.DevolverAlimentoSeleccionado();
 
                 //precioFinal = precio * cantidad;
                 this.acumuladorEfectivo += (alimentoPerro.PrecioEf * cantidad);
@@ -128,7 +169,9 @@ namespace PruebaTp3Form
                 }
                 if (!bandera)
                 {
-                    this.alimentosPedido.Add(new Alimento(alimentoPerro.Descripcion, alimentoPerro.Kilos, alimentoPerro.PrecioEf, alimentoPerro.PrecioTarj, alimentoPerro.Cantidad));
+                    Alimento alimento = new Alimento(alimentoPerro.Descripcion, alimentoPerro.Kilos, alimentoPerro.PrecioEf, alimentoPerro.PrecioTarj);
+                    alimento.Cantidad = alimentoPerro.Cantidad;
+                    this.alimentosPedido.Add(alimento);
                 }
 
                 //this.btnLimpiar_Click(sender, e);
@@ -138,10 +181,10 @@ namespace PruebaTp3Form
 
         private void Cargar()
         {
-            this.listBox1.Items.Clear();
+            this.listBoxProductosPedidos.Items.Clear();
             foreach (Alimento item in this.alimentosPedido)
             {
-                this.listBox1.Items.Add(item.MostrarAlimentoConUnidades());
+                this.listBoxProductosPedidos.Items.Add(item.MostrarAlimentoConUnidades());
             }
         }
 
@@ -157,10 +200,10 @@ namespace PruebaTp3Form
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int index = this.listBox1.SelectedIndex;
+            int index = this.listBoxProductosPedidos.SelectedIndex;
             if (index > -1)
             {
-                this.listBox1.Items.RemoveAt(index);
+                this.listBoxProductosPedidos.Items.RemoveAt(index);
                 this.alimentosPedido.RemoveAt(index);
             }
         }
@@ -187,7 +230,7 @@ namespace PruebaTp3Form
                 pedido.precioFinal = this.acumuladorTarjeta;
             }
 
-            if(cbPagoElPedido.Checked)
+            if (cbPagoElPedido.Checked)
             {
                 pedido.pago = true;
             }
@@ -195,10 +238,25 @@ namespace PruebaTp3Form
             {
                 pedido.pago = false;
             }
+            pedido.diaDeEntrega = this.dateTimePicker1.Value;
 
             MessageBox.Show("Pedido cargado!", "Pedido cargado");
             this.DialogResult = DialogResult.OK;
         }
 
+        private void listBoxProductosEnStock_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = this.listBoxProductosEnStock.SelectedIndex;
+            if (index > -1)
+            {
+                this.lblPrecio.Text = this.alimentosEnStock[index].PrecioEf.ToString("C");
+                this.lblPrecioTarj.Text = alimentosEnStock[index].PrecioTarj.ToString("C");
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

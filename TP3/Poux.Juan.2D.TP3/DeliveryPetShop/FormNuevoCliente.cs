@@ -13,24 +13,60 @@ namespace PruebaTp3Form
 {
     public partial class FormNuevoCliente : Form
     {
-        FormClientes formClientes;
-        Cliente cliente;
+        public Cliente cliente;
         public FormNuevoCliente()
         {
             InitializeComponent();
         }
 
-        public FormNuevoCliente(FormClientes formClientes) : this()
-        {
-            this.formClientes = formClientes;
-        }
-
         protected virtual void btnAceptar_Click(object sender, EventArgs e)
         {
-            cliente = new Cliente(this.txtTelefono.Text, this.txtNombre.Text, this.txtDireccion.Text);
-            formClientes.listBox1.Items.Add(cliente);
-            formClientes.listaClientes.Add(cliente);
-            this.Close();
+            if (this.ValidarCamposCompletos())
+            {
+                cliente = new Cliente(this.txtTelefono.Text, this.txtNombre.Text, this.txtDireccion.Text);
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("Debe completar todos los campos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void txtTelefono_TextChanged(object sender, EventArgs e)
+        {
+            foreach (char item in this.txtTelefono.Text)
+            {
+                if (!char.IsDigit(item))
+                {
+                    MessageBox.Show("Solo se aceptan valores numericos para el telefono", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    this.txtTelefono.Clear();
+                    this.txtTelefono.Focus();
+                    break;
+                }
+            }
+        }
+
+        protected bool ValidarCamposCompletos()
+        {
+            bool retorno = true;
+            foreach (Control item in this.gbDatosCliente.Controls)
+            {
+                if (item is TextBox)
+                {
+                    if (string.IsNullOrEmpty(item.Text) || string.IsNullOrWhiteSpace(item.Text))
+                    {
+                        retorno = false;
+                        break;
+                    }
+                }
+            }
+            return retorno;
         }
     }
 }
