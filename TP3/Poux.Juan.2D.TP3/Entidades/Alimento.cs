@@ -145,11 +145,11 @@ namespace Entidades
             return alimento is not null && this == alimento;
         }
 
-        //public override string ToString()
-        //{
-        //    //StringBuilder sb = new StringBuilder();
-        //    //sb.Append($"{this.descripcion} - {this.kilos}kg - {this.precioEf:C} - {this.precioTarj:C}");
-        //    return MostrarAlimentoSinUnidades();
-        //}
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"{this.descripcion} - {this.kilos}kg - {this.precioEf:C} - {this.precioTarj:C}");
+            return sb.ToString();
+        }
     }
 }

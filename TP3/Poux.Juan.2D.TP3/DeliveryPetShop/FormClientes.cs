@@ -1,4 +1,5 @@
-﻿using Entidades;
+﻿using DeliveryPetShop;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -149,7 +150,7 @@ namespace PruebaTp3Form
         private void Cargar()
         {
             this.listBox1.DataSource = null;
-            this.dataGridView1.DataSource = null; 
+            this.dataGridView1.DataSource = null;
             this.listBox1.DataSource = this.listaClientes;
             this.dataGridView1.DataSource = this.listaClientes;
         }
@@ -171,7 +172,8 @@ namespace PruebaTp3Form
             if (index > -1)
             {
                 //MessageBox.Show(this.listaClientes[index].MostrarHistorial(), this.listaClientes[index].MostrarCliente());
-                string mensaje = this.listaClientes[index].MostrarCliente() + "\n";
+                //string mensaje = this.listaClientes[index].MostrarCliente() + "\n";
+                string mensaje = ((Cliente)this.listBox1.SelectedItem).MostrarCliente() + "\n";
                 bool bandera = false;
                 foreach (Pedido item in this.listaPedidos)
                 {
@@ -185,7 +187,9 @@ namespace PruebaTp3Form
                 {
                     mensaje += "***** No se encuentran pedidos registrados *****";
                 }
-                MessageBox.Show(mensaje);
+                FormMostrador formMostrador = new FormMostrador(mensaje);
+                formMostrador.Show();
+                //MessageBox.Show(mensaje);
             }
         }
 
@@ -193,15 +197,15 @@ namespace PruebaTp3Form
         {
             if (this.txtBuscarPorNombre.Text is not null && this.txtBuscarPorNombre.Text != string.Empty)
             {
-                this.listBox1.Items.Clear();
-                foreach (Cliente item in this.listaClientes)
-                {
-                    if ((item.Nombre.ToLower()).StartsWith(this.txtBuscarPorNombre.Text.ToLower()))
-                    {
-                        this.listBox1.Items.Add(item.ToString());
-                    }
-                }
-
+                this.listBox1.FindString(this.txtBuscarPorNombre.Text);
+                //this.listBox1.Items.Clear();
+                //foreach (Cliente item in this.listaClientes)
+                //{
+                //    if ((item.Nombre.ToLower()).StartsWith(this.txtBuscarPorNombre.Text.ToLower()))
+                //    {
+                //        this.listBox1.Items.Add(item.ToString());
+                //    }
+                //}
             }
             else
             {
@@ -213,14 +217,19 @@ namespace PruebaTp3Form
         {
             if (this.txtBuscarPorDireccion.Text is not null && this.txtBuscarPorDireccion.Text != string.Empty)
             {
-                this.listBox1.Items.Clear();
+                this.listBox1.DataSource = null;
+                this.dataGridView1.DataSource = null;
+                List<Cliente> listita = new List<Cliente>();
                 foreach (Cliente item in this.listaClientes)
                 {
                     if (item.Direccion.ToLower().StartsWith(this.txtBuscarPorDireccion.Text.ToLower()))
                     {
-                        this.listBox1.Items.Add(item.ToString());
+                        listita.Add(item);
+
                     }
                 }
+                this.listBox1.DataSource = listita;
+                this.dataGridView1.DataSource = listita;
             }
             else
             {

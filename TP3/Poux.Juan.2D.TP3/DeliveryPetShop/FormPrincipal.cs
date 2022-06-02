@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Windows.Forms;
+using DeliveryPetShop;
 using Entidades;
 
 namespace PruebaTp3Form
@@ -55,7 +56,9 @@ namespace PruebaTp3Form
             if (index > -1)
             {
                 string mensaje = this.listaPedidos[index].cliente.MostrarCliente() + this.listaPedidos[index].MostrarPedido();
-                MessageBox.Show(mensaje);
+                //MessageBox.Show(mensaje);
+                FormMostrador formMostrador = new FormMostrador(mensaje);
+                formMostrador.Show();
                 Clipboard.SetText(mensaje);
             }
         }

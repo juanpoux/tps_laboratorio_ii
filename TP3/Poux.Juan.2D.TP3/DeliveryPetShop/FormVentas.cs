@@ -47,8 +47,8 @@ namespace PruebaTp3Form
             //Leer archivo json
             try
             {
-                //string ubicacionYNombreArchivo = AppDomain.CurrentDomain.BaseDirectory + @"\ListaClientes.json";
-                string ubicacionYNombreArchivo = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\ListaAlimentos.js";
+                string ubicacionYNombreArchivo = AppDomain.CurrentDomain.BaseDirectory + @"\ListaAlimentos.json";
+                //string ubicacionYNombreArchivo = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\ListaAlimentos.js";
                 this.alimentosEnStock = JsonSerializer.Deserialize<List<Alimento>>(File.ReadAllText(ubicacionYNombreArchivo));
             }
             catch (Exception ex)
@@ -56,6 +56,7 @@ namespace PruebaTp3Form
                 MessageBox.Show(ex.Message);
             }
 
+            this.listBoxProductosEnStock.DataSource = this.alimentosEnStock;
             //this.alimentosEnStock = new()
             //{
             //    new Alimento("Royal Canin Mini Adult", 7.5, 500, 550),
@@ -82,20 +83,20 @@ namespace PruebaTp3Form
             //    MessageBox.Show(ex.Message);
             //}
 
-            Dictionary<string, Alimento> valoresCombo = new Dictionary<string, Alimento>();
-            foreach (Alimento item in alimentosEnStock)
-            {
-                valoresCombo.Add(item.Descripcion + item.Kilos, item);
-            }
-            this.cboProducto.DisplayMember = "Key";
-            this.cboProducto.ValueMember = "Value";
-            this.cboProducto.DataSource = valoresCombo.ToArray();
+            //Dictionary<string, Alimento> valoresCombo = new Dictionary<string, Alimento>();
+            //foreach (Alimento item in alimentosEnStock)
+            //{
+            //    valoresCombo.Add(item.Descripcion + item.Kilos, item);
+            //}
+            //this.cboProducto.DisplayMember = "Key";
+            //this.cboProducto.ValueMember = "Value";
+            //this.cboProducto.DataSource = valoresCombo.ToArray();
 
-            foreach (Alimento item in alimentosEnStock)
-            {
-                //this.listBoxProductosEnStock.Items.Add(item.MostrarAlimento());
-                this.listBoxProductosEnStock.Items.Add(item.MostrarAlimento());
-            }
+            //foreach (Alimento item in alimentosEnStock)
+            //{
+            //    this.listBoxProductosEnStock.Items.Add(item.MostrarAlimento());
+            //    this.listBoxProductosEnStock.Items.Add(item.MostrarAlimento());
+            //}
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -249,9 +250,11 @@ namespace PruebaTp3Form
             int index = this.listBoxProductosEnStock.SelectedIndex;
             if (index > -1)
             {
-                this.lblPrecio.Text = this.alimentosEnStock[index].PrecioEf.ToString("C");
-                this.lblPrecioTarj.Text = alimentosEnStock[index].PrecioTarj.ToString("C");
+                //this.lblPrecio.Text = this.alimentosEnStock[index].PrecioEf.ToString("C");
+                //this.lblPrecioTarj.Text = alimentosEnStock[index].PrecioTarj.ToString("C");
             }
+            this.lblPrecio.Text = ((Alimento)this.listBoxProductosEnStock.SelectedItem).PrecioEf.ToString("C");
+            this.lblPrecioTarj.Text = ((Alimento)this.listBoxProductosEnStock.SelectedItem).PrecioTarj.ToString("C");
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

@@ -55,7 +55,6 @@ namespace PruebaTp3Form
             this.lblCartelTotalTarjeta = new System.Windows.Forms.Label();
             this.lblTotalTarjeta = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.gbVentas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericCantidad)).BeginInit();
@@ -401,7 +400,6 @@ namespace PruebaTp3Form
         private System.Windows.Forms.CheckBox cbPagoElPedido;
         private System.Windows.Forms.ListBox listBoxProductosEnStock;
         private System.Windows.Forms.TextBox textBox1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
