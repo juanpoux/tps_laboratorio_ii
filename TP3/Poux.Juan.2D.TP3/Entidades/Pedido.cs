@@ -14,10 +14,8 @@ namespace Entidades
         private bool pago;
         private DateTime diaDeEntrega;
         private double precioFinal;
-        private bool efectivo;
         private ETipoPago tipoPago;
         private string observaciones;
-
 
         //Constructores
         private Pedido()
@@ -89,17 +87,7 @@ namespace Entidades
                 this.precioFinal = value;
             }
         }
-        public bool Efectivo
-        {
-            get
-            {
-                return this.efectivo;
-            }
-            set
-            {
-                this.efectivo = value;
-            }
-        }
+
         public ETipoPago TipoPago
         {
             get
