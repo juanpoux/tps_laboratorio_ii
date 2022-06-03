@@ -38,7 +38,6 @@ namespace PruebaTp3Form
             this.lblSeleccioneProducto = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.lblCartelPrecio = new System.Windows.Forms.Label();
-            this.cboProducto = new System.Windows.Forms.ComboBox();
             this.cbPagoElPedido = new System.Windows.Forms.CheckBox();
             this.lblTipoDePago = new System.Windows.Forms.Label();
             this.lblCantidad = new System.Windows.Forms.Label();
@@ -79,7 +78,6 @@ namespace PruebaTp3Form
             this.gbVentas.Controls.Add(this.lblSeleccioneProducto);
             this.gbVentas.Controls.Add(this.lblPrecio);
             this.gbVentas.Controls.Add(this.lblCartelPrecio);
-            this.gbVentas.Controls.Add(this.cboProducto);
             this.gbVentas.Location = new System.Drawing.Point(0, 0);
             this.gbVentas.Name = "gbVentas";
             this.gbVentas.Size = new System.Drawing.Size(544, 472);
@@ -91,7 +89,7 @@ namespace PruebaTp3Form
             // 
             this.textBox1.Location = new System.Drawing.Point(16, 38);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(255, 23);
+            this.textBox1.Size = new System.Drawing.Size(515, 23);
             this.textBox1.TabIndex = 18;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -155,17 +153,6 @@ namespace PruebaTp3Form
             this.lblCartelPrecio.Size = new System.Drawing.Size(114, 21);
             this.lblCartelPrecio.TabIndex = 3;
             this.lblCartelPrecio.Text = "Precio Efectivo:";
-            // 
-            // cboProducto
-            // 
-            this.cboProducto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboProducto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboProducto.FormattingEnabled = true;
-            this.cboProducto.Location = new System.Drawing.Point(277, 38);
-            this.cboProducto.Name = "cboProducto";
-            this.cboProducto.Size = new System.Drawing.Size(254, 23);
-            this.cboProducto.TabIndex = 0;
-            this.cboProducto.SelectedIndexChanged += new System.EventHandler(this.cboProducto_SelectedIndexChanged);
             // 
             // cbPagoElPedido
             // 
@@ -379,7 +366,6 @@ namespace PruebaTp3Form
         private System.Windows.Forms.Label lblCartelFecha;
         private System.Windows.Forms.NumericUpDown numericCantidad;
         private System.Windows.Forms.ComboBox cboMedioDePago;
-        private System.Windows.Forms.ComboBox cboProducto;
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.Label lblCartelPrecio;
         private System.Windows.Forms.Button btnRegistrar;

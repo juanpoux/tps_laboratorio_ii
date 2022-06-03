@@ -1,23 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public static class ClaseSerializadoraJson<T>
+    public static class SerializacionConJson<T>
     {
-
         static string path;
 
-        static ClaseSerializadoraJson()
+        static SerializacionConJson()
         {
             path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            path += @"\Archivos-Serializacion\";
+            path += @"\Archivos-TP3-Juan-Poux-1A\";
         }
 
         public static void Escribir(T datos, string nombre)
         {
-            string nombreArchivo = path + "SerializandoJson_" + nombre + ".js";
+            string nombreArchivo = path + nombre + ".json";
+            JsonSerializerOptions opciones = new JsonSerializerOptions();
+            opciones.WriteIndented = true;
 
             try
             {
@@ -25,26 +30,20 @@ namespace Entidades
                 {
                     Directory.CreateDirectory(path);
                 }
-
-
-                File.WriteAllText(nombreArchivo, JsonSerializer.Serialize(datos));
-
+                File.WriteAllText(nombreArchivo, JsonSerializer.Serialize(datos, opciones));
             }
             catch (Exception e)
             {
-                throw new Exception($"Error en el archivo ubicado en {path}", e);
+                throw new Exception($"Error serializando el archivo ubicado en {path}", e);
             }
         }
-
 
         public static T Leer(string nombre)
         {
             string archivo = string.Empty;
-            string informacionRecuperada = string.Empty;
             T datosRecuperados = default;
             try
             {
-
                 if (Directory.Exists(path))
                 {
                     // recupera los nombres de los archivos que hay en esa carpeta incluida la ruta
@@ -57,11 +56,15 @@ namespace Entidades
                             break;
                         }
                     }
-
                     if (archivo != null)
                     {
                         datosRecuperados = JsonSerializer.Deserialize<T>(File.ReadAllText(archivo));
                     }
+                }
+                else
+                {
+                    string ubicacionYNombreArchivo = AppDomain.CurrentDomain.BaseDirectory + nombre;
+                    datosRecuperados = JsonSerializer.Deserialize<T>(File.ReadAllText(ubicacionYNombreArchivo));
                 }
 
                 return datosRecuperados;
@@ -72,7 +75,6 @@ namespace Entidades
             }
 
         }
-
 
     }
 }

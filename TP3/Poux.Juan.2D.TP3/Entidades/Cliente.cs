@@ -11,6 +11,17 @@ namespace Entidades
         private string nombre;
         private string telefono;
         private string direccion;
+        public string Nombre
+        {
+            get
+            {
+                return this.nombre;
+            }
+            set
+            {
+                this.nombre = value;
+            }
+        }
 
         public string Telefono
         {
@@ -21,17 +32,6 @@ namespace Entidades
             set
             {
                 this.telefono = value;
-            }
-        }
-        public string Nombre
-        {
-            get
-            {
-                return this.nombre;
-            }
-            set
-            {
-                this.nombre = value;
             }
         }
         public string Direccion

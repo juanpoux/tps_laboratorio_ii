@@ -23,10 +23,10 @@ namespace PruebaTp3Form
         {
             listaClientes = new()
             {
-                new Cliente("15555000", "Juan", "saavedra 352"),
-                new Cliente("15555000", "Jose", "saavedra 352"),
-                new Cliente("15660055", "Eze", "Holi 166"),
-                new Cliente("42489003", "Thiago", "Comahue 1664")
+                new Cliente("Juan", "Juan", "saavedra 352"),
+                new Cliente("Jose", "Jose", "saavedra 352"),
+                new Cliente("Eze", "Eze", "Holi 166"),
+                new Cliente("Thiago", "Thiago", "Comahue 1664")
             };
 
             Dictionary<string, Cliente> valoresCombo = new Dictionary<string, Cliente>();

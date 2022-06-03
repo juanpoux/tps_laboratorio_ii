@@ -9,13 +9,15 @@ namespace Entidades
     public class Pedido
     {
         //Atributos
-        public Cliente cliente;
-        public List<Alimento> alimentosPedidos;
-        public bool pago;
-        public DateTime diaDeEntrega;
-        public double precioFinal;
-        public bool pegoEnEfectivo;
-        public ETipoPago tipoPago;
+        private Cliente cliente;
+        private List<Alimento> alimentosPedidos;
+        private bool pago;
+        private DateTime diaDeEntrega;
+        private double precioFinal;
+        private bool efectivo;
+        private ETipoPago tipoPago;
+        private string observaciones;
+
 
         //Constructores
         private Pedido()
@@ -32,11 +34,93 @@ namespace Entidades
         }
 
         //Propiedades
-        public double precioTotal
+        public Cliente Cliente
         {
             get
             {
-                return this.CalcularPrecioTotal();
+                return this.cliente;
+            }
+            set
+            {
+                this.cliente = value;
+            }
+        }
+        public List<Alimento> AlimentosPedidos
+        {
+            get
+            {
+                return this.alimentosPedidos;
+            }
+            set
+            {
+                this.alimentosPedidos = value;
+            }
+        }
+        public bool Pago
+        {
+            get
+            {
+                return this.pago;
+            }
+            set
+            {
+                this.pago = value;
+            }
+        }
+        public DateTime DiaDeEntrega
+        {
+            get
+            {
+                return this.diaDeEntrega;
+            }
+            set
+            {
+                this.diaDeEntrega = value;
+            }
+        }
+        public double PrecioFinal
+        {
+            get
+            {
+                return this.precioFinal;
+            }
+            set
+            {
+                this.precioFinal = value;
+            }
+        }
+        public bool Efectivo
+        {
+            get
+            {
+                return this.efectivo;
+            }
+            set
+            {
+                this.efectivo = value;
+            }
+        }
+        public ETipoPago TipoPago
+        {
+            get
+            {
+                return this.tipoPago;
+            }
+            set
+            {
+                this.tipoPago = value;
+            }
+        }
+
+        public string Observaciones
+        {
+            get
+            {
+                return this.observaciones;
+            }
+            set
+            {
+                this.observaciones = value;
             }
         }
 
@@ -55,7 +139,7 @@ namespace Entidades
             if (this.pago)
             {
                 sb.Append("****** Pedido pago ");
-                if(this.tipoPago == ETipoPago.Efectivo)
+                if (this.tipoPago == ETipoPago.Efectivo)
                 {
                     sb.AppendLine("en efectivo ******");
                 }
@@ -122,7 +206,7 @@ namespace Entidades
         {
             StringBuilder sb = new StringBuilder();
             sb.Append($"{cliente.Nombre} - {cliente.Direccion} - ");
-            if(this.pago)
+            if (this.pago)
             {
                 sb.Append("PAGO - ");
             }
@@ -130,7 +214,7 @@ namespace Entidades
             {
                 //sb.Append(" - NO PAGO - ");
             }
-                sb.Append($"{this.diaDeEntrega.ToShortDateString()}");
+            sb.Append($"{this.diaDeEntrega.ToShortDateString()}");
             return sb.ToString();
         }
     }

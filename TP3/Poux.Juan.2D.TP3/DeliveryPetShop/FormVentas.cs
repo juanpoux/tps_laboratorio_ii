@@ -48,7 +48,6 @@ namespace PruebaTp3Form
             try
             {
                 string ubicacionYNombreArchivo = AppDomain.CurrentDomain.BaseDirectory + @"\ListaAlimentos.json";
-                //string ubicacionYNombreArchivo = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\ListaAlimentos.js";
                 this.alimentosEnStock = JsonSerializer.Deserialize<List<Alimento>>(File.ReadAllText(ubicacionYNombreArchivo));
             }
             catch (Exception ex)
@@ -57,46 +56,6 @@ namespace PruebaTp3Form
             }
 
             this.listBoxProductosEnStock.DataSource = this.alimentosEnStock;
-            //this.alimentosEnStock = new()
-            //{
-            //    new Alimento("Royal Canin Mini Adult", 7.5, 500, 550),
-            //    new Alimento("Royal Canin Medium Adult", 15, 900, 990),
-            //    new Alimento("Royal Canin Maxi Adult", 15, 900, 990),
-            //    new Alimento("Balanced Adulto Razas Medianas", 20, 800, 890),
-            //    new Alimento("Balanced Adulto Razas Grandes", 20, 800, 890),
-            //    new Alimento("Pro Plan Adulto Razas Pequeñas", 7.5, 450, 490),
-            //    new Alimento("Pro Plan Adulto Razas Medianas", 15, 950, 990),
-            //    new Alimento("Pro Plan Active Mind Razas Pequeñas", 7.5, 550, 590),
-            //    new Alimento("Pro Plan Active Mind Razas Medianas", 15, 950, 990)
-
-            //};
-
-            //try
-            //{
-            //    JsonSerializerOptions opciones = new JsonSerializerOptions();
-            //    opciones.WriteIndented = true;
-            //    string ubicacionYNombreArchivo = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\ListaAlimentos.json";
-            //    File.WriteAllText(ubicacionYNombreArchivo, JsonSerializer.Serialize(this.alimentosEnStock, opciones));
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-
-            //Dictionary<string, Alimento> valoresCombo = new Dictionary<string, Alimento>();
-            //foreach (Alimento item in alimentosEnStock)
-            //{
-            //    valoresCombo.Add(item.Descripcion + item.Kilos, item);
-            //}
-            //this.cboProducto.DisplayMember = "Key";
-            //this.cboProducto.ValueMember = "Value";
-            //this.cboProducto.DataSource = valoresCombo.ToArray();
-
-            //foreach (Alimento item in alimentosEnStock)
-            //{
-            //    this.listBoxProductosEnStock.Items.Add(item.MostrarAlimento());
-            //    this.listBoxProductosEnStock.Items.Add(item.MostrarAlimento());
-            //}
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -104,32 +63,8 @@ namespace PruebaTp3Form
             this.DialogResult = DialogResult.Cancel;
         }
 
-        private void cboProducto_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Alimento alimentoPerro = this.DevolverAlimentoSeleccionado();
-            if (alimentoPerro is not null)
-            {
-                this.lblPrecio.Text = alimentoPerro.PrecioEf.ToString("C");
-                this.lblPrecioTarj.Text = alimentoPerro.PrecioTarj.ToString("C");
-            }
-        }
-
-        private Alimento DevolverAlimentoSeleccionado()
-        {
-            Alimento alimentoPerro = null;
-            if (this.cboProducto.SelectedItem != null)
-            {
-                alimentoPerro = ((KeyValuePair<string, Alimento>)this.cboProducto.SelectedItem).Value;
-            }
-            return alimentoPerro;
-        }
-
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            //if (this.cboProducto.SelectedIndex == -1)
-            //{
-            //    MessageBox.Show("Debe seleccionar un producto");
-            //}
             if (this.numericCantidad.Value == 0)
             {
                 MessageBox.Show("Debe seleccionar una cantidad");
@@ -147,9 +82,7 @@ namespace PruebaTp3Form
                 int index = this.listBoxProductosEnStock.SelectedIndex;
                 Alimento alimentoPerro = this.alimentosEnStock[index];
                 int cantidad = (int)this.numericCantidad.Value;
-                //Alimento alimentoPerro = this.DevolverAlimentoSeleccionado();
 
-                //precioFinal = precio * cantidad;
                 this.acumuladorEfectivo += (alimentoPerro.PrecioEf * cantidad);
                 this.acumuladorTarjeta += (alimentoPerro.PrecioTarj * cantidad);
                 this.lblTotalTarjeta.Text = this.acumuladorTarjeta.ToString("C");
@@ -174,8 +107,6 @@ namespace PruebaTp3Form
                     alimento.Cantidad = alimentoPerro.Cantidad;
                     this.alimentosPedido.Add(alimento);
                 }
-
-                //this.btnLimpiar_Click(sender, e);
                 this.Cargar();
             }
         }
@@ -187,26 +118,27 @@ namespace PruebaTp3Form
             {
                 this.listBoxProductosPedidos.Items.Add(item.MostrarAlimentoConUnidades());
             }
-        }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            this.cboProducto.Text = "(Seleccione producto)";
-            //this.cboMedioDePago.Text = "(Seleccione medio de pago)";
-            this.numericCantidad.Value = 0;
-            this.lblPrecio.Text = (0).ToString("C");
-            this.lblPrecioTarj.Text = (0).ToString("C");
-            this.cboProducto.Focus();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int index = this.listBoxProductosPedidos.SelectedIndex;
-            if (index > -1)
+            //int index = this.listBoxProductosPedidos.SelectedIndex;
+            //if (index > -1)
+            //{
+            //    this.listBoxProductosPedidos.Items.RemoveAt(index);
+            //    this.alimentosPedido.RemoveAt(index);
+            //}
+
+            foreach (Alimento item in this.alimentosPedido)
             {
-                this.listBoxProductosPedidos.Items.RemoveAt(index);
-                this.alimentosPedido.RemoveAt(index);
+                if (this.listBoxProductosPedidos.SelectedItem.ToString().Contains(item.Descripcion))
+                {
+                    this.alimentosPedido.Remove(item);
+                    break;
+                }
             }
+            this.Cargar();
         }
 
         private void btnEnviarPedido_Click(object sender, EventArgs e)
@@ -217,29 +149,29 @@ namespace PruebaTp3Form
                 sb.AppendLine($"{item.Descripcion}");
             }
             pedido = new Pedido(this.cliente, true, DateTime.Now);
-            pedido.alimentosPedidos = this.alimentosPedido;
+            pedido.AlimentosPedidos = this.alimentosPedido;
             //hacer validacion si elige pago con tarjeta o efectivo para asignar el precio
             //agregué atributo pagoenefectivo en PEIDO
             if (this.cboMedioDePago.Text == "Efectivo")
             {
-                pedido.tipoPago = ETipoPago.Efectivo;
-                pedido.precioFinal = this.acumuladorEfectivo;
+                pedido.TipoPago = ETipoPago.Efectivo;
+                pedido.PrecioFinal = this.acumuladorEfectivo;
             }
             else
             {
-                pedido.tipoPago = ETipoPago.Tarjeta;
-                pedido.precioFinal = this.acumuladorTarjeta;
+                pedido.TipoPago = ETipoPago.Tarjeta;
+                pedido.PrecioFinal = this.acumuladorTarjeta;
             }
 
             if (cbPagoElPedido.Checked)
             {
-                pedido.pago = true;
+                pedido.Pago = true;
             }
             else
             {
-                pedido.pago = false;
+                pedido.Pago = false;
             }
-            pedido.diaDeEntrega = this.dateTimePicker1.Value;
+            pedido.DiaDeEntrega = this.dateTimePicker1.Value;
 
             MessageBox.Show("Pedido cargado!", "Pedido cargado");
             this.DialogResult = DialogResult.OK;
