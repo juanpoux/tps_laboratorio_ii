@@ -19,6 +19,7 @@ namespace PruebaTp3Form
         public FormClientes()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         public FormClientes(List<Cliente> listaClientes, List<Pedido> listaPedidos) : this()

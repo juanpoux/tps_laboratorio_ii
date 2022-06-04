@@ -184,7 +184,8 @@ namespace PruebaTp3Form
             this.Controls.Add(this.btnNuevoCliente);
             this.Controls.Add(this.btnSeleccionarCliente);
             this.Name = "FormClientes";
-            this.Text = "FormClientes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
+            this.Text = "Clientes";
             this.Load += new System.EventHandler(this.FormClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.ResumeLayout(false);

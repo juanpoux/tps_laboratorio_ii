@@ -1,93 +1,100 @@
 [
   {
     "Descripcion": "Royal Canin Mini Adult",
+    "Kilos": 3,
+    "Cantidad": 0,
+    "Precio": 3070,
+    "PrecioTarj": 3070
+  },
+  {
+    "Descripcion": "Royal Canin Mini Adult",
     "Kilos": 7.5,
     "Cantidad": 0,
-    "PrecioEf": 500,
-    "PrecioTarj": 550
+    "Precio": 6480,
+    "PrecioTarj": 6050
   },
   {
     "Descripcion": "Royal Canin Mini Puppy",
     "Kilos": 7.5,
     "Cantidad": 0,
-    "PrecioEf": 500,
-    "PrecioTarj": 550
+    "Precio": 6150,
+    "PrecioTarj": 6590
   },
   {
     "Descripcion": "Royal Canin Mini Puppy",
     "Kilos": 15,
     "Cantidad": 0,
-    "PrecioEf": 500,
-    "PrecioTarj": 550
+    "Precio": 10920,
+    "PrecioTarj": 11690
   },
   {
     "Descripcion": "Royal Canin Medium Adult",
     "Kilos": 15,
     "Cantidad": 0,
-    "PrecioEf": 900,
-    "PrecioTarj": 990
+    "Precio": 9440,
+    "PrecioTarj": 10100
   },
   {
     "Descripcion": "Royal Canin Medium Puppy",
     "Kilos": 15,
     "Cantidad": 0,
-    "PrecioEf": 900,
-    "PrecioTarj": 990
+    "Precio": 10640,
+    "PrecioTarj": 11380
   },
   {
     "Descripcion": "Royal Canin Maxi Adult",
     "Kilos": 15,
     "Cantidad": 0,
-    "PrecioEf": 900,
-    "PrecioTarj": 990
+    "Precio": 9440,
+    "PrecioTarj": 10100
   },
   {
     "Descripcion": "Royal Canin Maxi Puppy",
     "Kilos": 15,
     "Cantidad": 0,
-    "PrecioEf": 900,
-    "PrecioTarj": 990
+    "Precio": 10640,
+    "PrecioTarj": 11380
   },
   {
     "Descripcion": "Balanced Adulto Razas Medianas",
     "Kilos": 20,
     "Cantidad": 0,
-    "PrecioEf": 800,
-    "PrecioTarj": 890
+    "Precio": 7170,
+    "PrecioTarj": 7670
   },
   {
     "Descripcion": "Balanced Adulto Razas Grandes",
     "Kilos": 20,
     "Cantidad": 0,
-    "PrecioEf": 800,
-    "PrecioTarj": 890
+    "Precio": 7170,
+    "PrecioTarj": 7670
   },
   {
     "Descripcion": "Pro Plan Adulto Razas Peque\u00F1as",
     "Kilos": 7.5,
     "Cantidad": 0,
-    "PrecioEf": 450,
-    "PrecioTarj": 490
+    "Precio": 5210,
+    "PrecioTarj": 5580
   },
   {
     "Descripcion": "Pro Plan Adulto Razas Medianas",
     "Kilos": 15,
     "Cantidad": 0,
-    "PrecioEf": 950,
-    "PrecioTarj": 990
+    "Precio": 8620,
+    "PrecioTarj": 9230
   },
   {
     "Descripcion": "Pro Plan Active Mind Razas Peque\u00F1as",
     "Kilos": 7.5,
     "Cantidad": 0,
-    "PrecioEf": 550,
-    "PrecioTarj": 590
+    "Precio": 5720,
+    "PrecioTarj": 6130
   },
   {
     "Descripcion": "Pro Plan Active Mind Razas Medianas",
     "Kilos": 15,
     "Cantidad": 0,
-    "PrecioEf": 950,
-    "PrecioTarj": 990
+    "Precio": 9470,
+    "PrecioTarj": 10140
   }
 ]

@@ -13,11 +13,13 @@ namespace PruebaTp3Form
         Pedido pedido;
         public List<Cliente> listaClientes;
         public List<Pedido> listaPedidos;
+        public List<Pedido> listaPedidosHoy;
 
         public FormPrincipal()
         {
             InitializeComponent();
             this.listaPedidos = new List<Pedido>();
+            this.listaPedidosHoy = new List<Pedido>();
             this.listaClientes = new List<Cliente>();
         }
 
@@ -38,6 +40,20 @@ namespace PruebaTp3Form
             this.LeerClientes();
             this.LeerPedidos();
             this.listBox1.DataSource = this.listaPedidos;
+
+            foreach (Pedido item in this.listaPedidos)
+            {
+                if(item.DiaDeEntrega.Day == DateTime.Now.Day)
+                {
+                    this.listaPedidosHoy.Add(item);
+                }
+            }
+            this.dgvPedidos.DataSource = this.listaPedidosHoy;
+
+            this.dgvPedidos.Columns[0].Visible = false;
+            this.dgvPedidos.Columns[7].Visible = false;
+            this.dgvPedidos.Columns[1].Width = 150;
+            this.dgvPedidos.Columns[2].Width = 200;
         }
 
         private void btnVerPedido_Click(object sender, EventArgs e)

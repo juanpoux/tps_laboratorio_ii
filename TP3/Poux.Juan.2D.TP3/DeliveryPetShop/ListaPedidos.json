@@ -1,133 +1,23 @@
 [
   {
     "Cliente": {
-      "Nombre": "Rasia Kerner",
-      "Telefono": "1021164682",
-      "Direccion": "8 Cascade Center"
+      "Nombre": "Ram Dalglish",
+      "Telefono": "5926597128",
+      "Direccion": "14712 Division Street"
     },
     "AlimentosPedidos": [
-      {
-        "Descripcion": "Royal Canin Medium Puppy",
-        "Kilos": 15,
-        "Cantidad": 1,
-        "PrecioEf": 900,
-        "PrecioTarj": 990
-      },
-      {
-        "Descripcion": "Pro Plan Active Mind Razas Medianas",
-        "Kilos": 15,
-        "Cantidad": 2,
-        "PrecioEf": 1900,
-        "PrecioTarj": 1980
-      }
-    ],
-    "Pago": false,
-    "DiaDeEntrega": "2022-06-03T11:51:23.3959154-03:00",
-    "PrecioFinal": 2800,
-    "Efectivo": false,
-    "TipoPago": 0,
-    "Observaciones": null
-  },
-  {
-    "Cliente": {
-      "Nombre": "Lynnett Braidley",
-      "Telefono": "1717713011",
-      "Direccion": "61 Buell Park"
-    },
-    "AlimentosPedidos": [
-      {
-        "Descripcion": "Royal Canin Maxi Adult",
-        "Kilos": 15,
-        "Cantidad": 1,
-        "PrecioEf": 900,
-        "PrecioTarj": 990
-      },
       {
         "Descripcion": "Pro Plan Active Mind Razas Medianas",
         "Kilos": 15,
         "Cantidad": 1,
-        "PrecioEf": 950,
+        "Precio": 950,
         "PrecioTarj": 990
       }
     ],
     "Pago": false,
-    "DiaDeEntrega": "2022-06-03T12:03:08.215159-03:00",
-    "PrecioFinal": 1850,
-    "Efectivo": false,
-    "TipoPago": 0,
-    "Observaciones": null
-  },
-  {
-    "Cliente": {
-      "Nombre": "Lynnett Braidley",
-      "Telefono": "1717713011",
-      "Direccion": "61 Buell Park"
-    },
-    "AlimentosPedidos": [
-      {
-        "Descripcion": "Pro Plan Adulto Razas Medianas",
-        "Kilos": 15,
-        "Cantidad": 1,
-        "PrecioEf": 950,
-        "PrecioTarj": 990
-      }
-    ],
-    "Pago": false,
-    "DiaDeEntrega": "2022-06-03T12:08:50.072174-03:00",
+    "DiaDeEntrega": "2022-06-04T14:12:57.2485965-03:00",
     "PrecioFinal": 950,
-    "Efectivo": false,
     "TipoPago": 0,
-    "Observaciones": null
-  },
-  {
-    "Cliente": {
-      "Nombre": "Evy Innes",
-      "Telefono": "1755403963",
-      "Direccion": "4 Erie Place"
-    },
-    "AlimentosPedidos": [
-      {
-        "Descripcion": "Royal Canin Maxi Adult",
-        "Kilos": 15,
-        "Cantidad": 1,
-        "PrecioEf": 900,
-        "PrecioTarj": 990
-      }
-    ],
-    "Pago": true,
-    "DiaDeEntrega": "2022-06-29T12:09:12",
-    "PrecioFinal": 990,
-    "Efectivo": false,
-    "TipoPago": 1,
-    "Observaciones": null
-  },
-  {
-    "Cliente": {
-      "Nombre": "Olivia Shalcros",
-      "Telefono": "6849199082",
-      "Direccion": "880 Hollow Ridge Road"
-    },
-    "AlimentosPedidos": [
-      {
-        "Descripcion": "Royal Canin Maxi Adult",
-        "Kilos": 15,
-        "Cantidad": 1,
-        "PrecioEf": 900,
-        "PrecioTarj": 990
-      },
-      {
-        "Descripcion": "Pro Plan Active Mind Razas Medianas",
-        "Kilos": 15,
-        "Cantidad": 20,
-        "PrecioEf": 19000,
-        "PrecioTarj": 19800
-      }
-    ],
-    "Pago": true,
-    "DiaDeEntrega": "2022-06-21T12:09:48",
-    "PrecioFinal": 19900,
-    "Efectivo": false,
-    "TipoPago": 0,
-    "Observaciones": null
+    "Observaciones": ""
   }
 ]

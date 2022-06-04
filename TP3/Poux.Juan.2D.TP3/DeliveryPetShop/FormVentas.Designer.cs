@@ -54,7 +54,6 @@ namespace PruebaTp3Form
             this.lblSeleccioneProducto = new System.Windows.Forms.Label();
             this.lblCartelPrecioTarj = new System.Windows.Forms.Label();
             this.lblPrecioTarj = new System.Windows.Forms.Label();
-            this.listBoxProductosEnStock = new System.Windows.Forms.ListBox();
             this.txtBuscarPorNombre = new System.Windows.Forms.TextBox();
             this.gbVentas = new System.Windows.Forms.GroupBox();
             this.dgvAlimentosStock = new System.Windows.Forms.DataGridView();
@@ -274,17 +273,6 @@ namespace PruebaTp3Form
             this.lblPrecioTarj.TabIndex = 9;
             this.lblPrecioTarj.Text = "$500";
             // 
-            // listBoxProductosEnStock
-            // 
-            this.listBoxProductosEnStock.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.listBoxProductosEnStock.FormattingEnabled = true;
-            this.listBoxProductosEnStock.ItemHeight = 21;
-            this.listBoxProductosEnStock.Location = new System.Drawing.Point(27, 427);
-            this.listBoxProductosEnStock.Name = "listBoxProductosEnStock";
-            this.listBoxProductosEnStock.Size = new System.Drawing.Size(537, 109);
-            this.listBoxProductosEnStock.TabIndex = 17;
-            this.listBoxProductosEnStock.SelectedIndexChanged += new System.EventHandler(this.listBoxProductosEnStock_SelectedIndexChanged);
-            // 
             // txtBuscarPorNombre
             // 
             this.txtBuscarPorNombre.Location = new System.Drawing.Point(169, 22);
@@ -297,7 +285,6 @@ namespace PruebaTp3Form
             // gbVentas
             // 
             this.gbVentas.Controls.Add(this.dgvAlimentosStock);
-            this.gbVentas.Controls.Add(this.listBoxProductosEnStock);
             this.gbVentas.Controls.Add(this.txtBuscarPorNombre);
             this.gbVentas.Controls.Add(this.lblPrecioTarj);
             this.gbVentas.Controls.Add(this.lblCartelPrecioTarj);
@@ -418,10 +405,10 @@ namespace PruebaTp3Form
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnRegistrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormVentas";
             this.Text = "Ventas";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormInicio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericCantidad)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -456,7 +443,6 @@ namespace PruebaTp3Form
         private System.Windows.Forms.Label lblSeleccioneProducto;
         private System.Windows.Forms.Label lblCartelPrecioTarj;
         private System.Windows.Forms.Label lblPrecioTarj;
-        private System.Windows.Forms.ListBox listBoxProductosEnStock;
         private System.Windows.Forms.TextBox txtBuscarPorNombre;
         private System.Windows.Forms.GroupBox gbVentas;
         private System.Windows.Forms.RichTextBox rtbObervaciones;

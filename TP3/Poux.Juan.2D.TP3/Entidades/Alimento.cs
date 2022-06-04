@@ -17,7 +17,7 @@ namespace Entidades
         private string descripcion;
         private double kilos;
         private int cantidad;
-        private double precioEf;
+        private double precio;
         private double precioTarj;
 
         public string Descripcion
@@ -56,15 +56,15 @@ namespace Entidades
             }
         }
 
-        public double PrecioEf
+        public double Precio
         {
             get
             {
-                return this.precioEf;
+                return this.precio;
             }
             set
             {
-                this.precioEf = value;
+                this.precio = value;
             }
         }
 
@@ -80,18 +80,23 @@ namespace Entidades
             }
         }
 
+        public Alimento()
+        {
+
+        }
+
         public Alimento(string descripcion, double kilos, double precioEf, double precioTarj)
         {
             this.descripcion = descripcion;
             this.kilos = kilos;
-            this.precioEf = precioEf;
+            this.precio = precioEf;
             this.precioTarj = precioTarj;
         }
 
         public string MostrarAlimentoConUnidades()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($"{this.cantidad} - {this.descripcion} - {this.kilos}kg - {this.precioEf:C} - {this.precioTarj:C}");
+            sb.Append($"{this.cantidad} - {this.descripcion} - {this.kilos}kg - {this.precio:C} - {this.precioTarj:C}");
             return sb.ToString();
         }
 
@@ -109,7 +114,7 @@ namespace Entidades
             sb.Append($"{this.cantidad} - {this.descripcion} - {this.kilos}kg "); /*- {this.precioEf:C} - {this.precioTarj:C}*/
             if (tipoPago == ETipoPago.Efectivo)
             {
-                sb.Append($"- {this.precioEf:C}");
+                sb.Append($"- {this.precio:C}");
             }
             else if (tipoPago == ETipoPago.Tarjeta)
             {
@@ -143,7 +148,7 @@ namespace Entidades
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($"{this.descripcion} - {this.kilos}kg - {this.precioEf:C} - {this.precioTarj:C}");
+            sb.Append($"{this.descripcion} - {this.kilos}kg - {this.precio:C} - {this.precioTarj:C}");
             return sb.ToString();
         }
     }

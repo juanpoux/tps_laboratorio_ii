@@ -17,5 +17,10 @@ namespace Entidades
         {
             get;
         }
+
+        double Precio
+        {
+            get;
+        }
     }
 }

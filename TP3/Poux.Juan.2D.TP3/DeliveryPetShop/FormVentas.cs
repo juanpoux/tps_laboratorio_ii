@@ -34,7 +34,6 @@ namespace PruebaTp3Form
 
         private void FormInicio_Load(object sender, EventArgs e)
         {
-            this.listBoxProductosEnStock.SelectedItem = -1;
             this.cboMedioDePago.Items.Add("Efectivo");
             this.cboMedioDePago.Items.Add("Tarjeta");
 
@@ -54,7 +53,7 @@ namespace PruebaTp3Form
             {
                 MessageBox.Show(ex.Message);
             }
-            this.dgvAlimentosPedido.AutoGenerateColumns = false;
+            this.dgvAlimentosPedido.AutoGenerateColumns = true;
 
             this.Cargar();
         }
@@ -66,7 +65,7 @@ namespace PruebaTp3Form
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            Alimento alimentoPerro = (Alimento)this.listBoxProductosEnStock.SelectedItem;
+            Alimento alimentoPerro = (Alimento)this.dgvAlimentosStock.CurrentRow.DataBoundItem;
             int cantidad = (int)this.numericCantidad.Value;
 
             alimentoPerro.Cantidad = cantidad;
@@ -78,14 +77,14 @@ namespace PruebaTp3Form
                 {
                     bandera = true;
                     item.Cantidad += alimentoPerro.Cantidad;
-                    item.PrecioEf += alimentoPerro.PrecioEf;
+                    item.Precio += alimentoPerro.Precio;
                     item.PrecioTarj += alimentoPerro.PrecioTarj;
                     break;
                 }
             }
             if (!bandera)
             {
-                Alimento alimento = new Alimento(alimentoPerro.Descripcion, alimentoPerro.Kilos, alimentoPerro.PrecioEf, alimentoPerro.PrecioTarj);
+                Alimento alimento = new Alimento(alimentoPerro.Descripcion, alimentoPerro.Kilos, alimentoPerro.Precio, alimentoPerro.PrecioTarj);
                 alimento.Cantidad = alimentoPerro.Cantidad;
                 this.alimentosPedido.Add(alimento);
             }
@@ -94,6 +93,8 @@ namespace PruebaTp3Form
 
         private void ActualizarTotales()
         {
+            this.lblTotalTarjeta.Text = 0.ToString("C");
+            this.lblTotalEfectivo.Text = 0.ToString("C");
             if (this.alimentosPedido.Count > -1)
             {
                 this.acumuladorTarjeta = 0;
@@ -101,7 +102,7 @@ namespace PruebaTp3Form
                 foreach (Alimento item in this.alimentosPedido)
                 {
                     this.acumuladorTarjeta += item.PrecioTarj;
-                    this.acumuladorEfectivo += item.PrecioEf;
+                    this.acumuladorEfectivo += item.Precio;
                 }
                 this.lblTotalTarjeta.Text = this.acumuladorTarjeta.ToString("C");
                 this.lblTotalEfectivo.Text = this.acumuladorEfectivo.ToString("C");
@@ -117,17 +118,18 @@ namespace PruebaTp3Form
             this.dgvAlimentosPedido.Columns[1].Width = 60;
             this.dgvAlimentosPedido.Columns[3].HeaderText = "Efectivo $";
             this.dgvAlimentosPedido.Columns[4].HeaderText = "Tarjeta $";
-            //this.dataGridView1.Columns[2].Visible = false;
             this.ActualizarTotales();
         }
 
         private void Cargar()
         {
-            this.listBoxProductosEnStock.DataSource = null;
-            this.listBoxProductosEnStock.DataSource = this.alimentosEnStock;
-            this.dgvAlimentosStock.AutoGenerateColumns = true;
             this.dgvAlimentosStock.DataSource = null;
             this.dgvAlimentosStock.DataSource = this.alimentosEnStock;
+            this.OrdenarDGV();
+        }
+
+        private void OrdenarDGV()
+        {
             this.dgvAlimentosStock.Columns[0].Width = 300;
             this.dgvAlimentosStock.Columns[1].Width = 55;
             this.dgvAlimentosStock.Columns[2].Visible = false;
@@ -150,8 +152,7 @@ namespace PruebaTp3Form
             }
             pedido = new Pedido(this.cliente, true, DateTime.Now);
             pedido.AlimentosPedidos = this.alimentosPedido;
-            //hacer validacion si elige pago con tarjeta o efectivo para asignar el precio
-            //agregué atributo pagoenefectivo en PEIDO
+
             if (this.cboMedioDePago.Text == "Efectivo")
             {
                 pedido.TipoPago = ETipoPago.Efectivo;
@@ -178,20 +179,12 @@ namespace PruebaTp3Form
             this.DialogResult = DialogResult.OK;
         }
 
-        private void listBoxProductosEnStock_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.listBoxProductosEnStock.DataSource is not null)
-            {
-                this.lblPrecio.Text = ((Alimento)this.listBoxProductosEnStock.SelectedItem).PrecioEf.ToString("C");
-                this.lblPrecioTarj.Text = ((Alimento)this.listBoxProductosEnStock.SelectedItem).PrecioTarj.ToString("C");
-            }
-        }
 
         private void txtBuscarPorNombre_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(this.txtBuscarPorNombre.Text))
             {
-                this.listBoxProductosEnStock.DataSource = null;
+                this.dgvAlimentosStock.DataSource = null;
                 List<Alimento> listita = new List<Alimento>();
                 foreach (Alimento item in this.alimentosEnStock)
                 {
@@ -201,7 +194,8 @@ namespace PruebaTp3Form
 
                     }
                 }
-                this.listBoxProductosEnStock.DataSource = listita;
+                this.dgvAlimentosStock.DataSource = listita;
+                this.OrdenarDGV();
             }
             else
             {
@@ -209,9 +203,6 @@ namespace PruebaTp3Form
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
 
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Entidades
@@ -43,6 +44,25 @@ namespace Entidades
                 this.cliente = value;
             }
         }
+
+        [JsonIgnore]
+        public string NombreCliente
+        {
+            get
+            {
+                return this.Cliente.Nombre;
+            }
+        }
+
+        [JsonIgnore]
+        public string DireccionCliente
+        {
+            get
+            {
+                return this.Cliente.Direccion;
+            }
+        }
+
         public List<Alimento> AlimentosPedidos
         {
             get
@@ -52,17 +72,6 @@ namespace Entidades
             set
             {
                 this.alimentosPedidos = value;
-            }
-        }
-        public bool Pago
-        {
-            get
-            {
-                return this.pago;
-            }
-            set
-            {
-                this.pago = value;
             }
         }
         public DateTime DiaDeEntrega
@@ -85,6 +94,18 @@ namespace Entidades
             set
             {
                 this.precioFinal = value;
+            }
+        }
+
+        public bool Pago
+        {
+            get
+            {
+                return this.pago;
+            }
+            set
+            {
+                this.pago = value;
             }
         }
 
@@ -111,6 +132,7 @@ namespace Entidades
                 this.observaciones = value;
             }
         }
+
 
         //Metodos
         public string MostrarPedido()
@@ -153,7 +175,7 @@ namespace Entidades
             double precioTotal = 0;
             foreach (Alimento item in this.alimentosPedidos)
             {
-                precioTotal += item.PrecioEf;
+                precioTotal += item.Precio;
             }
             return precioTotal;
         }
