@@ -29,148 +29,67 @@ namespace PruebaTp3Form
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblDia = new System.Windows.Forms.Label();
-            this.gbVentas = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listBoxProductosEnStock = new System.Windows.Forms.ListBox();
-            this.lblPrecioTarj = new System.Windows.Forms.Label();
-            this.lblCartelPrecioTarj = new System.Windows.Forms.Label();
-            this.lblSeleccioneProducto = new System.Windows.Forms.Label();
-            this.lblPrecio = new System.Windows.Forms.Label();
-            this.lblCartelPrecio = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbPagoElPedido = new System.Windows.Forms.CheckBox();
             this.lblTipoDePago = new System.Windows.Forms.Label();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.numericCantidad = new System.Windows.Forms.NumericUpDown();
             this.cboMedioDePago = new System.Windows.Forms.ComboBox();
-            this.lblCartelFecha = new System.Windows.Forms.Label();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnEliminarProducto = new System.Windows.Forms.Button();
             this.btnEnviarPedido = new System.Windows.Forms.Button();
-            this.listBoxProductosPedidos = new System.Windows.Forms.ListBox();
             this.lblTotalEfectivo = new System.Windows.Forms.Label();
             this.lblCartelTotalEfectivo = new System.Windows.Forms.Label();
             this.lblCartelTotalTarjeta = new System.Windows.Forms.Label();
             this.lblTotalTarjeta = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.gbVentas.SuspendLayout();
+            this.lblCartelPrecio = new System.Windows.Forms.Label();
+            this.lblPrecio = new System.Windows.Forms.Label();
+            this.lblSeleccioneProducto = new System.Windows.Forms.Label();
+            this.lblCartelPrecioTarj = new System.Windows.Forms.Label();
+            this.lblPrecioTarj = new System.Windows.Forms.Label();
+            this.listBoxProductosEnStock = new System.Windows.Forms.ListBox();
+            this.txtBuscarPorNombre = new System.Windows.Forms.TextBox();
+            this.gbVentas = new System.Windows.Forms.GroupBox();
+            this.dgvAlimentosStock = new System.Windows.Forms.DataGridView();
+            this.rtbObervaciones = new System.Windows.Forms.RichTextBox();
+            this.lblObservaciones = new System.Windows.Forms.Label();
+            this.dgvAlimentosPedido = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.numericCantidad)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.gbVentas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlimentosStock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlimentosPedido)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblDia
-            // 
-            this.lblDia.AutoSize = true;
-            this.lblDia.Location = new System.Drawing.Point(100, 557);
-            this.lblDia.Name = "lblDia";
-            this.lblDia.Size = new System.Drawing.Size(59, 15);
-            this.lblDia.TabIndex = 0;
-            this.lblDia.Text = "24/5/2022";
-            // 
-            // gbVentas
-            // 
-            this.gbVentas.Controls.Add(this.textBox1);
-            this.gbVentas.Controls.Add(this.listBoxProductosEnStock);
-            this.gbVentas.Controls.Add(this.lblPrecioTarj);
-            this.gbVentas.Controls.Add(this.lblCartelPrecioTarj);
-            this.gbVentas.Controls.Add(this.lblSeleccioneProducto);
-            this.gbVentas.Controls.Add(this.lblPrecio);
-            this.gbVentas.Controls.Add(this.lblCartelPrecio);
-            this.gbVentas.Location = new System.Drawing.Point(0, 0);
-            this.gbVentas.Name = "gbVentas";
-            this.gbVentas.Size = new System.Drawing.Size(544, 472);
-            this.gbVentas.TabIndex = 1;
-            this.gbVentas.TabStop = false;
-            this.gbVentas.Text = "Area Ventas";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(16, 38);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(515, 23);
-            this.textBox1.TabIndex = 18;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // listBoxProductosEnStock
-            // 
-            this.listBoxProductosEnStock.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.listBoxProductosEnStock.FormattingEnabled = true;
-            this.listBoxProductosEnStock.ItemHeight = 21;
-            this.listBoxProductosEnStock.Location = new System.Drawing.Point(16, 67);
-            this.listBoxProductosEnStock.Name = "listBoxProductosEnStock";
-            this.listBoxProductosEnStock.Size = new System.Drawing.Size(515, 340);
-            this.listBoxProductosEnStock.TabIndex = 17;
-            this.listBoxProductosEnStock.SelectedIndexChanged += new System.EventHandler(this.listBoxProductosEnStock_SelectedIndexChanged);
-            // 
-            // lblPrecioTarj
-            // 
-            this.lblPrecioTarj.AutoSize = true;
-            this.lblPrecioTarj.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblPrecioTarj.Location = new System.Drawing.Point(379, 421);
-            this.lblPrecioTarj.Name = "lblPrecioTarj";
-            this.lblPrecioTarj.Size = new System.Drawing.Size(70, 32);
-            this.lblPrecioTarj.TabIndex = 9;
-            this.lblPrecioTarj.Text = "$500";
-            // 
-            // lblCartelPrecioTarj
-            // 
-            this.lblCartelPrecioTarj.AutoSize = true;
-            this.lblCartelPrecioTarj.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCartelPrecioTarj.Location = new System.Drawing.Point(259, 428);
-            this.lblCartelPrecioTarj.Name = "lblCartelPrecioTarj";
-            this.lblCartelPrecioTarj.Size = new System.Drawing.Size(105, 21);
-            this.lblCartelPrecioTarj.TabIndex = 8;
-            this.lblCartelPrecioTarj.Text = "Precio Tarjeta:";
-            // 
-            // lblSeleccioneProducto
-            // 
-            this.lblSeleccioneProducto.AutoSize = true;
-            this.lblSeleccioneProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSeleccioneProducto.Location = new System.Drawing.Point(16, 19);
-            this.lblSeleccioneProducto.Name = "lblSeleccioneProducto";
-            this.lblSeleccioneProducto.Size = new System.Drawing.Size(148, 20);
-            this.lblSeleccioneProducto.TabIndex = 5;
-            this.lblSeleccioneProducto.Text = "Seleccione producto:";
-            // 
-            // lblPrecio
-            // 
-            this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblPrecio.Location = new System.Drawing.Point(132, 425);
-            this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(70, 32);
-            this.lblPrecio.TabIndex = 4;
-            this.lblPrecio.Text = "$500";
-            // 
-            // lblCartelPrecio
-            // 
-            this.lblCartelPrecio.AutoSize = true;
-            this.lblCartelPrecio.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCartelPrecio.Location = new System.Drawing.Point(12, 430);
-            this.lblCartelPrecio.Name = "lblCartelPrecio";
-            this.lblCartelPrecio.Size = new System.Drawing.Size(114, 21);
-            this.lblCartelPrecio.TabIndex = 3;
-            this.lblCartelPrecio.Text = "Precio Efectivo:";
             // 
             // cbPagoElPedido
             // 
             this.cbPagoElPedido.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cbPagoElPedido.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cbPagoElPedido.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbPagoElPedido.Location = new System.Drawing.Point(563, 505);
+            this.cbPagoElPedido.BackColor = System.Drawing.Color.Red;
+            this.cbPagoElPedido.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbPagoElPedido.FlatAppearance.BorderSize = 4;
+            this.cbPagoElPedido.FlatAppearance.CheckedBackColor = System.Drawing.Color.Chartreuse;
+            this.cbPagoElPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbPagoElPedido.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.cbPagoElPedido.Location = new System.Drawing.Point(947, 599);
             this.cbPagoElPedido.Name = "cbPagoElPedido";
-            this.cbPagoElPedido.Size = new System.Drawing.Size(285, 28);
+            this.cbPagoElPedido.Size = new System.Drawing.Size(132, 87);
             this.cbPagoElPedido.TabIndex = 10;
-            this.cbPagoElPedido.Text = "Deja pago el pedido                  ";
-            this.cbPagoElPedido.UseVisualStyleBackColor = true;
+            this.cbPagoElPedido.Text = "PAGO?";
+            this.cbPagoElPedido.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbPagoElPedido.UseVisualStyleBackColor = false;
             // 
             // lblTipoDePago
             // 
             this.lblTipoDePago.AutoSize = true;
             this.lblTipoDePago.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTipoDePago.Location = new System.Drawing.Point(563, 407);
+            this.lblTipoDePago.Location = new System.Drawing.Point(635, 564);
             this.lblTipoDePago.Name = "lblTipoDePago";
             this.lblTipoDePago.Size = new System.Drawing.Size(187, 20);
             this.lblTipoDePago.TabIndex = 7;
@@ -180,7 +99,7 @@ namespace PruebaTp3Form
             // 
             this.lblCantidad.AutoSize = true;
             this.lblCantidad.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCantidad.Location = new System.Drawing.Point(39, 475);
+            this.lblCantidad.Location = new System.Drawing.Point(71, 628);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(72, 20);
             this.lblCantidad.TabIndex = 6;
@@ -189,7 +108,7 @@ namespace PruebaTp3Form
             // numericCantidad
             // 
             this.numericCantidad.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericCantidad.Location = new System.Drawing.Point(39, 506);
+            this.numericCantidad.Location = new System.Drawing.Point(71, 659);
             this.numericCantidad.Name = "numericCantidad";
             this.numericCantidad.Size = new System.Drawing.Size(144, 27);
             this.numericCantidad.TabIndex = 2;
@@ -198,23 +117,14 @@ namespace PruebaTp3Form
             // 
             this.cboMedioDePago.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cboMedioDePago.FormattingEnabled = true;
-            this.cboMedioDePago.Location = new System.Drawing.Point(563, 430);
+            this.cboMedioDePago.Location = new System.Drawing.Point(635, 596);
             this.cboMedioDePago.Name = "cboMedioDePago";
             this.cboMedioDePago.Size = new System.Drawing.Size(285, 28);
             this.cboMedioDePago.TabIndex = 1;
             // 
-            // lblCartelFecha
-            // 
-            this.lblCartelFecha.AutoSize = true;
-            this.lblCartelFecha.Location = new System.Drawing.Point(16, 557);
-            this.lblCartelFecha.Name = "lblCartelFecha";
-            this.lblCartelFecha.Size = new System.Drawing.Size(78, 15);
-            this.lblCartelFecha.TabIndex = 2;
-            this.lblCartelFecha.Text = "Fecha Actual:";
-            // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(338, 480);
+            this.btnRegistrar.Location = new System.Drawing.Point(356, 633);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(193, 53);
             this.btnRegistrar.TabIndex = 5;
@@ -224,7 +134,7 @@ namespace PruebaTp3Form
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(875, 480);
+            this.btnSalir.Location = new System.Drawing.Point(1102, 633);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(203, 53);
             this.btnSalir.TabIndex = 7;
@@ -234,7 +144,7 @@ namespace PruebaTp3Form
             // 
             // btnEliminarProducto
             // 
-            this.btnEliminarProducto.Location = new System.Drawing.Point(912, 237);
+            this.btnEliminarProducto.Location = new System.Drawing.Point(1139, 298);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
             this.btnEliminarProducto.Size = new System.Drawing.Size(166, 35);
             this.btnEliminarProducto.TabIndex = 8;
@@ -244,22 +154,13 @@ namespace PruebaTp3Form
             // 
             // btnEnviarPedido
             // 
-            this.btnEnviarPedido.Location = new System.Drawing.Point(875, 421);
+            this.btnEnviarPedido.Location = new System.Drawing.Point(1102, 571);
             this.btnEnviarPedido.Name = "btnEnviarPedido";
             this.btnEnviarPedido.Size = new System.Drawing.Size(203, 53);
             this.btnEnviarPedido.TabIndex = 9;
             this.btnEnviarPedido.Text = "ENVIAR PEDIDO";
             this.btnEnviarPedido.UseVisualStyleBackColor = true;
             this.btnEnviarPedido.Click += new System.EventHandler(this.btnEnviarPedido_Click);
-            // 
-            // listBoxProductosPedidos
-            // 
-            this.listBoxProductosPedidos.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.listBoxProductosPedidos.ItemHeight = 21;
-            this.listBoxProductosPedidos.Location = new System.Drawing.Point(563, 38);
-            this.listBoxProductosPedidos.Name = "listBoxProductosPedidos";
-            this.listBoxProductosPedidos.Size = new System.Drawing.Size(515, 193);
-            this.listBoxProductosPedidos.TabIndex = 10;
             // 
             // lblTotalEfectivo
             // 
@@ -308,9 +209,9 @@ namespace PruebaTp3Form
             this.groupBox1.Controls.Add(this.lblTotalEfectivo);
             this.groupBox1.Controls.Add(this.lblTotalTarjeta);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(563, 268);
+            this.groupBox1.Location = new System.Drawing.Point(635, 298);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(515, 118);
+            this.groupBox1.Size = new System.Drawing.Size(498, 132);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TOTAL";
@@ -318,74 +219,249 @@ namespace PruebaTp3Form
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dateTimePicker1.Location = new System.Drawing.Point(563, 468);
+            this.dateTimePicker1.Location = new System.Drawing.Point(635, 659);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(285, 27);
             this.dateTimePicker1.TabIndex = 17;
+            // 
+            // lblCartelPrecio
+            // 
+            this.lblCartelPrecio.AutoSize = true;
+            this.lblCartelPrecio.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCartelPrecio.Location = new System.Drawing.Point(45, 571);
+            this.lblCartelPrecio.Name = "lblCartelPrecio";
+            this.lblCartelPrecio.Size = new System.Drawing.Size(114, 21);
+            this.lblCartelPrecio.TabIndex = 3;
+            this.lblCartelPrecio.Text = "Precio Efectivo:";
+            // 
+            // lblPrecio
+            // 
+            this.lblPrecio.AutoSize = true;
+            this.lblPrecio.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblPrecio.Location = new System.Drawing.Point(165, 566);
+            this.lblPrecio.Name = "lblPrecio";
+            this.lblPrecio.Size = new System.Drawing.Size(70, 32);
+            this.lblPrecio.TabIndex = 4;
+            this.lblPrecio.Text = "$500";
+            // 
+            // lblSeleccioneProducto
+            // 
+            this.lblSeleccioneProducto.AutoSize = true;
+            this.lblSeleccioneProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblSeleccioneProducto.Location = new System.Drawing.Point(15, 22);
+            this.lblSeleccioneProducto.Name = "lblSeleccioneProducto";
+            this.lblSeleccioneProducto.Size = new System.Drawing.Size(148, 20);
+            this.lblSeleccioneProducto.TabIndex = 5;
+            this.lblSeleccioneProducto.Text = "Seleccione producto:";
+            // 
+            // lblCartelPrecioTarj
+            // 
+            this.lblCartelPrecioTarj.AutoSize = true;
+            this.lblCartelPrecioTarj.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCartelPrecioTarj.Location = new System.Drawing.Point(292, 569);
+            this.lblCartelPrecioTarj.Name = "lblCartelPrecioTarj";
+            this.lblCartelPrecioTarj.Size = new System.Drawing.Size(105, 21);
+            this.lblCartelPrecioTarj.TabIndex = 8;
+            this.lblCartelPrecioTarj.Text = "Precio Tarjeta:";
+            // 
+            // lblPrecioTarj
+            // 
+            this.lblPrecioTarj.AutoSize = true;
+            this.lblPrecioTarj.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblPrecioTarj.Location = new System.Drawing.Point(412, 562);
+            this.lblPrecioTarj.Name = "lblPrecioTarj";
+            this.lblPrecioTarj.Size = new System.Drawing.Size(70, 32);
+            this.lblPrecioTarj.TabIndex = 9;
+            this.lblPrecioTarj.Text = "$500";
+            // 
+            // listBoxProductosEnStock
+            // 
+            this.listBoxProductosEnStock.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.listBoxProductosEnStock.FormattingEnabled = true;
+            this.listBoxProductosEnStock.ItemHeight = 21;
+            this.listBoxProductosEnStock.Location = new System.Drawing.Point(27, 427);
+            this.listBoxProductosEnStock.Name = "listBoxProductosEnStock";
+            this.listBoxProductosEnStock.Size = new System.Drawing.Size(537, 109);
+            this.listBoxProductosEnStock.TabIndex = 17;
+            this.listBoxProductosEnStock.SelectedIndexChanged += new System.EventHandler(this.listBoxProductosEnStock_SelectedIndexChanged);
+            // 
+            // txtBuscarPorNombre
+            // 
+            this.txtBuscarPorNombre.Location = new System.Drawing.Point(169, 22);
+            this.txtBuscarPorNombre.Name = "txtBuscarPorNombre";
+            this.txtBuscarPorNombre.PlaceholderText = "Buscar por nombre";
+            this.txtBuscarPorNombre.Size = new System.Drawing.Size(400, 23);
+            this.txtBuscarPorNombre.TabIndex = 18;
+            this.txtBuscarPorNombre.TextChanged += new System.EventHandler(this.txtBuscarPorNombre_TextChanged);
+            // 
+            // gbVentas
+            // 
+            this.gbVentas.Controls.Add(this.dgvAlimentosStock);
+            this.gbVentas.Controls.Add(this.listBoxProductosEnStock);
+            this.gbVentas.Controls.Add(this.txtBuscarPorNombre);
+            this.gbVentas.Controls.Add(this.lblPrecioTarj);
+            this.gbVentas.Controls.Add(this.lblCartelPrecioTarj);
+            this.gbVentas.Controls.Add(this.lblSeleccioneProducto);
+            this.gbVentas.Controls.Add(this.lblPrecio);
+            this.gbVentas.Controls.Add(this.lblCartelPrecio);
+            this.gbVentas.Location = new System.Drawing.Point(0, 2);
+            this.gbVentas.Name = "gbVentas";
+            this.gbVentas.Size = new System.Drawing.Size(587, 608);
+            this.gbVentas.TabIndex = 1;
+            this.gbVentas.TabStop = false;
+            // 
+            // dgvAlimentosStock
+            // 
+            this.dgvAlimentosStock.AllowUserToAddRows = false;
+            this.dgvAlimentosStock.AllowUserToDeleteRows = false;
+            this.dgvAlimentosStock.AllowUserToResizeColumns = false;
+            this.dgvAlimentosStock.AllowUserToResizeRows = false;
+            this.dgvAlimentosStock.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvAlimentosStock.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlimentosStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvAlimentosStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvAlimentosStock.EnableHeadersVisualStyles = false;
+            this.dgvAlimentosStock.Location = new System.Drawing.Point(15, 51);
+            this.dgvAlimentosStock.MultiSelect = false;
+            this.dgvAlimentosStock.Name = "dgvAlimentosStock";
+            this.dgvAlimentosStock.ReadOnly = true;
+            this.dgvAlimentosStock.RowHeadersVisible = false;
+            this.dgvAlimentosStock.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dgvAlimentosStock.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvAlimentosStock.RowTemplate.Height = 25;
+            this.dgvAlimentosStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAlimentosStock.Size = new System.Drawing.Size(553, 508);
+            this.dgvAlimentosStock.TabIndex = 19;
+            // 
+            // rtbObervaciones
+            // 
+            this.rtbObervaciones.Location = new System.Drawing.Point(635, 486);
+            this.rtbObervaciones.Name = "rtbObervaciones";
+            this.rtbObervaciones.Size = new System.Drawing.Size(670, 62);
+            this.rtbObervaciones.TabIndex = 18;
+            this.rtbObervaciones.Text = "";
+            // 
+            // lblObservaciones
+            // 
+            this.lblObservaciones.AutoSize = true;
+            this.lblObservaciones.Location = new System.Drawing.Point(635, 468);
+            this.lblObservaciones.Name = "lblObservaciones";
+            this.lblObservaciones.Size = new System.Drawing.Size(94, 15);
+            this.lblObservaciones.TabIndex = 19;
+            this.lblObservaciones.Text = "Oberservaciones";
+            // 
+            // dgvAlimentosPedido
+            // 
+            this.dgvAlimentosPedido.AllowUserToAddRows = false;
+            this.dgvAlimentosPedido.AllowUserToDeleteRows = false;
+            this.dgvAlimentosPedido.AllowUserToResizeColumns = false;
+            this.dgvAlimentosPedido.AllowUserToResizeRows = false;
+            this.dgvAlimentosPedido.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvAlimentosPedido.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlimentosPedido.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvAlimentosPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvAlimentosPedido.EnableHeadersVisualStyles = false;
+            this.dgvAlimentosPedido.Location = new System.Drawing.Point(635, 24);
+            this.dgvAlimentosPedido.MultiSelect = false;
+            this.dgvAlimentosPedido.Name = "dgvAlimentosPedido";
+            this.dgvAlimentosPedido.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlimentosPedido.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvAlimentosPedido.RowHeadersVisible = false;
+            this.dgvAlimentosPedido.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dgvAlimentosPedido.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvAlimentosPedido.RowTemplate.Height = 25;
+            this.dgvAlimentosPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAlimentosPedido.Size = new System.Drawing.Size(670, 262);
+            this.dgvAlimentosPedido.TabIndex = 20;
             // 
             // FormVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1096, 552);
-            this.Controls.Add(this.dateTimePicker1);
+            this.ClientSize = new System.Drawing.Size(1321, 707);
+            this.Controls.Add(this.dgvAlimentosPedido);
+            this.Controls.Add(this.lblObservaciones);
             this.Controls.Add(this.btnEliminarProducto);
+            this.Controls.Add(this.rtbObervaciones);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.gbVentas);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cboMedioDePago);
             this.Controls.Add(this.cbPagoElPedido);
             this.Controls.Add(this.lblCantidad);
-            this.Controls.Add(this.listBoxProductosPedidos);
             this.Controls.Add(this.lblTipoDePago);
             this.Controls.Add(this.btnEnviarPedido);
             this.Controls.Add(this.numericCantidad);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnRegistrar);
-            this.Controls.Add(this.lblDia);
-            this.Controls.Add(this.lblCartelFecha);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormVentas";
             this.Text = "Ventas";
             this.Load += new System.EventHandler(this.FormInicio_Load);
-            this.gbVentas.ResumeLayout(false);
-            this.gbVentas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericCantidad)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gbVentas.ResumeLayout(false);
+            this.gbVentas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlimentosStock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlimentosPedido)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblDia;
-        private System.Windows.Forms.GroupBox gbVentas;
-        private System.Windows.Forms.Label lblCartelFecha;
         private System.Windows.Forms.NumericUpDown numericCantidad;
         private System.Windows.Forms.ComboBox cboMedioDePago;
-        private System.Windows.Forms.Label lblPrecio;
-        private System.Windows.Forms.Label lblCartelPrecio;
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label lblTipoDePago;
         private System.Windows.Forms.Label lblCantidad;
-        private System.Windows.Forms.Label lblSeleccioneProducto;
         private System.Windows.Forms.Button btnEliminarProducto;
-        private System.Windows.Forms.Label lblPrecioTarj;
-        private System.Windows.Forms.Label lblCartelPrecioTarj;
         private System.Windows.Forms.Button btnEnviarPedido;
-        private System.Windows.Forms.ListBox listBoxProductosPedidos;
         private System.Windows.Forms.Label lblTotalEfectivo;
         private System.Windows.Forms.Label lblCartelTotalEfectivo;
         private System.Windows.Forms.Label lblCartelTotalTarjeta;
         private System.Windows.Forms.Label lblTotalTarjeta;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox cbPagoElPedido;
-        private System.Windows.Forms.ListBox listBoxProductosEnStock;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label lblCartelPrecio;
+        private System.Windows.Forms.Label lblPrecio;
+        private System.Windows.Forms.Label lblSeleccioneProducto;
+        private System.Windows.Forms.Label lblCartelPrecioTarj;
+        private System.Windows.Forms.Label lblPrecioTarj;
+        private System.Windows.Forms.ListBox listBoxProductosEnStock;
+        private System.Windows.Forms.TextBox txtBuscarPorNombre;
+        private System.Windows.Forms.GroupBox gbVentas;
+        private System.Windows.Forms.RichTextBox rtbObervaciones;
+        private System.Windows.Forms.Label lblObservaciones;
+        private System.Windows.Forms.DataGridView dgvAlimentosPedido;
+        private System.Windows.Forms.DataGridView dgvAlimentosStock;
     }
 }

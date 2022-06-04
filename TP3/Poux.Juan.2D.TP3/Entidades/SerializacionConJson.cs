@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public static class SerializacionConJson<T>
+    public class SerializacionConJson<T> : IArchivos<T>
     {
         static string path;
 
@@ -18,7 +18,7 @@ namespace Entidades
             path += @"\Archivos-TP3-Juan-Poux-1A\";
         }
 
-        public static void Escribir(T datos, string nombre)
+        public void Escribir(T datos, string nombre)
         {
             string nombreArchivo = path + nombre + ".json";
             JsonSerializerOptions opciones = new JsonSerializerOptions();
@@ -38,7 +38,7 @@ namespace Entidades
             }
         }
 
-        public static T Leer(string nombre)
+        public T Leer(string nombre)
         {
             string archivo = string.Empty;
             T datosRecuperados = default;

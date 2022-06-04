@@ -19,8 +19,8 @@ namespace PruebaTp3Form
         List<Alimento> alimentosPedido;
         public Pedido pedido;
         Cliente cliente;
-        double acumuladorEfectivo = 0;
-        double acumuladorTarjeta = 0;
+        double acumuladorEfectivo;
+        double acumuladorTarjeta;
 
         public FormVentas()
         {
@@ -34,7 +34,7 @@ namespace PruebaTp3Form
 
         private void FormInicio_Load(object sender, EventArgs e)
         {
-            this.lblDia.Text = DateTime.Now.ToShortDateString();
+            this.listBoxProductosEnStock.SelectedItem = -1;
             this.cboMedioDePago.Items.Add("Efectivo");
             this.cboMedioDePago.Items.Add("Tarjeta");
 
@@ -54,8 +54,9 @@ namespace PruebaTp3Form
             {
                 MessageBox.Show(ex.Message);
             }
+            this.dgvAlimentosPedido.AutoGenerateColumns = false;
 
-            this.listBoxProductosEnStock.DataSource = this.alimentosEnStock;
+            this.Cargar();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -65,80 +66,79 @@ namespace PruebaTp3Form
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            if (this.numericCantidad.Value == 0)
-            {
-                MessageBox.Show("Debe seleccionar una cantidad");
-            }
-            else if (this.cboMedioDePago.SelectedIndex == -1)
-            {
-                MessageBox.Show("Debe seleccionar un medio de pago");
-            }
-            else if (this.listBoxProductosEnStock.SelectedIndex == -1)
-            {
-                MessageBox.Show("Debe seleccionar un producto");
-            }
-            else
-            {
-                int index = this.listBoxProductosEnStock.SelectedIndex;
-                Alimento alimentoPerro = this.alimentosEnStock[index];
-                int cantidad = (int)this.numericCantidad.Value;
+            Alimento alimentoPerro = (Alimento)this.listBoxProductosEnStock.SelectedItem;
+            int cantidad = (int)this.numericCantidad.Value;
 
-                this.acumuladorEfectivo += (alimentoPerro.PrecioEf * cantidad);
-                this.acumuladorTarjeta += (alimentoPerro.PrecioTarj * cantidad);
-                this.lblTotalTarjeta.Text = this.acumuladorTarjeta.ToString("C");
-                this.lblTotalEfectivo.Text = this.acumuladorEfectivo.ToString("C");
-                alimentoPerro.Cantidad = cantidad;
+            alimentoPerro.Cantidad = cantidad;
 
-                bool bandera = false;
+            bool bandera = false;
+            foreach (Alimento item in this.alimentosPedido)
+            {
+                if (item == alimentoPerro)
+                {
+                    bandera = true;
+                    item.Cantidad += alimentoPerro.Cantidad;
+                    item.PrecioEf += alimentoPerro.PrecioEf;
+                    item.PrecioTarj += alimentoPerro.PrecioTarj;
+                    break;
+                }
+            }
+            if (!bandera)
+            {
+                Alimento alimento = new Alimento(alimentoPerro.Descripcion, alimentoPerro.Kilos, alimentoPerro.PrecioEf, alimentoPerro.PrecioTarj);
+                alimento.Cantidad = alimentoPerro.Cantidad;
+                this.alimentosPedido.Add(alimento);
+            }
+            this.CargarListaAlimentosPedidos();
+        }
+
+        private void ActualizarTotales()
+        {
+            if (this.alimentosPedido.Count > -1)
+            {
+                this.acumuladorTarjeta = 0;
+                this.acumuladorEfectivo = 0;
                 foreach (Alimento item in this.alimentosPedido)
                 {
-                    if (item == alimentoPerro)
-                    {
-                        bandera = true;
-                        item.Cantidad += alimentoPerro.Cantidad;
-                        item.PrecioEf += alimentoPerro.PrecioEf;
-                        item.PrecioTarj += alimentoPerro.PrecioTarj;
-                        break;
-                    }
+                    this.acumuladorTarjeta += item.PrecioTarj;
+                    this.acumuladorEfectivo += item.PrecioEf;
                 }
-                if (!bandera)
-                {
-                    Alimento alimento = new Alimento(alimentoPerro.Descripcion, alimentoPerro.Kilos, alimentoPerro.PrecioEf, alimentoPerro.PrecioTarj);
-                    alimento.Cantidad = alimentoPerro.Cantidad;
-                    this.alimentosPedido.Add(alimento);
-                }
-                this.Cargar();
+                this.lblTotalTarjeta.Text = this.acumuladorTarjeta.ToString("C");
+                this.lblTotalEfectivo.Text = this.acumuladorEfectivo.ToString("C");
             }
+        }
+
+        private void CargarListaAlimentosPedidos()
+        {
+            this.dgvAlimentosPedido.AutoGenerateColumns = true;
+            this.dgvAlimentosPedido.DataSource = null;
+            this.dgvAlimentosPedido.DataSource = this.alimentosPedido;
+            this.dgvAlimentosPedido.Columns[0].Width = 310;
+            this.dgvAlimentosPedido.Columns[1].Width = 60;
+            this.dgvAlimentosPedido.Columns[3].HeaderText = "Efectivo $";
+            this.dgvAlimentosPedido.Columns[4].HeaderText = "Tarjeta $";
+            //this.dataGridView1.Columns[2].Visible = false;
+            this.ActualizarTotales();
         }
 
         private void Cargar()
         {
-            this.listBoxProductosPedidos.Items.Clear();
-            foreach (Alimento item in this.alimentosPedido)
-            {
-                this.listBoxProductosPedidos.Items.Add(item.MostrarAlimentoConUnidades());
-            }
-
+            this.listBoxProductosEnStock.DataSource = null;
+            this.listBoxProductosEnStock.DataSource = this.alimentosEnStock;
+            this.dgvAlimentosStock.AutoGenerateColumns = true;
+            this.dgvAlimentosStock.DataSource = null;
+            this.dgvAlimentosStock.DataSource = this.alimentosEnStock;
+            this.dgvAlimentosStock.Columns[0].Width = 300;
+            this.dgvAlimentosStock.Columns[1].Width = 55;
+            this.dgvAlimentosStock.Columns[2].Visible = false;
+            this.dgvAlimentosStock.Columns[3].HeaderText = "Efectivo $";
+            this.dgvAlimentosStock.Columns[4].HeaderText = "Tarjeta $";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //int index = this.listBoxProductosPedidos.SelectedIndex;
-            //if (index > -1)
-            //{
-            //    this.listBoxProductosPedidos.Items.RemoveAt(index);
-            //    this.alimentosPedido.RemoveAt(index);
-            //}
-
-            foreach (Alimento item in this.alimentosPedido)
-            {
-                if (this.listBoxProductosPedidos.SelectedItem.ToString().Contains(item.Descripcion))
-                {
-                    this.alimentosPedido.Remove(item);
-                    break;
-                }
-            }
-            this.Cargar();
+            this.alimentosPedido.Remove((Alimento)this.dgvAlimentosPedido.CurrentRow.DataBoundItem);
+            this.CargarListaAlimentosPedidos();
         }
 
         private void btnEnviarPedido_Click(object sender, EventArgs e)
@@ -172,6 +172,7 @@ namespace PruebaTp3Form
                 pedido.Pago = false;
             }
             pedido.DiaDeEntrega = this.dateTimePicker1.Value;
+            pedido.Observaciones = this.rtbObervaciones.Text;
 
             MessageBox.Show("Pedido cargado!", "Pedido cargado");
             this.DialogResult = DialogResult.OK;
@@ -179,19 +180,38 @@ namespace PruebaTp3Form
 
         private void listBoxProductosEnStock_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = this.listBoxProductosEnStock.SelectedIndex;
-            if (index > -1)
+            if (this.listBoxProductosEnStock.DataSource is not null)
             {
-                //this.lblPrecio.Text = this.alimentosEnStock[index].PrecioEf.ToString("C");
-                //this.lblPrecioTarj.Text = alimentosEnStock[index].PrecioTarj.ToString("C");
+                this.lblPrecio.Text = ((Alimento)this.listBoxProductosEnStock.SelectedItem).PrecioEf.ToString("C");
+                this.lblPrecioTarj.Text = ((Alimento)this.listBoxProductosEnStock.SelectedItem).PrecioTarj.ToString("C");
             }
-            this.lblPrecio.Text = ((Alimento)this.listBoxProductosEnStock.SelectedItem).PrecioEf.ToString("C");
-            this.lblPrecioTarj.Text = ((Alimento)this.listBoxProductosEnStock.SelectedItem).PrecioTarj.ToString("C");
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void txtBuscarPorNombre_TextChanged(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(this.txtBuscarPorNombre.Text))
+            {
+                this.listBoxProductosEnStock.DataSource = null;
+                List<Alimento> listita = new List<Alimento>();
+                foreach (Alimento item in this.alimentosEnStock)
+                {
+                    if (item.Descripcion.ToLower().StartsWith(this.txtBuscarPorNombre.Text.ToLower()))
+                    {
+                        listita.Add(item);
 
+                    }
+                }
+                this.listBoxProductosEnStock.DataSource = listita;
+            }
+            else
+            {
+                this.Cargar();
+            }
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
     }
 }

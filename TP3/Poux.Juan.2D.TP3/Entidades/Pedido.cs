@@ -140,6 +140,10 @@ namespace Entidades
             {
                 sb.AppendLine("****** Pedido SIN pagar *******");
             }
+            if (!string.IsNullOrEmpty(this.observaciones))
+            {
+                sb.AppendLine($"*Obersvaciones: {this.observaciones}");
+            }
             sb.AppendLine();
             return sb.ToString();
         }

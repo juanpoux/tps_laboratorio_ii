@@ -15,7 +15,6 @@ namespace PruebaTp3Form
         public List<Pedido> listaPedidos;
         public Pedido pedido;
         public Cliente cliente;
-        string path;
 
         public FormClientes()
         {
@@ -30,7 +29,7 @@ namespace PruebaTp3Form
 
         private void btnSeleccionarCliente_Click(object sender, EventArgs e)
         {
-            FormVentas formVentas = new FormVentas((Cliente)this.dataGridView1.CurrentRow.DataBoundItem);
+            FormVentas formVentas = new FormVentas((Cliente)this.dgvClientes.CurrentRow.DataBoundItem);
             formVentas.ShowDialog();
             switch (formVentas.DialogResult)
             {
@@ -51,11 +50,11 @@ namespace PruebaTp3Form
 
         private void btnModificarCliente_Click(object sender, EventArgs e)
         {
-            FormModificarCliente formModificarCliente = new FormModificarCliente((Cliente)this.dataGridView1.CurrentRow.DataBoundItem);
+            FormModificarCliente formModificarCliente = new FormModificarCliente((Cliente)this.dgvClientes.CurrentRow.DataBoundItem);
             formModificarCliente.ShowDialog();
             if (formModificarCliente.DialogResult == DialogResult.OK)
             {
-                this.dataGridView1.CurrentRow.SetValues(formModificarCliente.cliente.Nombre, formModificarCliente.cliente.Telefono, formModificarCliente.cliente.Direccion);
+                this.dgvClientes.CurrentRow.SetValues(formModificarCliente.cliente.Nombre, formModificarCliente.cliente.Telefono, formModificarCliente.cliente.Direccion);
             }
 
             this.Cargar();
@@ -63,8 +62,8 @@ namespace PruebaTp3Form
 
         private void Cargar()
         {
-            this.dataGridView1.DataSource = null;
-            this.dataGridView1.DataSource = this.listaClientes;
+            this.dgvClientes.DataSource = null;
+            this.dgvClientes.DataSource = this.listaClientes;
         }
 
         private void btnNuevoCliente_Click(object sender, EventArgs e)
@@ -80,11 +79,11 @@ namespace PruebaTp3Form
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
-            string mensaje = ((Cliente)this.dataGridView1.CurrentRow.DataBoundItem).MostrarCliente() + "\n";
+            string mensaje = ((Cliente)this.dgvClientes.CurrentRow.DataBoundItem).MostrarCliente() + "\n";
             bool bandera = false;
             foreach (Pedido item in this.listaPedidos)
             {
-                if (item == (Cliente)this.dataGridView1.CurrentRow.DataBoundItem)
+                if (item == (Cliente)this.dgvClientes.CurrentRow.DataBoundItem)
                 {
                     mensaje += item.MostrarPedido();
                     bandera = true;
@@ -104,7 +103,7 @@ namespace PruebaTp3Form
         {
             if (this.txtBuscarPorDireccion.Text is not null && this.txtBuscarPorDireccion.Text != string.Empty)
             {
-                this.dataGridView1.DataSource = null;
+                this.dgvClientes.DataSource = null;
                 List<Cliente> listita = new List<Cliente>();
                 foreach (Cliente item in this.listaClientes)
                 {
@@ -114,7 +113,7 @@ namespace PruebaTp3Form
 
                     }
                 }
-                this.dataGridView1.DataSource = listita;
+                this.dgvClientes.DataSource = listita;
             }
             else
             {
@@ -126,7 +125,7 @@ namespace PruebaTp3Form
         {
             if (this.txtBuscarPorTelefono.Text is not null && this.txtBuscarPorTelefono.Text != string.Empty)
             {
-                this.dataGridView1.DataSource = null;
+                this.dgvClientes.DataSource = null;
                 List<Cliente> listita = new List<Cliente>();
                 foreach (Cliente item in this.listaClientes)
                 {
@@ -136,7 +135,7 @@ namespace PruebaTp3Form
 
                     }
                 }
-                this.dataGridView1.DataSource = listita;
+                this.dgvClientes.DataSource = listita;
             }
             else
             {
@@ -153,7 +152,7 @@ namespace PruebaTp3Form
         {
             if (this.txtBuscarPorNombre.Text is not null && this.txtBuscarPorNombre.Text != string.Empty)
             {
-                this.dataGridView1.DataSource = null;
+                this.dgvClientes.DataSource = null;
                 List<Cliente> listita = new List<Cliente>();
                 foreach (Cliente item in this.listaClientes)
                 {
@@ -163,7 +162,7 @@ namespace PruebaTp3Form
 
                     }
                 }
-                this.dataGridView1.DataSource = listita;
+                this.dgvClientes.DataSource = listita;
             }
             else
             {

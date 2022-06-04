@@ -11,7 +11,7 @@ namespace Entidades
         Efectivo,
         Tarjeta,
     }
-    public class Alimento
+    public class Alimento : IProducto
     {
         //Atributos
         private string descripcion;
@@ -87,11 +87,6 @@ namespace Entidades
             this.precioEf = precioEf;
             this.precioTarj = precioTarj;
         }
-
-        //public Alimento(string descripcion, double kilos, double precioEf, double precioTarj, int cantidad) : this(descripcion, kilos, precioEf, precioTarj)
-        //{
-        //    this.cantidad = cantidad;
-        //}
 
         public string MostrarAlimentoConUnidades()
         {

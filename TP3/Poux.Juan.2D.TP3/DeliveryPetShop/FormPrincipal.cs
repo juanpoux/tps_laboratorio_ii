@@ -60,7 +60,8 @@ namespace PruebaTp3Form
         {
             try
             {
-                this.listaClientes = SerializacionConJson<List<Cliente>>.Leer("ListaClientes.json");
+                SerializacionConJson<List<Cliente>> serializacionConJson = new SerializacionConJson<List<Cliente>>();
+                this.listaClientes = serializacionConJson.Leer("ListaClientes.json");
             }
             catch (Exception ex)
             {
@@ -73,7 +74,8 @@ namespace PruebaTp3Form
         {
             try
             {
-                SerializacionConJson<List<Cliente>>.Escribir(this.listaClientes, "ListaClientes.json");
+                SerializacionConJson<List<Cliente>> serializacionConJson = new SerializacionConJson<List<Cliente>>();
+                serializacionConJson.Escribir(this.listaClientes, "ListaClientes.json");
             }
             catch (Exception ex)
             {
@@ -86,7 +88,8 @@ namespace PruebaTp3Form
         {
             try
             {
-                this.listaPedidos = SerializacionConJson<List<Pedido>>.Leer("ListaPedidos.json");
+                SerializacionConJson<List<Pedido>> serializacionConJson = new SerializacionConJson<List<Pedido>>();
+                this.listaPedidos = serializacionConJson.Leer("ListaPedidos.json");
             }
             catch (Exception ex)
             {
@@ -99,7 +102,8 @@ namespace PruebaTp3Form
         {
             try
             {
-                SerializacionConJson<List<Pedido>>.Escribir(this.listaPedidos, "ListaPedidos.json");
+                SerializacionConJson<List<Pedido>> serializacionConJson = new SerializacionConJson<List<Pedido>>();
+                serializacionConJson.Escribir(this.listaPedidos, "ListaPedidos.json");
             }
             catch (Exception ex)
             {
