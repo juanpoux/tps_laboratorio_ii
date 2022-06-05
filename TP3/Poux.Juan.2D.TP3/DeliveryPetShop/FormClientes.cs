@@ -30,17 +30,24 @@ namespace PruebaTp3Form
 
         private void btnSeleccionarCliente_Click(object sender, EventArgs e)
         {
-            FormVentas formVentas = new FormVentas((Cliente)this.dgvClientes.CurrentRow.DataBoundItem);
-            formVentas.ShowDialog();
-            switch (formVentas.DialogResult)
+            if (dgvClientes.SelectedRows.Count > 0)
             {
-                case DialogResult.OK:
-                    //aca recupero el pedido de ventas
-                    this.DialogResult = DialogResult.OK;
-                    this.pedido = formVentas.pedido;
-                    break;
-                case DialogResult.Cancel:
-                    break;
+                FormVentas formVentas = new FormVentas((Cliente)this.dgvClientes.CurrentRow.DataBoundItem);
+                formVentas.ShowDialog();
+                switch (formVentas.DialogResult)
+                {
+                    case DialogResult.OK:
+                        //aca recupero el pedido de ventas
+                        this.DialogResult = DialogResult.OK;
+                        this.pedido = formVentas.pedido;
+                        break;
+                    case DialogResult.Cancel:
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -48,21 +55,27 @@ namespace PruebaTp3Form
         {
             if (this.listaClientes.Count > -1)
             {
-                this.Cargar();
             }
+                this.Cargar();
         }
 
         private void btnModificarCliente_Click(object sender, EventArgs e)
         {
-            FormModificarCliente formModificarCliente = new FormModificarCliente((Cliente)this.dgvClientes.CurrentRow.DataBoundItem);
-            formModificarCliente.ShowDialog();
-            if (formModificarCliente.DialogResult == DialogResult.OK)
+            if (dgvClientes.SelectedRows.Count > 0)
             {
-                this.dgvClientes.CurrentRow.SetValues(formModificarCliente.clienteAux.Nombre, formModificarCliente.clienteAux.Telefono, formModificarCliente.clienteAux.Direccion);
-                this.EscribirClientes();
+                FormModificarCliente formModificarCliente = new FormModificarCliente((Cliente)this.dgvClientes.CurrentRow.DataBoundItem);
+                formModificarCliente.ShowDialog();
+                if (formModificarCliente.DialogResult == DialogResult.OK)
+                {
+                    this.dgvClientes.CurrentRow.SetValues(formModificarCliente.clienteAux.Nombre, formModificarCliente.clienteAux.Telefono, formModificarCliente.clienteAux.Direccion);
+                    this.EscribirClientes();
+                }
+                this.Cargar();
             }
-
-            this.Cargar();
+            else
+            {
+                MessageBox.Show("Debe seleccionar un cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void Cargar()
@@ -113,22 +126,29 @@ namespace PruebaTp3Form
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
-            string mensaje = ((Cliente)this.dgvClientes.CurrentRow.DataBoundItem).MostrarCliente() + "\n";
-            bool bandera = false;
-            foreach (Pedido item in this.listaPedidos)
+            if (dgvClientes.SelectedRows.Count > 0)
             {
-                if (item == (Cliente)this.dgvClientes.CurrentRow.DataBoundItem)
+                string mensaje = ((Cliente)this.dgvClientes.CurrentRow.DataBoundItem).MostrarCliente() + "\n";
+                bool bandera = false;
+                foreach (Pedido item in this.listaPedidos)
                 {
-                    mensaje += item.MostrarPedido();
-                    bandera = true;
+                    if (item == (Cliente)this.dgvClientes.CurrentRow.DataBoundItem)
+                    {
+                        mensaje += item.MostrarPedido();
+                        bandera = true;
+                    }
                 }
+                if (!bandera)
+                {
+                    mensaje += "***** No se encuentran pedidos registrados *****";
+                }
+                FormMostrador formMostrador = new FormMostrador(mensaje);
+                formMostrador.Show();
             }
-            if (!bandera)
+            else
             {
-                mensaje += "***** No se encuentran pedidos registrados *****";
+                MessageBox.Show("Debe seleccionar un cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            FormMostrador formMostrador = new FormMostrador(mensaje);
-            formMostrador.Show();
         }
 
 
@@ -204,14 +224,21 @@ namespace PruebaTp3Form
 
         private void btnBorrarCliente_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Seguro desea eliminar este cliente?", "Eliminar Cliente", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
+            if (dgvClientes.SelectedRows.Count > 0)
             {
-                this.cliente = ((Cliente)this.dgvClientes.CurrentRow.DataBoundItem);
-                cliente.Activo = false;
-                this.EscribirClientes();
+                DialogResult dr = MessageBox.Show("Seguro desea eliminar este cliente?", "Eliminar Cliente", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    this.cliente = ((Cliente)this.dgvClientes.CurrentRow.DataBoundItem);
+                    cliente.Activo = false;
+                    this.EscribirClientes();
+                }
+                this.Cargar();
             }
-            this.Cargar();
+            else
+            {
+                MessageBox.Show("Debe seleccionar un cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

@@ -45,7 +45,7 @@ namespace PruebaTp3Form
             try
             {
                 SerializacionConXml<List<Alimento>> serializacionConXml = new SerializacionConXml<List<Alimento>>();
-                this.alimentosEnStock = serializacionConXml.Leer("ListaAlimentos");
+                this.alimentosEnStock = serializacionConXml.LeerDesdeSolucion("ListaAlimentos");
             }
             catch (Exception ex)
             {

@@ -68,16 +68,27 @@ namespace Entidades
                         }
                     }
                 }
-                else
+                return datos;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Error deserializando el archivo ubicado en {path}", e);
+            }
+        }
+
+        public T LeerDesdeSolucion(string nombre)
+        {
+            T datos = default;
+            nombre += ".xml";
+            string ubicacionYNombreArchivo = AppDomain.CurrentDomain.BaseDirectory + nombre;
+            try
+            {
+                if (File.Exists(ubicacionYNombreArchivo))
                 {
-                    ubicacionYNombreArchivo = AppDomain.CurrentDomain.BaseDirectory + nombre;
-                    if (File.Exists(ubicacionYNombreArchivo))
+                    using (StreamReader streamReader = new StreamReader(ubicacionYNombreArchivo))
                     {
-                        using (StreamReader streamReader = new StreamReader(ubicacionYNombreArchivo))
-                        {
-                            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-                            datos = (T)xmlSerializer.Deserialize(streamReader);
-                        }
+                        XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+                        datos = (T)xmlSerializer.Deserialize(streamReader);
                     }
                 }
                 return datos;

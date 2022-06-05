@@ -36,21 +36,32 @@ namespace PruebaTp3Form
         {
             this.LeerClientes();
             this.LeerPedidos();
-            this.dgvPedidosTotales.AutoGenerateColumns = true;
-            if (this.listaPedidosTotales.Count > 0)
-            {
-                this.Cargar();
-            }
+            this.dgvPedidosTotales.AutoGenerateColumns = false;
+            this.Cargar();
         }
 
         private void btnVerPedido_Click(object sender, EventArgs e)
         {
-            string mensaje = ((Pedido)this.dgvPedidosTotales.CurrentRow.DataBoundItem).Cliente.MostrarCliente();
-            mensaje += ((Pedido)this.dgvPedidosTotales.CurrentRow.DataBoundItem).MostrarPedido();
+            if (dgvPedidosTotales.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    string mensaje = ((Pedido)this.dgvPedidosTotales.CurrentRow.DataBoundItem).Cliente.MostrarCliente();
+                    mensaje += ((Pedido)this.dgvPedidosTotales.CurrentRow.DataBoundItem).MostrarPedido();
 
-            FormMostrador formMostrador = new FormMostrador(mensaje);
-            formMostrador.Show();
-            Clipboard.SetText(mensaje);
+                    FormMostrador formMostrador = new FormMostrador(mensaje);
+                    formMostrador.Show();
+                    Clipboard.SetText(mensaje);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Debe seleccionar un pedido para ver", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un pedido para ver", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -111,7 +122,11 @@ namespace PruebaTp3Form
             }
             this.dgvPedidosTotales.DataSource = null;
             this.dgvPedidosTotales.DataSource = listita;
-
+            if (listita.Count > 0)
+            {
+                this.dgvPedidosTotales.ClearSelection();
+                this.dgvPedidosTotales.TabIndex = 0;
+            }
             this.OrdenarDGV();
         }
 
