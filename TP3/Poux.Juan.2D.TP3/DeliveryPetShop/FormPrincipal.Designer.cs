@@ -29,25 +29,13 @@ namespace PruebaTp3Form
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblCartelPedidosRealizados = new System.Windows.Forms.Label();
             this.btnVerPedido = new System.Windows.Forms.Button();
             this.btnRealizarPedidoNuevo = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.dgvPedidos = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).BeginInit();
+            this.dgvPedidosTotales = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPedidosTotales)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblCartelPedidosRealizados
-            // 
-            this.lblCartelPedidosRealizados.AutoSize = true;
-            this.lblCartelPedidosRealizados.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblCartelPedidosRealizados.Location = new System.Drawing.Point(12, 9);
-            this.lblCartelPedidosRealizados.Name = "lblCartelPedidosRealizados";
-            this.lblCartelPedidosRealizados.Size = new System.Drawing.Size(291, 40);
-            this.lblCartelPedidosRealizados.TabIndex = 1;
-            this.lblCartelPedidosRealizados.Text = "PEDIDOS PARA HOY";
             // 
             // btnVerPedido
             // 
@@ -69,16 +57,6 @@ namespace PruebaTp3Form
             this.btnRealizarPedidoNuevo.UseVisualStyleBackColor = true;
             this.btnRealizarPedidoNuevo.Click += new System.EventHandler(this.btnRealizarPedidoNuevo_Click);
             // 
-            // listBox1
-            // 
-            this.listBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 21;
-            this.listBox1.Location = new System.Drawing.Point(12, 264);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(758, 235);
-            this.listBox1.TabIndex = 4;
-            // 
             // btnSalir
             // 
             this.btnSalir.Location = new System.Drawing.Point(776, 433);
@@ -89,63 +67,61 @@ namespace PruebaTp3Form
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // dgvPedidos
-            // 
-            this.dgvPedidos.AllowUserToAddRows = false;
-            this.dgvPedidos.AllowUserToDeleteRows = false;
-            this.dgvPedidos.AllowUserToResizeColumns = false;
-            this.dgvPedidos.AllowUserToResizeRows = false;
-            this.dgvPedidos.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvPedidos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dgvPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvPedidos.EnableHeadersVisualStyles = false;
-            this.dgvPedidos.Location = new System.Drawing.Point(12, 52);
-            this.dgvPedidos.Name = "dgvPedidos";
-            this.dgvPedidos.RowHeadersVisible = false;
-            this.dgvPedidos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgvPedidos.RowTemplate.Height = 25;
-            this.dgvPedidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPedidos.Size = new System.Drawing.Size(758, 163);
-            this.dgvPedidos.TabIndex = 7;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 221);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(265, 40);
             this.label1.TabIndex = 8;
             this.label1.Text = "PEDIDOS TOTALES";
+            // 
+            // dgvPedidosTotales
+            // 
+            this.dgvPedidosTotales.AllowUserToAddRows = false;
+            this.dgvPedidosTotales.AllowUserToDeleteRows = false;
+            this.dgvPedidosTotales.AllowUserToResizeRows = false;
+            this.dgvPedidosTotales.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvPedidosTotales.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvPedidosTotales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvPedidosTotales.EnableHeadersVisualStyles = false;
+            this.dgvPedidosTotales.Location = new System.Drawing.Point(12, 52);
+            this.dgvPedidosTotales.MultiSelect = false;
+            this.dgvPedidosTotales.Name = "dgvPedidosTotales";
+            this.dgvPedidosTotales.ReadOnly = true;
+            this.dgvPedidosTotales.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvPedidosTotales.RowHeadersVisible = false;
+            this.dgvPedidosTotales.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvPedidosTotales.RowTemplate.Height = 25;
+            this.dgvPedidosTotales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPedidosTotales.Size = new System.Drawing.Size(758, 447);
+            this.dgvPedidosTotales.TabIndex = 9;
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 511);
+            this.Controls.Add(this.dgvPedidosTotales);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnRealizarPedidoNuevo);
             this.Controls.Add(this.btnVerPedido);
-            this.Controls.Add(this.lblCartelPedidosRealizados);
-            this.Controls.Add(this.dgvPedidos);
             this.Name = "FormPrincipal";
             this.Text = "Menu Principal";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPedidosTotales)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label lblCartelPedidosRealizados;
         private System.Windows.Forms.Button btnVerPedido;
         private System.Windows.Forms.Button btnRealizarPedidoNuevo;
-        public System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.DataGridView dgvPedidos;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dgvPedidosTotales;
     }
 }

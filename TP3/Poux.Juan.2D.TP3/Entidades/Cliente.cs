@@ -11,6 +11,8 @@ namespace Entidades
         private string nombre;
         private string telefono;
         private string direccion;
+        private bool activo;
+
         public string Nombre
         {
             get
@@ -46,11 +48,24 @@ namespace Entidades
             }
         }
 
+        public bool Activo
+        {
+            get
+            {
+                return this.activo;
+            }
+            set
+            {
+                this.activo = value;
+            }
+        }
+
         public Cliente(string telefono, string nombre, string direccion)
         {
             this.telefono = telefono;
             this.nombre = nombre;
             this.direccion = direccion;
+            this.activo = true;
         }
 
         public string MostrarCliente()

@@ -408,7 +408,6 @@ namespace PruebaTp3Form
             this.MinimizeBox = false;
             this.Name = "FormVentas";
             this.Text = "Ventas";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormInicio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericCantidad)).EndInit();
             this.groupBox1.ResumeLayout(false);

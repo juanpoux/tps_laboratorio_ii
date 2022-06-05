@@ -12,54 +12,42 @@ namespace PruebaTp3Form
     {
         Pedido pedido;
         public List<Cliente> listaClientes;
-        public List<Pedido> listaPedidos;
-        public List<Pedido> listaPedidosHoy;
+        public List<Pedido> listaPedidosTotales;
 
         public FormPrincipal()
         {
             InitializeComponent();
-            this.listaPedidos = new List<Pedido>();
-            this.listaPedidosHoy = new List<Pedido>();
+            this.listaPedidosTotales = new List<Pedido>();
             this.listaClientes = new List<Cliente>();
         }
 
         private void btnRealizarPedidoNuevo_Click(object sender, EventArgs e)
         {
-            FormClientes formClientes = new FormClientes(this.listaClientes, this.listaPedidos);
+            FormClientes formClientes = new FormClientes(this.listaClientes, this.listaPedidosTotales);
             formClientes.ShowDialog();
             if (formClientes.DialogResult == DialogResult.OK)
             {
-                //tengo que recibir el pedido
-                this.listaPedidos.Add(formClientes.pedido);
-                this.Cargar();
+                this.listaPedidosTotales.Add(formClientes.pedido);
             }
+            this.Cargar();
         }
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             this.LeerClientes();
             this.LeerPedidos();
-            this.listBox1.DataSource = this.listaPedidos;
-
-            foreach (Pedido item in this.listaPedidos)
+            this.dgvPedidosTotales.AutoGenerateColumns = true;
+            if (this.listaPedidosTotales.Count > 0)
             {
-                if(item.DiaDeEntrega.Day == DateTime.Now.Day)
-                {
-                    this.listaPedidosHoy.Add(item);
-                }
+                this.Cargar();
             }
-            this.dgvPedidos.DataSource = this.listaPedidosHoy;
-
-            this.dgvPedidos.Columns[0].Visible = false;
-            this.dgvPedidos.Columns[7].Visible = false;
-            this.dgvPedidos.Columns[1].Width = 150;
-            this.dgvPedidos.Columns[2].Width = 200;
         }
 
         private void btnVerPedido_Click(object sender, EventArgs e)
         {
-            string mensaje = ((Pedido)this.listBox1.SelectedItem).Cliente.MostrarCliente();
-            mensaje += ((Pedido)this.listBox1.SelectedItem).MostrarPedido();
+            string mensaje = ((Pedido)this.dgvPedidosTotales.CurrentRow.DataBoundItem).Cliente.MostrarCliente();
+            mensaje += ((Pedido)this.dgvPedidosTotales.CurrentRow.DataBoundItem).MostrarPedido();
+
             FormMostrador formMostrador = new FormMostrador(mensaje);
             formMostrador.Show();
             Clipboard.SetText(mensaje);
@@ -67,7 +55,6 @@ namespace PruebaTp3Form
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            this.EscribirClientes();
             this.EscribirPedidos();
             this.Close();
         }
@@ -77,40 +64,40 @@ namespace PruebaTp3Form
             try
             {
                 SerializacionConJson<List<Cliente>> serializacionConJson = new SerializacionConJson<List<Cliente>>();
-                this.listaClientes = serializacionConJson.Leer("ListaClientes.json");
+                this.listaClientes = serializacionConJson.Leer("ListaClientes");
             }
             catch (Exception ex)
             {
-                //Corregir esto
+                //TODO Corregir esto
                 MessageBox.Show(ex.GetType().Name);
             }
         }
 
-        private void EscribirClientes()
+        /*private void EscribirClientes()
         {
             try
             {
                 SerializacionConJson<List<Cliente>> serializacionConJson = new SerializacionConJson<List<Cliente>>();
-                serializacionConJson.Escribir(this.listaClientes, "ListaClientes.json");
+                serializacionConJson.Escribir(this.listaClientes, "ListaClientes");
             }
             catch (Exception ex)
             {
-                //Corregir esto
+                //TODO Corregir esto
                 MessageBox.Show(ex.Message);
             }
-        }
+        }*/
 
         private void LeerPedidos()
         {
             try
             {
                 SerializacionConJson<List<Pedido>> serializacionConJson = new SerializacionConJson<List<Pedido>>();
-                this.listaPedidos = serializacionConJson.Leer("ListaPedidos.json");
+                this.listaPedidosTotales = serializacionConJson.Leer("ListaPedidos");
             }
             catch (Exception ex)
             {
-                //Corregir esto
-                MessageBox.Show(ex.GetType().Name);
+                //TODO Corregir esto
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -119,19 +106,35 @@ namespace PruebaTp3Form
             try
             {
                 SerializacionConJson<List<Pedido>> serializacionConJson = new SerializacionConJson<List<Pedido>>();
-                serializacionConJson.Escribir(this.listaPedidos, "ListaPedidos.json");
+                serializacionConJson.Escribir(this.listaPedidosTotales, "ListaPedidos");
             }
             catch (Exception ex)
             {
-                //Corregir esto
+                //TODO Corregir esto
                 MessageBox.Show(ex.Message);
             }
         }
 
         private void Cargar()
         {
-            this.listBox1.DataSource = null;
-            this.listBox1.DataSource = this.listaPedidos;
+            this.dgvPedidosTotales.AutoGenerateColumns = true;
+            List<Pedido> listita = new List<Pedido>();
+            foreach (Pedido item in this.listaPedidosTotales)
+            {
+                listita.Add(item);
+            }
+            this.dgvPedidosTotales.DataSource = null;
+            this.dgvPedidosTotales.DataSource = listita;
+
+            this.OrdenarDGV();
+        }
+
+        private void OrdenarDGV()
+        {
+            this.dgvPedidosTotales.Columns[0].Visible = false;
+            this.dgvPedidosTotales.Columns[7].Visible = false;
+            this.dgvPedidosTotales.Columns[1].Width = 150;
+            this.dgvPedidosTotales.Columns[2].Width = 200;
         }
 
     }

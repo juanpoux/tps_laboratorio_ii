@@ -42,6 +42,7 @@ namespace Entidades
         {
             string archivo = string.Empty;
             T datosRecuperados = default;
+            nombre += ".json";
             try
             {
                 if (Directory.Exists(path))
@@ -64,7 +65,10 @@ namespace Entidades
                 else
                 {
                     string ubicacionYNombreArchivo = AppDomain.CurrentDomain.BaseDirectory + nombre;
-                    datosRecuperados = JsonSerializer.Deserialize<T>(File.ReadAllText(ubicacionYNombreArchivo));
+                    if (File.Exists(ubicacionYNombreArchivo))
+                    {
+                        datosRecuperados = JsonSerializer.Deserialize<T>(File.ReadAllText(ubicacionYNombreArchivo));
+                    }
                 }
 
                 return datosRecuperados;

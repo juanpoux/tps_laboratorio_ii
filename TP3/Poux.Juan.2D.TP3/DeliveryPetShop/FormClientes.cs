@@ -46,7 +46,10 @@ namespace PruebaTp3Form
 
         private void FormClientes_Load(object sender, EventArgs e)
         {
-            this.Cargar();
+            if (this.listaClientes.Count > -1)
+            {
+                this.Cargar();
+            }
         }
 
         private void btnModificarCliente_Click(object sender, EventArgs e)
@@ -55,7 +58,8 @@ namespace PruebaTp3Form
             formModificarCliente.ShowDialog();
             if (formModificarCliente.DialogResult == DialogResult.OK)
             {
-                this.dgvClientes.CurrentRow.SetValues(formModificarCliente.cliente.Nombre, formModificarCliente.cliente.Telefono, formModificarCliente.cliente.Direccion);
+                this.dgvClientes.CurrentRow.SetValues(formModificarCliente.clienteAux.Nombre, formModificarCliente.clienteAux.Telefono, formModificarCliente.clienteAux.Direccion);
+                this.EscribirClientes();
             }
 
             this.Cargar();
@@ -63,8 +67,22 @@ namespace PruebaTp3Form
 
         private void Cargar()
         {
+            List<Cliente> listita = new List<Cliente>();
+            foreach (Cliente item in this.listaClientes)
+            {
+                if (item.Activo)
+                {
+                    listita.Add(item);
+                }
+            }
             this.dgvClientes.DataSource = null;
-            this.dgvClientes.DataSource = this.listaClientes;
+            this.dgvClientes.DataSource = listita;
+            this.OrdenarDGV();
+        }
+
+        private void OrdenarDGV()
+        {
+            this.dgvClientes.Columns[3].Visible = false;
         }
 
         private void btnNuevoCliente_Click(object sender, EventArgs e)
@@ -75,6 +93,21 @@ namespace PruebaTp3Form
             {
                 this.listaClientes.Add(formNuevoCliente.cliente);
                 this.Cargar();
+                this.EscribirClientes();
+            }
+        }
+
+        private void EscribirClientes()
+        {
+            try
+            {
+                SerializacionConJson<List<Cliente>> serializacionConJson = new SerializacionConJson<List<Cliente>>();
+                serializacionConJson.Escribir(this.listaClientes, "ListaClientes");
+            }
+            catch (Exception ex)
+            {
+                //TODO Corregir esto
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -111,7 +144,6 @@ namespace PruebaTp3Form
                     if (item.Direccion.ToLower().StartsWith(this.txtBuscarPorDireccion.Text.ToLower()))
                     {
                         listita.Add(item);
-
                     }
                 }
                 this.dgvClientes.DataSource = listita;
@@ -133,7 +165,6 @@ namespace PruebaTp3Form
                     if (item.Telefono.ToLower().StartsWith(this.txtBuscarPorTelefono.Text.ToLower()))
                     {
                         listita.Add(item);
-
                     }
                 }
                 this.dgvClientes.DataSource = listita;
@@ -169,6 +200,18 @@ namespace PruebaTp3Form
             {
                 this.Cargar();
             }
+        }
+
+        private void btnBorrarCliente_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Seguro desea eliminar este cliente?", "Eliminar Cliente", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                this.cliente = ((Cliente)this.dgvClientes.CurrentRow.DataBoundItem);
+                cliente.Activo = false;
+                this.EscribirClientes();
+            }
+            this.Cargar();
         }
     }
 }

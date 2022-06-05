@@ -1,23 +1,2 @@
 [
-  {
-    "Cliente": {
-      "Nombre": "Ram Dalglish",
-      "Telefono": "5926597128",
-      "Direccion": "14712 Division Street"
-    },
-    "AlimentosPedidos": [
-      {
-        "Descripcion": "Pro Plan Active Mind Razas Medianas",
-        "Kilos": 15,
-        "Cantidad": 1,
-        "Precio": 950,
-        "PrecioTarj": 990
-      }
-    ],
-    "Pago": false,
-    "DiaDeEntrega": "2022-06-04T14:12:57.2485965-03:00",
-    "PrecioFinal": 950,
-    "TipoPago": 0,
-    "Observaciones": ""
-  }
 ]

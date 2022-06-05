@@ -111,7 +111,7 @@ namespace PruebaTp3Form
 
         private void CargarListaAlimentosPedidos()
         {
-            this.dgvAlimentosPedido.AutoGenerateColumns = true;
+            //this.dgvAlimentosPedido.AutoGenerateColumns = true;
             this.dgvAlimentosPedido.DataSource = null;
             this.dgvAlimentosPedido.DataSource = this.alimentosPedido;
             this.dgvAlimentosPedido.Columns[0].Width = 310;
@@ -175,7 +175,7 @@ namespace PruebaTp3Form
             pedido.DiaDeEntrega = this.dateTimePicker1.Value;
             pedido.Observaciones = this.rtbObervaciones.Text;
 
-            MessageBox.Show("Pedido cargado!", "Pedido cargado");
+            //MessageBox.Show("Pedido cargado!", "Pedido cargado");
             this.DialogResult = DialogResult.OK;
         }
 

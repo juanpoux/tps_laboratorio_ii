@@ -41,6 +41,7 @@ namespace PruebaTp3Form
             this.txtBuscarPorTelefono = new System.Windows.Forms.TextBox();
             this.txtBuscarPorDireccion = new System.Windows.Forms.TextBox();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.btnBorrarCliente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -137,7 +138,7 @@ namespace PruebaTp3Form
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvClientes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvClientes.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvClientes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -169,11 +170,22 @@ namespace PruebaTp3Form
             this.dgvClientes.Size = new System.Drawing.Size(829, 560);
             this.dgvClientes.TabIndex = 11;
             // 
+            // btnBorrarCliente
+            // 
+            this.btnBorrarCliente.Location = new System.Drawing.Point(848, 283);
+            this.btnBorrarCliente.Name = "btnBorrarCliente";
+            this.btnBorrarCliente.Size = new System.Drawing.Size(187, 51);
+            this.btnBorrarCliente.TabIndex = 12;
+            this.btnBorrarCliente.Text = "BORRAR CLIENTE";
+            this.btnBorrarCliente.UseVisualStyleBackColor = true;
+            this.btnBorrarCliente.Click += new System.EventHandler(this.btnBorrarCliente_Click);
+            // 
             // FormClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1047, 627);
+            this.Controls.Add(this.btnBorrarCliente);
             this.Controls.Add(this.dgvClientes);
             this.Controls.Add(this.txtBuscarPorDireccion);
             this.Controls.Add(this.txtBuscarPorTelefono);
@@ -203,5 +215,6 @@ namespace PruebaTp3Form
         private System.Windows.Forms.TextBox txtBuscarPorTelefono;
         private System.Windows.Forms.TextBox txtBuscarPorDireccion;
         private System.Windows.Forms.DataGridView dgvClientes;
+        private System.Windows.Forms.Button btnBorrarCliente;
     }
 }

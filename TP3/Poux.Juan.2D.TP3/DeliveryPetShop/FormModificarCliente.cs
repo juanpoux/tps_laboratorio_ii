@@ -13,20 +13,20 @@ namespace PruebaTp3Form
 {
     public partial class FormModificarCliente : FormNuevoCliente
     {
-        public Cliente cliente;
+        public Cliente clienteAux;
         public FormModificarCliente(Cliente cliente)
         {
             InitializeComponent();
-            this.cliente = cliente;
+            this.clienteAux = cliente;
         }
 
         protected override void btnAceptar_Click(object sender, EventArgs e)
         {
             if (base.ValidarCamposCompletos())
             {
-                this.cliente.Direccion = this.txtDireccion.Text;
-                this.cliente.Nombre = this.txtNombre.Text;
-                this.cliente.Telefono = this.txtTelefono.Text;
+                this.clienteAux.Direccion = this.txtDireccion.Text;
+                this.clienteAux.Nombre = this.txtNombre.Text;
+                this.clienteAux.Telefono = this.txtTelefono.Text;
                 this.DialogResult = DialogResult.OK;
             }
             else
@@ -37,9 +37,9 @@ namespace PruebaTp3Form
 
         private void FormModificarCliente_Load(object sender, EventArgs e)
         {
-            this.txtDireccion.Text = this.cliente.Direccion;
-            this.txtNombre.Text = this.cliente.Nombre;
-            this.txtTelefono.Text = this.cliente.Telefono;
+            this.txtDireccion.Text = this.clienteAux.Direccion;
+            this.txtNombre.Text = this.clienteAux.Nombre;
+            this.txtTelefono.Text = this.clienteAux.Telefono;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
