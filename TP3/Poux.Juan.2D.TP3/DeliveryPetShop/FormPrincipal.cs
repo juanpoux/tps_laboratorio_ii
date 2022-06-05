@@ -73,20 +73,6 @@ namespace PruebaTp3Form
             }
         }
 
-        /*private void EscribirClientes()
-        {
-            try
-            {
-                SerializacionConJson<List<Cliente>> serializacionConJson = new SerializacionConJson<List<Cliente>>();
-                serializacionConJson.Escribir(this.listaClientes, "ListaClientes");
-            }
-            catch (Exception ex)
-            {
-                //TODO Corregir esto
-                MessageBox.Show(ex.Message);
-            }
-        }*/
-
         private void LeerPedidos()
         {
             try

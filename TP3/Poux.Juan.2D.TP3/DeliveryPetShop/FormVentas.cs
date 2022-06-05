@@ -25,6 +25,8 @@ namespace PruebaTp3Form
         public FormVentas()
         {
             InitializeComponent();
+            this.alimentosPedido = new List<Alimento>();
+            this.alimentosEnStock = new List<Alimento>();
         }
 
         public FormVentas(Cliente cliente) : this()
@@ -37,24 +39,18 @@ namespace PruebaTp3Form
             this.cboMedioDePago.Items.Add("Efectivo");
             this.cboMedioDePago.Items.Add("Tarjeta");
 
-            this.cboMedioDePago.SelectedIndex = 0;//Pruebas
-            this.numericCantidad.Value = 1;//Pruebas
+            this.cboMedioDePago.SelectedIndex = 0;
+            this.numericCantidad.Value = 1;
 
-            this.alimentosPedido = new List<Alimento>();
-            this.alimentosEnStock = new List<Alimento>();
-
-            //Leer archivo json
             try
             {
-                string ubicacionYNombreArchivo = AppDomain.CurrentDomain.BaseDirectory + @"\ListaAlimentos.json";
-                this.alimentosEnStock = JsonSerializer.Deserialize<List<Alimento>>(File.ReadAllText(ubicacionYNombreArchivo));
+                SerializacionConXml<List<Alimento>> serializacionConXml = new SerializacionConXml<List<Alimento>>();
+                this.alimentosEnStock = serializacionConXml.Leer("ListaAlimentos");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error serializando alimentos\n" + ex.Message);
             }
-            this.dgvAlimentosPedido.AutoGenerateColumns = true;
-
             this.Cargar();
         }
 
@@ -111,7 +107,6 @@ namespace PruebaTp3Form
 
         private void CargarListaAlimentosPedidos()
         {
-            //this.dgvAlimentosPedido.AutoGenerateColumns = true;
             this.dgvAlimentosPedido.DataSource = null;
             this.dgvAlimentosPedido.DataSource = this.alimentosPedido;
             this.dgvAlimentosPedido.Columns[0].Width = 310;
@@ -123,6 +118,7 @@ namespace PruebaTp3Form
 
         private void Cargar()
         {
+            this.dgvAlimentosPedido.AutoGenerateColumns = true;
             this.dgvAlimentosStock.DataSource = null;
             this.dgvAlimentosStock.DataSource = this.alimentosEnStock;
             this.OrdenarDGV();
@@ -178,7 +174,6 @@ namespace PruebaTp3Form
             //MessageBox.Show("Pedido cargado!", "Pedido cargado");
             this.DialogResult = DialogResult.OK;
         }
-
 
         private void txtBuscarPorNombre_TextChanged(object sender, EventArgs e)
         {

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Entidades
 {
-    public class SerializacionConJson<T> : IArchivos<T>
+    public class SerializacionConXml<T> : IArchivos<T>
     {
         static string path;
 
-        static SerializacionConJson()
+        static SerializacionConXml()
         {
             path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             path += @"\Archivos-TP3-Juan-Poux-1A\";
@@ -20,9 +20,7 @@ namespace Entidades
 
         public void Escribir(T datos, string nombre)
         {
-            string nombreArchivo = path + nombre + ".json";
-            JsonSerializerOptions opciones = new JsonSerializerOptions();
-            opciones.WriteIndented = true;
+            string ubicacionYNombreArchivo = path + nombre + ".xml";
 
             try
             {
@@ -30,7 +28,12 @@ namespace Entidades
                 {
                     Directory.CreateDirectory(path);
                 }
-                File.WriteAllText(nombreArchivo, JsonSerializer.Serialize(datos, opciones));
+
+                using (StreamWriter streamWriter = new StreamWriter(ubicacionYNombreArchivo))
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+                    xmlSerializer.Serialize(streamWriter, datos);
+                }
             }
             catch (Exception e)
             {
@@ -40,9 +43,9 @@ namespace Entidades
 
         public T Leer(string nombre)
         {
-            string archivo = string.Empty;
+            string ubicacionYNombreArchivo = string.Empty;
             T datos = default;
-            nombre += ".json";
+            nombre += ".xml";
             try
             {
                 if (Directory.Exists(path))
@@ -52,29 +55,36 @@ namespace Entidades
                     {
                         if (path.Contains(nombre))
                         {
-                            archivo = path;
+                            ubicacionYNombreArchivo = path;
                             break;
                         }
                     }
-                    if (archivo != null)
+                    if (ubicacionYNombreArchivo != null)
                     {
-                        datos = JsonSerializer.Deserialize<T>(File.ReadAllText(archivo));
+                        using (StreamReader streamReader = new StreamReader(ubicacionYNombreArchivo))
+                        {
+                            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+                            datos = (T)xmlSerializer.Deserialize(streamReader);
+                        }
                     }
                 }
                 else
                 {
-                    string ubicacionYNombreArchivo = AppDomain.CurrentDomain.BaseDirectory + nombre;
+                    ubicacionYNombreArchivo = AppDomain.CurrentDomain.BaseDirectory + nombre;
                     if (File.Exists(ubicacionYNombreArchivo))
                     {
-                        datos = JsonSerializer.Deserialize<T>(File.ReadAllText(ubicacionYNombreArchivo));
+                        using (StreamReader streamReader = new StreamReader(ubicacionYNombreArchivo))
+                        {
+                            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+                            datos = (T)xmlSerializer.Deserialize(streamReader);
+                        }
                     }
                 }
-
                 return datos;
             }
             catch (Exception e)
             {
-                throw new Exception($"Error en deserializando el archivo ubicado en {path}", e);
+                throw new Exception($"Error deserializando el archivo ubicado en {path}", e);
             }
         }
     }
