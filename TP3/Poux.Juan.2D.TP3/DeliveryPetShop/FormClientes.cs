@@ -28,6 +28,12 @@ namespace PruebaTp3Form
             this.listaPedidos = listaPedidos;
         }
 
+        private void FormClientes_Load(object sender, EventArgs e)
+        {
+            this.Cargar();
+            this.EscribirClientes();
+        }
+
         private void btnSeleccionarCliente_Click(object sender, EventArgs e)
         {
             if (dgvClientes.SelectedRows.Count > 0)
@@ -51,13 +57,6 @@ namespace PruebaTp3Form
             }
         }
 
-        private void FormClientes_Load(object sender, EventArgs e)
-        {
-            if (this.listaClientes.Count > -1)
-            {
-            }
-                this.Cargar();
-        }
 
         private void btnModificarCliente_Click(object sender, EventArgs e)
         {
@@ -119,8 +118,7 @@ namespace PruebaTp3Form
             }
             catch (Exception ex)
             {
-                //TODO Corregir esto
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al intentar escribir lista de clientes\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

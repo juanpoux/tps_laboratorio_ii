@@ -28,9 +28,19 @@ namespace PruebaTp3Form
             if (formClientes.DialogResult == DialogResult.OK)
             {
                 this.listaPedidosTotales.Add(formClientes.pedido);
+                string mensaje = formClientes.pedido.Cliente.MostrarCliente();
+                mensaje += formClientes.pedido.MostrarPedido();
+                Clipboard.SetText(mensaje);
+                mensaje += "\n\n***MENSAJE COPIADO AL PORTAPAPELES***";
+                FormMostrador formMostrador = new FormMostrador(mensaje);
+                formMostrador.Show();
+                string nombreArchivo = $"{formClientes.pedido.NombreCliente.Replace(' ', '-')}-{formClientes.pedido.DiaDeEntrega.ToShortDateString().Replace('/', '-')}";
+                this.EscribirArchivoTexto(nombreArchivo, mensaje);
             }
             this.Cargar();
         }
+
+
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
@@ -79,8 +89,7 @@ namespace PruebaTp3Form
             }
             catch (Exception ex)
             {
-                //TODO Corregir esto
-                MessageBox.Show(ex.GetType().Name);
+                MessageBox.Show("Error al intentar leer lista de clientes\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -93,8 +102,7 @@ namespace PruebaTp3Form
             }
             catch (Exception ex)
             {
-                //TODO Corregir esto
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al intentar leer la lista de pedidos\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -107,8 +115,19 @@ namespace PruebaTp3Form
             }
             catch (Exception ex)
             {
-                //TODO Corregir esto
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al intentar escribir la lista de pedidos\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void EscribirArchivoTexto(string nombre, string datos)
+        {
+            try
+            {
+                SerializarArchivoTexto.Escribir(nombre, datos);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al intentar escribir archivo de texto\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

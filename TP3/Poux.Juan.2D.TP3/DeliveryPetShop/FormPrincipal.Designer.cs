@@ -29,6 +29,7 @@ namespace PruebaTp3Form
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnVerPedido = new System.Windows.Forms.Button();
             this.btnRealizarPedidoNuevo = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -81,6 +82,7 @@ namespace PruebaTp3Form
             // 
             this.dgvPedidosTotales.AllowUserToAddRows = false;
             this.dgvPedidosTotales.AllowUserToDeleteRows = false;
+            this.dgvPedidosTotales.AllowUserToResizeColumns = false;
             this.dgvPedidosTotales.AllowUserToResizeRows = false;
             this.dgvPedidosTotales.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvPedidosTotales.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -90,9 +92,10 @@ namespace PruebaTp3Form
             this.dgvPedidosTotales.MultiSelect = false;
             this.dgvPedidosTotales.Name = "dgvPedidosTotales";
             this.dgvPedidosTotales.ReadOnly = true;
-            this.dgvPedidosTotales.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvPedidosTotales.RowHeadersVisible = false;
             this.dgvPedidosTotales.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dgvPedidosTotales.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPedidosTotales.RowTemplate.Height = 25;
             this.dgvPedidosTotales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPedidosTotales.Size = new System.Drawing.Size(758, 447);
