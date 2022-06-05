@@ -86,7 +86,7 @@ namespace PruebaTp3Form
             this.dgvPedidosTotales.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvPedidosTotales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvPedidosTotales.EnableHeadersVisualStyles = false;
-            this.dgvPedidosTotales.Location = new System.Drawing.Point(12, 349);
+            this.dgvPedidosTotales.Location = new System.Drawing.Point(12, 52);
             this.dgvPedidosTotales.MultiSelect = false;
             this.dgvPedidosTotales.Name = "dgvPedidosTotales";
             this.dgvPedidosTotales.ReadOnly = true;
@@ -95,7 +95,7 @@ namespace PruebaTp3Form
             this.dgvPedidosTotales.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvPedidosTotales.RowTemplate.Height = 25;
             this.dgvPedidosTotales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPedidosTotales.Size = new System.Drawing.Size(758, 150);
+            this.dgvPedidosTotales.Size = new System.Drawing.Size(758, 447);
             this.dgvPedidosTotales.TabIndex = 9;
             // 
             // FormPrincipal
