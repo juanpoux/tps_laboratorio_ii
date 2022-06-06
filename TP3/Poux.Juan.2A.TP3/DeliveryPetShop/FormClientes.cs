@@ -195,7 +195,8 @@ namespace PruebaTp3Form
                 List<Cliente> listaAuxiliar = new List<Cliente>();
                 foreach (Cliente item in this.listaClientes)
                 {
-                    if (item.Direccion.ToLower().StartsWith(this.txtBuscarPorDireccion.Text.ToLower()))
+                    if (item.Direccion.ToLower().StartsWith(this.txtBuscarPorDireccion.Text.ToLower()) 
+                        && item.Activo)
                     {
                         listaAuxiliar.Add(item);
                     }
@@ -221,7 +222,8 @@ namespace PruebaTp3Form
                 List<Cliente> listaAuxiliar = new List<Cliente>();
                 foreach (Cliente item in this.listaClientes)
                 {
-                    if (item.Telefono.ToLower().StartsWith(this.txtBuscarPorTelefono.Text.ToLower()))
+                    if (item.Telefono.ToLower().StartsWith(this.txtBuscarPorTelefono.Text.ToLower())
+                        && item.Activo)
                     {
                         listaAuxiliar.Add(item);
                     }
@@ -247,7 +249,8 @@ namespace PruebaTp3Form
                 List<Cliente> listaAuxiliar = new List<Cliente>();
                 foreach (Cliente item in this.listaClientes)
                 {
-                    if (item.Nombre.ToLower().StartsWith(this.txtBuscarPorNombre.Text.ToLower()))
+                    if (item.Nombre.ToLower().StartsWith(this.txtBuscarPorNombre.Text.ToLower())
+                        && item.Activo)
                     {
                         listaAuxiliar.Add(item);
 

@@ -78,28 +78,34 @@ namespace PruebaTp3Form
         {
             Alimento alimentoPerro = (Alimento)this.dgvAlimentosStock.CurrentRow.DataBoundItem;
             int cantidad = (int)this.numericCantidad.Value;
-
-            alimentoPerro.Cantidad = cantidad;
-
-            bool bandera = false;
-            foreach (Alimento item in this.alimentosPedido)
+            if (cantidad > 0)
             {
-                if (item == alimentoPerro)
+                alimentoPerro.Cantidad = cantidad;
+
+                bool bandera = false;
+                foreach (Alimento item in this.alimentosPedido)
                 {
-                    bandera = true;
-                    item.Cantidad += alimentoPerro.Cantidad;
-                    item.Precio += alimentoPerro.Precio;
-                    item.PrecioTarj += alimentoPerro.PrecioTarj;
-                    break;
+                    if (item == alimentoPerro)
+                    {
+                        bandera = true;
+                        item.Cantidad += alimentoPerro.Cantidad;
+                        item.Precio += alimentoPerro.Precio;
+                        item.PrecioTarj += alimentoPerro.PrecioTarj;
+                        break;
+                    }
                 }
+                if (!bandera)
+                {
+                    Alimento alimento = new Alimento(alimentoPerro.Descripcion, alimentoPerro.Kilos, alimentoPerro.Precio * alimentoPerro.Cantidad, alimentoPerro.PrecioTarj * alimentoPerro.Cantidad);
+                    alimento.Cantidad = alimentoPerro.Cantidad;
+                    this.alimentosPedido.Add(alimento);
+                }
+                this.CargarListaAlimentosPedidos();
             }
-            if (!bandera)
+            else
             {
-                Alimento alimento = new Alimento(alimentoPerro.Descripcion, alimentoPerro.Kilos, alimentoPerro.Precio, alimentoPerro.PrecioTarj);
-                alimento.Cantidad = alimentoPerro.Cantidad;
-                this.alimentosPedido.Add(alimento);
+                MessageBox.Show("Debe poner al menos 1 en cantidad");
             }
-            this.CargarListaAlimentosPedidos();
         }
 
         /// <summary>
@@ -218,7 +224,14 @@ namespace PruebaTp3Form
 
             pedido.DiaDeEntrega = this.dateTimePicker1.Value;
             pedido.Observaciones = this.rtbObervaciones.Text;
-            this.DialogResult = DialogResult.OK;
+            if (this.alimentosPedido.Count > 0)
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("Debe agregar al menos un producto al pedido");
+            }
         }
 
         /// <summary>

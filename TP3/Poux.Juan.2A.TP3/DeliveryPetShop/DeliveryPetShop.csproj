@@ -7,14 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="ListaAlimentos.json" />
     <None Remove="ListaClientes.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ListaAlimentos.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
     <Content Include="ListaClientes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

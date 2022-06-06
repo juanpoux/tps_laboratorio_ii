@@ -99,6 +99,7 @@ namespace PruebaTp3Form
 
         /// <summary>
         /// Carga la lista de clientes desde el archivo JSON
+        /// Aca aplico serializacion
         /// </summary>
         private void LeerClientes()
         {
@@ -115,6 +116,7 @@ namespace PruebaTp3Form
 
         /// <summary>
         /// Carga la lista de pedidos desde el archivo JSON
+        /// Aca aplico serializacion
         /// </summary>
         private void LeerPedidos()
         {
@@ -131,6 +133,7 @@ namespace PruebaTp3Form
 
         /// <summary>
         /// De no existir crea un archivo JSON con los datos de los pedidos cargados en la lista
+        /// Aca aplico serializacion
         /// </summary>
         private void EscribirPedidos()
         {
@@ -147,6 +150,7 @@ namespace PruebaTp3Form
 
         /// <summary>
         /// Crea y escribe en un archivo .txt la informacion del pedido
+        /// Aca aplico archivos
         /// </summary>
         /// <param name="nombre"></param>
         /// <param name="datos"></param>
@@ -178,7 +182,6 @@ namespace PruebaTp3Form
             if (listaAuxiliar.Count > 0)
             {
                 this.dgvPedidosTotales.ClearSelection();
-                this.dgvPedidosTotales.TabIndex = 0;
             }
             this.OrdenarDGV();
         }
