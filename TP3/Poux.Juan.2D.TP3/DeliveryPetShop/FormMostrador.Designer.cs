@@ -35,30 +35,30 @@ namespace DeliveryPetShop
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.richTextBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.richTextBox1.Location = new System.Drawing.Point(12, 12);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(338, 379);
+            this.richTextBox1.Size = new System.Drawing.Size(510, 518);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
             // btnAceptar
             // 
             this.btnAceptar.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAceptar.Location = new System.Drawing.Point(12, 397);
+            this.btnAceptar.Location = new System.Drawing.Point(12, 536);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(338, 41);
+            this.btnAceptar.Size = new System.Drawing.Size(510, 41);
             this.btnAceptar.TabIndex = 1;
             this.btnAceptar.Text = "ACEPTAR";
             this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.button1_Click);
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // FormMostrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 450);
+            this.ClientSize = new System.Drawing.Size(534, 589);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.richTextBox1);
             this.Name = "FormMostrador";

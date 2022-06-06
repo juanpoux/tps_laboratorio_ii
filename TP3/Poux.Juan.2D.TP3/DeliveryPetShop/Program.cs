@@ -17,9 +17,7 @@ namespace PruebaTp3Form
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new FormVentas());
             Application.Run(new FormPrincipal());
-            //Application.Run(new FormClientes());
         }
     }
 }

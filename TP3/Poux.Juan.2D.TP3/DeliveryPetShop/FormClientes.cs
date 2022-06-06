@@ -28,12 +28,22 @@ namespace PruebaTp3Form
             this.listaPedidos = listaPedidos;
         }
 
+        /// <summary>
+        /// Carga el datagrid con los clientes hardcodeados y crea el directorio en el escritorio para guardar la lista de clientes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormClientes_Load(object sender, EventArgs e)
         {
             this.Cargar();
             this.EscribirClientes();
         }
 
+        /// <summary>
+        /// Abre el formulario de ventas para cargarle un pedido al cliente seleccionado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSeleccionarCliente_Click(object sender, EventArgs e)
         {
             if (dgvClientes.SelectedRows.Count > 0)
@@ -57,7 +67,11 @@ namespace PruebaTp3Form
             }
         }
 
-
+        /// <summary>
+        /// abre el formulario de modificaciones para poder modificar los datos del cliente seleccionado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModificarCliente_Click(object sender, EventArgs e)
         {
             if (dgvClientes.SelectedRows.Count > 0)
@@ -77,26 +91,37 @@ namespace PruebaTp3Form
             }
         }
 
+        /// <summary>
+        /// Crea una lista auxiliar con la lista de clientes para mostrarlos en datagrid
+        /// </summary>
         private void Cargar()
         {
-            List<Cliente> listita = new List<Cliente>();
+            List<Cliente> listaAuxiliar = new List<Cliente>();
             foreach (Cliente item in this.listaClientes)
             {
                 if (item.Activo)
                 {
-                    listita.Add(item);
+                    listaAuxiliar.Add(item);
                 }
             }
             this.dgvClientes.DataSource = null;
-            this.dgvClientes.DataSource = listita;
+            this.dgvClientes.DataSource = listaAuxiliar;
             this.OrdenarDGV();
         }
 
+        /// <summary>
+        /// Ordena los datos que se muestran en el datagrid
+        /// </summary>
         private void OrdenarDGV()
         {
             this.dgvClientes.Columns[3].Visible = false;
         }
 
+        /// <summary>
+        /// Abre un formulario para crear un cliente nuevo y agregarlo a la lista
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNuevoCliente_Click(object sender, EventArgs e)
         {
             FormNuevoCliente formNuevoCliente = new FormNuevoCliente();
@@ -109,6 +134,9 @@ namespace PruebaTp3Form
             }
         }
 
+        /// <summary>
+        /// De no existir crea un archivo JSON con los datos de los clientes cargados en la lista
+        /// </summary>
         private void EscribirClientes()
         {
             try
@@ -122,6 +150,11 @@ namespace PruebaTp3Form
             }
         }
 
+        /// <summary>
+        /// Muestra los pedidos realizados por el cliente seleccionado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnHistorial_Click(object sender, EventArgs e)
         {
             if (dgvClientes.SelectedRows.Count > 0)
@@ -149,22 +182,25 @@ namespace PruebaTp3Form
             }
         }
 
-
-
+        /// <summary>
+        /// Crea una nueva lista para mostrar con los datos que coinciden con la busqueda en el txtBox y la muestra en el datagrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtBuscarPorDireccion_TextChanged(object sender, EventArgs e)
         {
             if (this.txtBuscarPorDireccion.Text is not null && this.txtBuscarPorDireccion.Text != string.Empty)
             {
                 this.dgvClientes.DataSource = null;
-                List<Cliente> listita = new List<Cliente>();
+                List<Cliente> listaAuxiliar = new List<Cliente>();
                 foreach (Cliente item in this.listaClientes)
                 {
                     if (item.Direccion.ToLower().StartsWith(this.txtBuscarPorDireccion.Text.ToLower()))
                     {
-                        listita.Add(item);
+                        listaAuxiliar.Add(item);
                     }
                 }
-                this.dgvClientes.DataSource = listita;
+                this.dgvClientes.DataSource = listaAuxiliar;
             }
             else
             {
@@ -172,20 +208,25 @@ namespace PruebaTp3Form
             }
         }
 
+        /// <summary>
+        /// Crea una nueva lista para mostrar con los datos que coinciden con la busqueda en el txtBox y la muestra en el datagrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtBuscarPorTelefono_TextChanged(object sender, EventArgs e)
         {
             if (this.txtBuscarPorTelefono.Text is not null && this.txtBuscarPorTelefono.Text != string.Empty)
             {
                 this.dgvClientes.DataSource = null;
-                List<Cliente> listita = new List<Cliente>();
+                List<Cliente> listaAuxiliar = new List<Cliente>();
                 foreach (Cliente item in this.listaClientes)
                 {
                     if (item.Telefono.ToLower().StartsWith(this.txtBuscarPorTelefono.Text.ToLower()))
                     {
-                        listita.Add(item);
+                        listaAuxiliar.Add(item);
                     }
                 }
-                this.dgvClientes.DataSource = listita;
+                this.dgvClientes.DataSource = listaAuxiliar;
             }
             else
             {
@@ -193,26 +234,26 @@ namespace PruebaTp3Form
             }
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-        }
-
+        /// <summary>
+        /// Crea una nueva lista para mostrar con los datos que coinciden con la busqueda en el txtBox y la muestra en el datagrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtBuscarPorNombre_TextChanged(object sender, EventArgs e)
         {
             if (this.txtBuscarPorNombre.Text is not null && this.txtBuscarPorNombre.Text != string.Empty)
             {
                 this.dgvClientes.DataSource = null;
-                List<Cliente> listita = new List<Cliente>();
+                List<Cliente> listaAuxiliar = new List<Cliente>();
                 foreach (Cliente item in this.listaClientes)
                 {
                     if (item.Nombre.ToLower().StartsWith(this.txtBuscarPorNombre.Text.ToLower()))
                     {
-                        listita.Add(item);
+                        listaAuxiliar.Add(item);
 
                     }
                 }
-                this.dgvClientes.DataSource = listita;
+                this.dgvClientes.DataSource = listaAuxiliar;
             }
             else
             {
@@ -220,6 +261,21 @@ namespace PruebaTp3Form
             }
         }
 
+        /// <summary>
+        /// Cierra el formulario y cambia el DialogResulto a Cancel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
+
+        /// <summary>
+        /// Cambia el estado "Activo" del cliente a false
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBorrarCliente_Click(object sender, EventArgs e)
         {
             if (dgvClientes.SelectedRows.Count > 0)

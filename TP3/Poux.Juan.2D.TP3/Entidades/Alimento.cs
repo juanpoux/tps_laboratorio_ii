@@ -6,11 +6,6 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public enum ETipoPago
-    {
-        Efectivo,
-        Tarjeta,
-    }
     public class Alimento : IProducto
     {
         //Atributos
@@ -93,25 +88,16 @@ namespace Entidades
             this.precioTarj = precioTarj;
         }
 
-        public string MostrarAlimentoConUnidades()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append($"{this.cantidad} - {this.descripcion} - {this.kilos}kg - {this.precio:C} - {this.precioTarj:C}");
-            return sb.ToString();
-        }
-
-        public string MostrarAlimento()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append($"{this.descripcion} - {this.kilos}kg");
-            return sb.ToString();
-        }
-
+        /// <summary>
+        /// Formatea los datos de un alimento para mostrar
+        /// </summary>
+        /// <param name="tipoPago"></param>
+        /// <returns>Datos del alimento formateados en tipo string</returns>
         public string MostrarAlimentoPorTipoPago(ETipoPago tipoPago)
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append($"{this.cantidad} - {this.descripcion} - {this.kilos}kg "); /*- {this.precioEf:C} - {this.precioTarj:C}*/
+            sb.Append($"{this.cantidad} - {this.descripcion} - {this.kilos}kg ");
             if (tipoPago == ETipoPago.Efectivo)
             {
                 sb.Append($"- {this.precio:C}");
@@ -123,6 +109,12 @@ namespace Entidades
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Compara si dos alimentos tienen los mismos datos
+        /// </summary>
+        /// <param name="a">alimento 1</param>
+        /// <param name="b">alimento 2</param>
+        /// <returns>retorna true si son iguales, false de caso contrario</returns>
         public static bool operator ==(Alimento a, Alimento b)
         {
             bool retorno = false;
@@ -134,17 +126,33 @@ namespace Entidades
             return retorno;
         }
 
+        /// <summary>
+        /// Compara si dos alimentos tienen distintos datos
+        /// </summary>
+        /// <param name="a">alimento 1</param>
+        /// <param name="b">alimento 2</param>
+        /// <returns>retorna true si son distintos, false de caso contrario</returns>
         public static bool operator !=(Alimento a, Alimento b)
         {
             return !(a == b);
         }
 
+        /// <summary>
+        /// /// <summary>
+        /// Compara si dos alimentos son del mismo tipo y si son iguales
+        /// </summary>
+        /// <param name="obj">objeto a comparar con un cliente</param>
+        /// <returns>retorna true si son iguales, false de caso contrario</returns>
         public override bool Equals(object obj)
         {
             Alimento alimento = obj as Alimento;
             return alimento is not null && this == alimento;
         }
 
+        /// <summary>
+        /// Formatea los datos de un alimento para mostrar
+        /// </summary>
+        /// <returns>Datos del alimento formateados en tipo string</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

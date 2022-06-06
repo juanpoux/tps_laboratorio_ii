@@ -49,11 +49,7 @@ namespace PruebaTp3Form
             this.lblTotalTarjeta = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.lblCartelPrecio = new System.Windows.Forms.Label();
-            this.lblPrecio = new System.Windows.Forms.Label();
             this.lblSeleccioneProducto = new System.Windows.Forms.Label();
-            this.lblCartelPrecioTarj = new System.Windows.Forms.Label();
-            this.lblPrecioTarj = new System.Windows.Forms.Label();
             this.txtBuscarPorNombre = new System.Windows.Forms.TextBox();
             this.gbVentas = new System.Windows.Forms.GroupBox();
             this.dgvAlimentosStock = new System.Windows.Forms.DataGridView();
@@ -114,6 +110,7 @@ namespace PruebaTp3Form
             // 
             // cboMedioDePago
             // 
+            this.cboMedioDePago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMedioDePago.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cboMedioDePago.FormattingEnabled = true;
             this.cboMedioDePago.Location = new System.Drawing.Point(635, 596);
@@ -149,7 +146,7 @@ namespace PruebaTp3Form
             this.btnEliminarProducto.TabIndex = 8;
             this.btnEliminarProducto.Text = "Eliminar producto";
             this.btnEliminarProducto.UseVisualStyleBackColor = true;
-            this.btnEliminarProducto.Click += new System.EventHandler(this.button1_Click);
+            this.btnEliminarProducto.Click += new System.EventHandler(this.btnEliminarProducto_Click);
             // 
             // btnEnviarPedido
             // 
@@ -223,26 +220,6 @@ namespace PruebaTp3Form
             this.dateTimePicker1.Size = new System.Drawing.Size(285, 27);
             this.dateTimePicker1.TabIndex = 17;
             // 
-            // lblCartelPrecio
-            // 
-            this.lblCartelPrecio.AutoSize = true;
-            this.lblCartelPrecio.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCartelPrecio.Location = new System.Drawing.Point(45, 571);
-            this.lblCartelPrecio.Name = "lblCartelPrecio";
-            this.lblCartelPrecio.Size = new System.Drawing.Size(114, 21);
-            this.lblCartelPrecio.TabIndex = 3;
-            this.lblCartelPrecio.Text = "Precio Efectivo:";
-            // 
-            // lblPrecio
-            // 
-            this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblPrecio.Location = new System.Drawing.Point(165, 566);
-            this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(70, 32);
-            this.lblPrecio.TabIndex = 4;
-            this.lblPrecio.Text = "$500";
-            // 
             // lblSeleccioneProducto
             // 
             this.lblSeleccioneProducto.AutoSize = true;
@@ -252,26 +229,6 @@ namespace PruebaTp3Form
             this.lblSeleccioneProducto.Size = new System.Drawing.Size(148, 20);
             this.lblSeleccioneProducto.TabIndex = 5;
             this.lblSeleccioneProducto.Text = "Seleccione producto:";
-            // 
-            // lblCartelPrecioTarj
-            // 
-            this.lblCartelPrecioTarj.AutoSize = true;
-            this.lblCartelPrecioTarj.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCartelPrecioTarj.Location = new System.Drawing.Point(292, 569);
-            this.lblCartelPrecioTarj.Name = "lblCartelPrecioTarj";
-            this.lblCartelPrecioTarj.Size = new System.Drawing.Size(105, 21);
-            this.lblCartelPrecioTarj.TabIndex = 8;
-            this.lblCartelPrecioTarj.Text = "Precio Tarjeta:";
-            // 
-            // lblPrecioTarj
-            // 
-            this.lblPrecioTarj.AutoSize = true;
-            this.lblPrecioTarj.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblPrecioTarj.Location = new System.Drawing.Point(412, 562);
-            this.lblPrecioTarj.Name = "lblPrecioTarj";
-            this.lblPrecioTarj.Size = new System.Drawing.Size(70, 32);
-            this.lblPrecioTarj.TabIndex = 9;
-            this.lblPrecioTarj.Text = "$500";
             // 
             // txtBuscarPorNombre
             // 
@@ -286,11 +243,7 @@ namespace PruebaTp3Form
             // 
             this.gbVentas.Controls.Add(this.dgvAlimentosStock);
             this.gbVentas.Controls.Add(this.txtBuscarPorNombre);
-            this.gbVentas.Controls.Add(this.lblPrecioTarj);
-            this.gbVentas.Controls.Add(this.lblCartelPrecioTarj);
             this.gbVentas.Controls.Add(this.lblSeleccioneProducto);
-            this.gbVentas.Controls.Add(this.lblPrecio);
-            this.gbVentas.Controls.Add(this.lblCartelPrecio);
             this.gbVentas.Location = new System.Drawing.Point(0, 2);
             this.gbVentas.Name = "gbVentas";
             this.gbVentas.Size = new System.Drawing.Size(587, 608);
@@ -325,11 +278,12 @@ namespace PruebaTp3Form
             this.dgvAlimentosStock.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAlimentosStock.RowTemplate.Height = 25;
             this.dgvAlimentosStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAlimentosStock.Size = new System.Drawing.Size(553, 508);
+            this.dgvAlimentosStock.Size = new System.Drawing.Size(553, 541);
             this.dgvAlimentosStock.TabIndex = 19;
             // 
             // rtbObervaciones
             // 
+            this.rtbObervaciones.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.rtbObervaciones.Location = new System.Drawing.Point(635, 486);
             this.rtbObervaciones.Name = "rtbObervaciones";
             this.rtbObervaciones.Size = new System.Drawing.Size(670, 62);
@@ -437,11 +391,7 @@ namespace PruebaTp3Form
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox cbPagoElPedido;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label lblCartelPrecio;
-        private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.Label lblSeleccioneProducto;
-        private System.Windows.Forms.Label lblCartelPrecioTarj;
-        private System.Windows.Forms.Label lblPrecioTarj;
         private System.Windows.Forms.TextBox txtBuscarPorNombre;
         private System.Windows.Forms.GroupBox gbVentas;
         private System.Windows.Forms.RichTextBox rtbObervaciones;

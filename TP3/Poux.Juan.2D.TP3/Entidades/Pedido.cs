@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    public enum ETipoPago
+    {
+        Efectivo,
+        Tarjeta,
+    }
     public class Pedido
     {
         //Atributos
@@ -135,15 +140,19 @@ namespace Entidades
 
 
         //Metodos
+
+        /// <summary>
+        /// Formatea los datos de un pedido para mostrar
+        /// </summary>
+        /// <returns>Datos del pedido formateados en tipo string</returns>
         public string MostrarPedido()
         {
             StringBuilder sb = new StringBuilder();
-            //sb.AppendLine($"{this.cliente.MostrarCliente()}");
             sb.AppendLine($"*Pedido para el dia {this.diaDeEntrega.ToShortDateString()}");
 
             foreach (Alimento item in this.alimentosPedidos)
             {
-                sb.AppendLine("  -" + item.MostrarAlimentoPorTipoPago(tipoPago));
+                sb.AppendLine("  -" + item.MostrarAlimentoPorTipoPago(this.tipoPago));
             }
             sb.AppendLine($"*Precio final: ${this.precioFinal}");
             if (this.pago)
@@ -170,17 +179,14 @@ namespace Entidades
             return sb.ToString();
         }
 
-        public double CalcularPrecioTotal()
-        {
-            double precioTotal = 0;
-            foreach (Alimento item in this.alimentosPedidos)
-            {
-                precioTotal += item.Precio;
-            }
-            return precioTotal;
-        }
-
         //Sobrecargas
+
+        /// <summary>
+        /// Evalua si el cliente dentro del pedido es el mismo que recibe por parametro
+        /// </summary>
+        /// <param name="pedido">Pedido donde se busca al cliente</param>
+        /// <param name="cliente">Cliente a comparar con el del pedido</param>
+        /// <returns>Retorna true si el cliente es el mismo del pedido, false de lo contrario</returns>
         public static bool operator ==(Pedido pedido, Cliente cliente)
         {
             bool retorno = false;
@@ -191,45 +197,25 @@ namespace Entidades
             return retorno;
         }
 
+
+        /// <summary>
+        /// Evalua si el cliente dentro del pedido es distinto del que recibe por parametro
+        /// </summary>
+        /// <param name="pedido">Pedido donde se busca al cliente</param>
+        /// <param name="cliente">Cliente a comparar con el del pedido</param>
+        /// <returns>Retorna true si son distintos, false de caso contrario</returns>
         public static bool operator !=(Pedido pedido, Cliente cliente)
         {
             return !(pedido == cliente);
         }
 
-        //public static Pedido operator +(Pedido pedido, Alimento alimento)
-        //{
-        //    if (pedido is not null && alimento is not null && pedido != alimento
-        //        && alimento.Stock > 0)
-        //    {
-        //        //pedido.alimentosPedidos.Add(alimento);
-        //        alimento.Stock--;
-        //    }
-        //    return pedido;
-        //}
-
-        //public static Pedido operator -(Pedido pedido, Alimento alimento)
-        //{
-        //    if (pedido == alimento)
-        //    {
-        //        //pedido.alimentosPedidos.Remove(alimento);
-        //    }
-        //    return pedido;
-        //}
-
+        /// <summary>
+        /// Llama al metodo MostrarPedido()
+        /// </summary>
+        /// <returns>Datos del pedido formateados en tipo string</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append($"{cliente.Nombre} - {cliente.Direccion} - ");
-            if (this.pago)
-            {
-                sb.Append("PAGO - ");
-            }
-            else
-            {
-                //sb.Append(" - NO PAGO - ");
-            }
-            sb.Append($"{this.diaDeEntrega.ToShortDateString()}");
-            return sb.ToString();
+            return this.MostrarPedido();
         }
     }
 }

@@ -19,6 +19,11 @@ namespace PruebaTp3Form
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Crea un nuevo cliente con los datos validados de los componentes y setea DialogResult en OK
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected virtual void btnAceptar_Click(object sender, EventArgs e)
         {
             if (this.ValidarCamposCompletos())
@@ -32,12 +37,21 @@ namespace PruebaTp3Form
             }
         }
 
-
+        /// <summary>
+        /// Cierra el formulario y setea DialogResult en Cancel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
 
+        /// <summary>
+        /// Valida que los ingresos sean solo numericos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtTelefono_TextChanged(object sender, EventArgs e)
         {
             foreach (char item in this.txtTelefono.Text)
@@ -52,6 +66,10 @@ namespace PruebaTp3Form
             }
         }
 
+        /// <summary>
+        /// Valida que esten los campos completos
+        /// </summary>
+        /// <returns></returns>
         protected bool ValidarCamposCompletos()
         {
             bool retorno = true;

@@ -18,6 +18,11 @@ namespace Entidades
             path += @"\Archivos-TP3-Juan-Poux-1A\";
         }
 
+        /// <summary>
+        /// Crea un archivo JSON en la ruta definida y convierte a formato JSON el objeto o lista que recibe por parametro
+        /// </summary>
+        /// <param name="datos"></param>
+        /// <param name="nombre"></param>
         public void Escribir(T datos, string nombre)
         {
             string nombreArchivo = path + nombre + ".json";
@@ -38,6 +43,11 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Si existe, lee el archivo JSON y lo devuelve en formato objeto o lista
+        /// </summary>
+        /// <param name="nombre">nombre del archivo a leer</param>
+        /// <returns>objeto o lista cargada con los datos</returns>
         public T Leer(string nombre)
         {
             string archivo = string.Empty;

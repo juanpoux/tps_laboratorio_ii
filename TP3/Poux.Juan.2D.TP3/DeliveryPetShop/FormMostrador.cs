@@ -23,15 +23,26 @@ namespace DeliveryPetShop
             this.mensaje = mensaje;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Carga el richTextBox con la informacion que recibe
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormMostrador_Load(object sender, EventArgs e)
+        {
+            this.richTextBox1.Text = this.mensaje;
+        }
+
+        /// <summary>
+        /// Cambia el estado de DialogResult a OK
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAceptar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
-        private void FormMostrador_Load(object sender, EventArgs e)
-        {
-            this.richTextBox1.Text = this.mensaje;
-        }
     }
 }

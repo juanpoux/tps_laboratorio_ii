@@ -20,6 +20,11 @@ namespace PruebaTp3Form
             this.clienteAux = cliente;
         }
 
+        /// <summary>
+        /// Asigna los datos nuevos a los campos del cliente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected override void btnAceptar_Click(object sender, EventArgs e)
         {
             if (base.ValidarCamposCompletos())
@@ -35,6 +40,11 @@ namespace PruebaTp3Form
             }
         }
 
+        /// <summary>
+        /// Carga los componentes con los datos del cliente seleccionado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormModificarCliente_Load(object sender, EventArgs e)
         {
             this.txtDireccion.Text = this.clienteAux.Direccion;
@@ -42,6 +52,11 @@ namespace PruebaTp3Form
             this.txtTelefono.Text = this.clienteAux.Telefono;
         }
 
+        /// <summary>
+        /// Cierra el formulario y setea DialogResult en Cancel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

@@ -17,6 +17,11 @@ namespace Entidades
             path += @"\Archivos-TP3-Juan-Poux-1A\";
         }
 
+        /// <summary>
+        /// Crea un archivo de texto en la ruta definida
+        /// </summary>
+        /// <param name="nombre">nombre del archivo a crear</param>
+        /// <param name="datos">texto que va a contener el archivo</param>
         public static void Escribir(string nombre, string datos)
         {
             string ubicacionYNombreArchivo = path + nombre + ".txt";
@@ -39,6 +44,11 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Si existe, lee el archivo y lo devuelve como string
+        /// </summary>
+        /// <param name="nombre">Nombre del archivo a leer</param>
+        /// <returns>objeto o lista cargada con los datos</returns>
         public static string Leer(string nombre)
         {
             string ubicacionYNombreArchivo = string.Empty;

@@ -18,6 +18,11 @@ namespace Entidades
             path += @"\Archivos-TP3-Juan-Poux-1A\";
         }
 
+        /// <summary>
+        /// Crea un archivo XML en la ruta definida y convierte a formato XML el objeto o lista que recibe por parametro
+        /// </summary>
+        /// <param name="datos">objeto o lista a convertir</param>
+        /// <param name="nombre">Nombre del archivo a crear</param>
         public void Escribir(T datos, string nombre)
         {
             string ubicacionYNombreArchivo = path + nombre + ".xml";
@@ -41,6 +46,11 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Si existe, lee el archivo XML y lo devuelve en formato objeto o lista
+        /// </summary>
+        /// <param name="nombre">Nombre del archivo a leer</param>
+        /// <returns>objeto o lista cargada con los datos</returns>
         public T Leer(string nombre)
         {
             string ubicacionYNombreArchivo = string.Empty;
@@ -76,6 +86,11 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Lee un archivo hardcodeado en la solucion con el nombre pasado por parametro
+        /// </summary>
+        /// <param name="nombre">Nombre del archivo a leer</param>
+        /// <returns>objeto o lista cargada con los datos</returns>
         public T LeerDesdeSolucion(string nombre)
         {
             T datos = default;

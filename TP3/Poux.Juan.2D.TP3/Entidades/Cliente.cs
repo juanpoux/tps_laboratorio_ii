@@ -68,6 +68,10 @@ namespace Entidades
             this.activo = true;
         }
 
+        /// <summary>
+        /// Formatea los datos de un cliente para mostrar
+        /// </summary>
+        /// <returns>Datos del cliente formateados en tipo string</returns>
         public string MostrarCliente()
         {
             StringBuilder sb = new StringBuilder();
@@ -77,18 +81,12 @@ namespace Entidades
             return sb.ToString();
         }
 
-        public string MostrarHistorial()
-        {
-            StringBuilder sb = new StringBuilder();
-            //sb.AppendLine(this.MostrarCliente()); //Si hizo un pedido se duplica el MostrarCliente
-            //foreach (Pedido item in this.alimentosPedidos)
-            //{
-            //    sb.AppendLine(item.MostrarPedido());
-            //}
-
-            return sb.ToString();
-        }
-
+        /// <summary>
+        /// Compara si dos clientes tienen los mismos datos
+        /// </summary>
+        /// <param name="a">cliente 1</param>
+        /// <param name="b">cliente 2</param>
+        /// <returns>retorna true si son iguales, false de caso contrario</returns>
         public static bool operator ==(Cliente a, Cliente b)
         {
             bool retorno = false;
@@ -100,17 +98,32 @@ namespace Entidades
             return retorno;
         }
 
+        /// <summary>
+        /// Compara si dos clientes tienen distintos datos
+        /// </summary>
+        /// <param name="a">cliente 1</param>
+        /// <param name="b">cliente 2</param>
+        /// <returns>retorna true si son distintos, false de caso contrario</returns>
         public static bool operator !=(Cliente a, Cliente b)
         {
             return !(a == b);
         }
 
+        /// <summary>
+        /// Compara si dos clientes son del mismo tipo y si son iguales
+        /// </summary>
+        /// <param name="obj">objeto a comparar con un cliente</param>
+        /// <returns>retorna true si son iguales, false de caso contrario</returns>
         public override bool Equals(object obj)
         {
             Cliente cliente = obj as Cliente;
             return cliente is not null && this == cliente;
         }
 
+        /// <summary>
+        /// Formatea los datos de un cliente para mostrar
+        /// </summary>
+        /// <returns>Datos del cliente formateados en tipo string</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
