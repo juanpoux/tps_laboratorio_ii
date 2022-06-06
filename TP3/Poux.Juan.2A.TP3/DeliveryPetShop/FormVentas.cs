@@ -89,8 +89,8 @@ namespace PruebaTp3Form
                     {
                         bandera = true;
                         item.Cantidad += alimentoPerro.Cantidad;
-                        item.Precio += alimentoPerro.Precio;
-                        item.PrecioTarj += alimentoPerro.PrecioTarj;
+                        item.Precio += (alimentoPerro.Precio * alimentoPerro.Cantidad);
+                        item.PrecioTarj += (alimentoPerro.PrecioTarj * alimentoPerro.Cantidad);
                         break;
                     }
                 }

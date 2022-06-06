@@ -130,7 +130,7 @@ namespace PruebaTp3Form
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al intentar leer la lista de pedidos\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No se ha encontrado una lista de pedidos en la ubicacion\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
