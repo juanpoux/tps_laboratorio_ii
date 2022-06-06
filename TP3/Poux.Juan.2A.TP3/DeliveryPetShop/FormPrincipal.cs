@@ -35,6 +35,7 @@ namespace PruebaTp3Form
 
         /// <summary>
         /// Abre el formulario de clientes y si el DialogResult que devuelve es OK agrega el pedido a la lista, copia el pedido al portapapeles, lo muestra en un formulario, crea un archivo .txt con el pedido y sobrescribe el archivo con la lista de pedidos
+        /// Aca uso archivos
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -48,9 +49,11 @@ namespace PruebaTp3Form
                 string mensaje = formClientes.pedido.Cliente.MostrarCliente();
                 mensaje += formClientes.pedido.MostrarPedido();
                 Clipboard.SetText(mensaje);
+
                 string nombreArchivo = $"{formClientes.pedido.NombreCliente.Replace(' ', '-')}-{formClientes.pedido.DiaDeEntrega.ToShortDateString().Replace('/', '-')}";
                 this.EscribirArchivoTexto(nombreArchivo, mensaje);
                 this.EscribirPedidos();
+
                 FormMostrador formMostrador = new FormMostrador(mensaje);
                 formMostrador.Show();
                 mensaje += "\n\n***MENSAJE COPIADO AL PORTAPAPELES***";

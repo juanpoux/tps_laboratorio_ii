@@ -60,7 +60,7 @@ namespace PruebaTp3Form
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(776, 433);
+            this.btnSalir.Location = new System.Drawing.Point(776, 524);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(188, 66);
             this.btnSalir.TabIndex = 6;
@@ -74,9 +74,9 @@ namespace PruebaTp3Form
             this.label1.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(265, 40);
+            this.label1.Size = new System.Drawing.Size(322, 40);
             this.label1.TabIndex = 8;
-            this.label1.Text = "PEDIDOS TOTALES";
+            this.label1.Text = "PEDIDOS REALIZADOS";
             // 
             // dgvPedidosTotales
             // 
@@ -98,19 +98,22 @@ namespace PruebaTp3Form
             this.dgvPedidosTotales.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPedidosTotales.RowTemplate.Height = 25;
             this.dgvPedidosTotales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPedidosTotales.Size = new System.Drawing.Size(758, 447);
+            this.dgvPedidosTotales.Size = new System.Drawing.Size(758, 538);
             this.dgvPedidosTotales.TabIndex = 9;
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 511);
+            this.ClientSize = new System.Drawing.Size(977, 602);
             this.Controls.Add(this.dgvPedidosTotales);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnRealizarPedidoNuevo);
             this.Controls.Add(this.btnVerPedido);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormPrincipal";
             this.Text = "Menu Principal";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
