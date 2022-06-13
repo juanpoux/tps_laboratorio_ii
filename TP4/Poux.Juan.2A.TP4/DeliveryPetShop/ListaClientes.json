@@ -1,0 +1,20 @@
+[
+  {
+    "Nombre": "Juan Poux",
+    "Telefono": "1166035063",
+    "Direccion": "Saavedra 352 2°C",
+    "Activo": true
+  },
+  {
+    "Nombre": "Camila Jauregui",
+    "Telefono": "1122334455",
+    "Direccion": "Diaz Velez 162",
+    "Activo": true
+  },
+  {
+    "Nombre": "Marcos Andrada",
+    "Telefono": "42483002",
+    "Direccion": "Gorriti 231",
+    "Activo": true
+  }
+]

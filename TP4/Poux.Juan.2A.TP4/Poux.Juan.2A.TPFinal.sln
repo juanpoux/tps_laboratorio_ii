@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entidades", "Entidades\Entidades.csproj", "{5E52C368-40BA-4B50-87AF-C1FFA174B5C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryPetShop", "DeliveryPetShop\DeliveryPetShop.csproj", "{B6993986-6793-40E9-AD4E-3435C71BE4ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{1CEAA8BB-3FD9-4C27-A360-CE4ACB1884DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E52C368-40BA-4B50-87AF-C1FFA174B5C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E52C368-40BA-4B50-87AF-C1FFA174B5C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E52C368-40BA-4B50-87AF-C1FFA174B5C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E52C368-40BA-4B50-87AF-C1FFA174B5C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6993986-6793-40E9-AD4E-3435C71BE4ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6993986-6793-40E9-AD4E-3435C71BE4ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6993986-6793-40E9-AD4E-3435C71BE4ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6993986-6793-40E9-AD4E-3435C71BE4ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CEAA8BB-3FD9-4C27-A360-CE4ACB1884DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CEAA8BB-3FD9-4C27-A360-CE4ACB1884DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CEAA8BB-3FD9-4C27-A360-CE4ACB1884DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CEAA8BB-3FD9-4C27-A360-CE4ACB1884DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5BBDE87D-2192-4AC1-868C-8E577634725D}
+	EndGlobalSection
+EndGlobal
