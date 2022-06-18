@@ -12,12 +12,22 @@ namespace PruebaTp3Form
     {
         public List<Cliente> listaClientes;
         public List<Pedido> listaPedidosTotales;
+        //TODO revisar
+        DelegadoPruebas delegadoPruebas;
+        public delegate void PruebaEventos();
+        public event PruebaEventos pruebaEventos;
+        ///////////
 
         public FormPrincipal()
         {
             InitializeComponent();
             this.listaPedidosTotales = new List<Pedido>();
             this.listaClientes = new List<Cliente>();
+
+            //TODO revisar
+            delegadoPruebas = LeerPedidos;
+            delegadoPruebas += LeerClientes;
+            ///////////
         }
 
         /// <summary>
@@ -27,8 +37,12 @@ namespace PruebaTp3Form
         /// <param name="e"></param>
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            this.LeerClientes();
-            this.LeerPedidos();
+            //TODO revisar
+            delegadoPruebas.Invoke();
+            ///////////
+
+            //this.LeerClientes();
+            //this.LeerPedidos();
             this.dgvPedidosTotales.AutoGenerateColumns = true;
             this.Cargar();
         }
@@ -108,8 +122,8 @@ namespace PruebaTp3Form
         {
             try
             {
-                if(ClienteDao.ProbarConexion())
-                this.listaClientes = ClienteDao.Leer();
+                if (ClienteDao.ProbarConexion())
+                    this.listaClientes = ClienteDao.Leer();
             }
             catch (BaseDeDatosException ex)
             {

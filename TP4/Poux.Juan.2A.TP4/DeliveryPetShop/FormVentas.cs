@@ -47,6 +47,12 @@ namespace PruebaTp3Form
             this.cboMedioDePago.SelectedIndex = 0;
             this.numericCantidad.Value = 1;
 
+            this.LeerProductos();
+            this.Cargar();
+        }
+
+        private void LeerProductos()
+        {
             try
             {
                 SerializacionConXml<List<Alimento>> serializacionConXml = new SerializacionConXml<List<Alimento>>();
@@ -56,7 +62,6 @@ namespace PruebaTp3Form
             {
                 MessageBox.Show("Error serializando alimentos\n" + ex.Message);
             }
-            this.Cargar();
         }
 
         /// <summary>

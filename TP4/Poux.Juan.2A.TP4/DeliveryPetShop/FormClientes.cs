@@ -142,18 +142,18 @@ namespace PruebaTp3Form
         /// <summary>
         /// De no existir crea un archivo JSON con los datos de los clientes cargados en la lista
         /// </summary>
-        private void EscribirClientes()
-        {
-            try
-            {
-                SerializacionConJson<List<Cliente>> serializacionConJson = new SerializacionConJson<List<Cliente>>();
-                serializacionConJson.Escribir(this.listaClientes, "ListaClientes");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al intentar escribir lista de clientes\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+        //private void EscribirClientes()
+        //{
+        //    try
+        //    {
+        //        SerializacionConJson<List<Cliente>> serializacionConJson = new SerializacionConJson<List<Cliente>>();
+        //        serializacionConJson.Escribir(this.listaClientes, "ListaClientes");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error al intentar escribir lista de clientes\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
+        //}
 
         /// <summary>
         /// Muestra los pedidos realizados por el cliente seleccionado
