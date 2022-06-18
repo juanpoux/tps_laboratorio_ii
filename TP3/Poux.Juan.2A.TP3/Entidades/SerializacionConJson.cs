@@ -79,7 +79,6 @@ namespace Entidades
                         datos = JsonSerializer.Deserialize<T>(File.ReadAllText(ubicacionYNombreArchivo));
                     }
                 }
-
                 return datos;
             }
             catch (Exception e)

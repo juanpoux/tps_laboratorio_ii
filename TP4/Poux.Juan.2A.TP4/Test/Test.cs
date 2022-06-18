@@ -72,5 +72,58 @@ namespace Test
 
             Assert.IsFalse(pedido == cliente1);
         }
+
+        [TestMethod]
+        public void TestConexionDB_Cliente_OK()
+        {
+            Assert.IsTrue(ClienteDao.ProbarConexion());
+        }
+
+        [TestMethod]
+        public void TestAgregarDB_Cliente_OK()
+        {
+            Cliente cliente = new Cliente("11662255", "Carlos", "ASDASD");
+            cliente.Activo = false;
+
+            ClienteDao.Guardar(cliente);
+        }
+
+        [TestMethod]
+        public void TestBorrarDB_Cliente_OK()
+        {
+            Cliente cliente = new Cliente("11662255", "Carlos", "ASDASD");
+            cliente.Activo = false;
+            cliente.Id = 7;
+
+            ClienteDao.Eliminar(cliente.Id);
+        }
+
+        [TestMethod]
+        public void TestModificarDB_Cliente_OK()
+        {
+            Cliente cliente = new Cliente("1166035063", "Juan Poux Morás", "Saavedra 352");
+            cliente.Activo = false;
+            cliente.Id = 1;
+
+            ClienteDao.Modificar(cliente);
+        }
+
+        [TestMethod]
+        public void TestLeerListaDB_Cliente_OK()
+        {
+            List<Cliente> lista = new List<Cliente>();
+
+            lista = ClienteDao.Leer();
+        }
+
+        [TestMethod]
+        public void TestLeerUnoDB_Cliente_OK()
+        {
+            Cliente cliente = null;
+
+            cliente = ClienteDao.LeerPorId(1);
+
+            Assert.IsTrue(true);
+        }
     }
 }

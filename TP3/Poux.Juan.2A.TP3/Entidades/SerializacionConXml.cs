@@ -15,7 +15,7 @@ namespace Entidades
         static SerializacionConXml()
         {
             path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            path += @"\Archivos-TP3-Juan-Poux-1A\";
+            path += @"\Archivos-TP3-Juan-Poux-2A\";
         }
 
         /// <summary>

@@ -124,8 +124,8 @@ namespace PruebaTp3Form
                     this.acumuladorTarjeta += item.PrecioTarj;
                     this.acumuladorEfectivo += item.Precio;
                 }
-                this.lblTotalTarjeta.Text = this.acumuladorTarjeta.ToString("C");
-                this.lblTotalEfectivo.Text = this.acumuladorEfectivo.ToString("C");
+                this.lblTotalTarjeta.Text = "$" + this.acumuladorTarjeta.ToString();
+                this.lblTotalEfectivo.Text = "$" + this.acumuladorEfectivo.ToString();
             }
         }
 

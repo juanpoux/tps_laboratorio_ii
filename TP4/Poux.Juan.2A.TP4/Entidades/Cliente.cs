@@ -8,10 +8,23 @@ namespace Entidades
 {
     public class Cliente
     {
+        private int id;
         private string nombre;
         private string telefono;
         private string direccion;
         private bool activo;
+
+        public int Id
+        {
+            get
+            {
+                return this.id;
+            }
+            set
+            {
+                this.id = value;
+            }
+        }
 
         public string Nombre
         {

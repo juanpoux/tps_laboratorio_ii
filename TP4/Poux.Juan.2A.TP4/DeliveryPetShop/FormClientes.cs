@@ -36,7 +36,7 @@ namespace PruebaTp3Form
         private void FormClientes_Load(object sender, EventArgs e)
         {
             this.Cargar();
-            this.EscribirClientes();
+            //this.EscribirClientes();
         }
 
         /// <summary>
@@ -53,7 +53,6 @@ namespace PruebaTp3Form
                 switch (formVentas.DialogResult)
                 {
                     case DialogResult.OK:
-                        //aca recupero el pedido de ventas
                         this.DialogResult = DialogResult.OK;
                         this.pedido = formVentas.pedido;
                         break;
@@ -80,8 +79,8 @@ namespace PruebaTp3Form
                 formModificarCliente.ShowDialog();
                 if (formModificarCliente.DialogResult == DialogResult.OK)
                 {
-                    this.dgvClientes.CurrentRow.SetValues(formModificarCliente.clienteAux.Nombre, formModificarCliente.clienteAux.Telefono, formModificarCliente.clienteAux.Direccion);
-                    this.EscribirClientes();
+                    ClienteDao.Modificar(formModificarCliente.clienteAux);
+                    //this.EscribirClientes();
                 }
                 this.Cargar();
             }
@@ -106,6 +105,10 @@ namespace PruebaTp3Form
             }
             this.dgvClientes.DataSource = null;
             this.dgvClientes.DataSource = listaAuxiliar;
+            if (listaAuxiliar.Count > 0)
+            {
+                this.dgvClientes.ClearSelection();
+            }
             this.OrdenarDGV();
         }
 
@@ -114,7 +117,8 @@ namespace PruebaTp3Form
         /// </summary>
         private void OrdenarDGV()
         {
-            this.dgvClientes.Columns[3].Visible = false;
+            this.dgvClientes.Columns[0].Visible = false;
+            this.dgvClientes.Columns[4].Visible = false;
         }
 
         /// <summary>
@@ -129,8 +133,9 @@ namespace PruebaTp3Form
             if (formNuevoCliente.DialogResult == DialogResult.OK)
             {
                 this.listaClientes.Add(formNuevoCliente.cliente);
+                ClienteDao.Guardar(formNuevoCliente.cliente);
                 this.Cargar();
-                this.EscribirClientes();
+                //this.EscribirClientes();
             }
         }
 
@@ -195,13 +200,14 @@ namespace PruebaTp3Form
                 List<Cliente> listaAuxiliar = new List<Cliente>();
                 foreach (Cliente item in this.listaClientes)
                 {
-                    if (item.Direccion.ToLower().StartsWith(this.txtBuscarPorDireccion.Text.ToLower()) 
+                    if (item.Direccion.ToLower().StartsWith(this.txtBuscarPorDireccion.Text.ToLower())
                         && item.Activo)
                     {
                         listaAuxiliar.Add(item);
                     }
                 }
                 this.dgvClientes.DataSource = listaAuxiliar;
+                this.OrdenarDGV();
             }
             else
             {
@@ -229,6 +235,7 @@ namespace PruebaTp3Form
                     }
                 }
                 this.dgvClientes.DataSource = listaAuxiliar;
+                this.OrdenarDGV();
             }
             else
             {
@@ -257,6 +264,7 @@ namespace PruebaTp3Form
                     }
                 }
                 this.dgvClientes.DataSource = listaAuxiliar;
+                this.OrdenarDGV();
             }
             else
             {
@@ -288,7 +296,8 @@ namespace PruebaTp3Form
                 {
                     this.cliente = ((Cliente)this.dgvClientes.CurrentRow.DataBoundItem);
                     cliente.Activo = false;
-                    this.EscribirClientes();
+                    ClienteDao.Modificar(cliente);
+                    //this.EscribirClientes();
                 }
                 this.Cargar();
             }

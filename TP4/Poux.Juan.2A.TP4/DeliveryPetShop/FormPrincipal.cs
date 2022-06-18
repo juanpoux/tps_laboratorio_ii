@@ -108,8 +108,12 @@ namespace PruebaTp3Form
         {
             try
             {
-                SerializacionConJson<List<Cliente>> serializacionConJson = new SerializacionConJson<List<Cliente>>();
-                this.listaClientes = serializacionConJson.Leer("ListaClientes");
+                if(ClienteDao.ProbarConexion())
+                this.listaClientes = ClienteDao.Leer();
+            }
+            catch (BaseDeDatosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
