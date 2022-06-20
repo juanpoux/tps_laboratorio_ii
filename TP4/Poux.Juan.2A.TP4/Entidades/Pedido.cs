@@ -38,6 +38,15 @@ namespace Entidades
         }
 
         //Propiedades
+        [JsonIgnore]
+        public string NombreCliente
+        {
+            get
+            {
+                return this.Cliente.Nombre;
+            }
+        }
+
         public Cliente Cliente
         {
             get
@@ -47,15 +56,6 @@ namespace Entidades
             set
             {
                 this.cliente = value;
-            }
-        }
-
-        [JsonIgnore]
-        public string NombreCliente
-        {
-            get
-            {
-                return this.Cliente.Nombre;
             }
         }
 
@@ -140,9 +140,20 @@ namespace Entidades
 
 
         //Metodos
+        /// <summary>
+        /// Referencia para ordenar por fecha
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static int OrdenarPorFecha(Pedido a, Pedido b)
+        {
+            return a.diaDeEntrega.CompareTo(b.diaDeEntrega) * -1;
+        }
 
         /// <summary>
         /// Formatea los datos de un pedido para mostrar
+        /// Aca uso expresion lambda
         /// </summary>
         /// <returns>Datos del pedido formateados en tipo string</returns>
         public string MostrarPedido()
@@ -150,10 +161,8 @@ namespace Entidades
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"*Pedido para el dia {this.diaDeEntrega.ToShortDateString()}");
 
-            foreach (Alimento item in this.alimentosPedidos)
-            {
-                sb.AppendLine("  -" + item.MostrarAlimentoPorTipoPago(this.tipoPago));
-            }
+            this.alimentosPedidos.ForEach((item) => sb.AppendLine(item.MostrarAlimentoPorTipoPago(this.tipoPago)));
+
             sb.AppendLine($"*Precio final: ${this.precioFinal}");
             if (this.pago)
             {

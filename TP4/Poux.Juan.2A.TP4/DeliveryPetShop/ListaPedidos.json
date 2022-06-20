@@ -1,2 +1,92 @@
 [
+  {
+    "Cliente": {
+      "Id": 7,
+      "Nombre": "Nicolas Campana",
+      "Telefono": "45474849",
+      "Direccion": "Hipolito Yrigoyen 8932",
+      "Activo": true
+    },
+    "AlimentosPedidos": [
+      {
+        "Descripcion": "Balanced Adulto Razas Grandes",
+        "Kilos": 20,
+        "Cantidad": 1,
+        "Precio": 7170,
+        "PrecioTarj": 7670
+      },
+      {
+        "Descripcion": "Performance Junior Dog",
+        "Kilos": 15,
+        "Cantidad": 1,
+        "Precio": 7760,
+        "PrecioTarj": 8310
+      }
+    ],
+    "DiaDeEntrega": "2022-06-30T22:34:35",
+    "PrecioFinal": 14930,
+    "Pago": true,
+    "TipoPago": 0,
+    "Observaciones": "Entregar despues de las 13hs"
+  },
+  {
+    "Cliente": {
+      "Id": 3,
+      "Nombre": "Marcos Andrada",
+      "Telefono": "1234567891",
+      "Direccion": "Gorriti 113",
+      "Activo": true
+    },
+    "AlimentosPedidos": [
+      {
+        "Descripcion": "Royal Canin Medium Puppy",
+        "Kilos": 15,
+        "Cantidad": 1,
+        "Precio": 10640,
+        "PrecioTarj": 11380
+      },
+      {
+        "Descripcion": "Pro Plan Gato Adulto",
+        "Kilos": 15,
+        "Cantidad": 1,
+        "Precio": 12140,
+        "PrecioTarj": 14450
+      }
+    ],
+    "DiaDeEntrega": "2022-06-28T22:35:02",
+    "PrecioFinal": 22780,
+    "Pago": false,
+    "TipoPago": 0,
+    "Observaciones": "Paga al recibir"
+  },
+  {
+    "Cliente": {
+      "Id": 9,
+      "Nombre": "Juan Campi",
+      "Telefono": "1166449977",
+      "Direccion": "Alvear 2557",
+      "Activo": true
+    },
+    "AlimentosPedidos": [
+      {
+        "Descripcion": "Balanced Adulto Razas Grandes",
+        "Kilos": 20,
+        "Cantidad": 1,
+        "Precio": 7170,
+        "PrecioTarj": 7670
+      },
+      {
+        "Descripcion": "Royal Canin Mini Adult",
+        "Kilos": 7.5,
+        "Cantidad": 1,
+        "Precio": 6480,
+        "PrecioTarj": 6050
+      }
+    ],
+    "DiaDeEntrega": "2022-06-23T22:35:21",
+    "PrecioFinal": 13720,
+    "Pago": true,
+    "TipoPago": 1,
+    "Observaciones": ""
+  }
 ]

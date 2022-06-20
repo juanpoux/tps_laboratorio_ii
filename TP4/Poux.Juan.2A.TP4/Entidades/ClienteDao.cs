@@ -8,19 +8,26 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class ClienteDao
+    public static class ClienteDao
     {
         static string cadenaConexion;
         static SqlCommand comando;
         static SqlConnection conexion;
         static SqlDataReader lector;
 
+        /// <summary>
+        /// Constructor estatico con el nombre de mi servidor y base de datos
+        /// </summary>
         static ClienteDao()
         {
             ClienteDao.cadenaConexion = @"Server=.;Database=Poux.Juan.2A.TPFinal;Trusted_Connection=True;";
             ClienteDao.conexion = new SqlConnection(ClienteDao.cadenaConexion);
         }
 
+        /// <summary>
+        /// Valida si hay conexion con la base de datos
+        /// </summary>
+        /// <returns></returns>
         public static bool ProbarConexion()
         {
             bool rta = true;
@@ -44,6 +51,10 @@ namespace Entidades
             return rta;
         }
 
+        /// <summary>
+        /// Guarda un nuevo cliente en la base de datos
+        /// </summary>
+        /// <param name="cliente"></param>
         public static void Guardar(Cliente cliente)
         {
             try
@@ -76,6 +87,10 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Elimina un cliente de la base de datos
+        /// </summary>
+        /// <param name="id"></param>
         public static void Eliminar(int id)
         {
             try
@@ -107,6 +122,10 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Modifica un cliente de la base de datos
+        /// </summary>
+        /// <param name="cliente"></param>
         public static void Modificar(Cliente cliente)
         {
             try
@@ -145,6 +164,10 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Trae la lista completa de clientes de la base de datos
+        /// </summary>
+        /// <returns></returns>
         public static List<Cliente> Leer()
         {
             List<Cliente> lista = new List<Cliente>();
@@ -189,6 +212,11 @@ namespace Entidades
             return lista;
         }
 
+        /// <summary>
+        /// Trae un solo cliente de la base de datos por el ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static Cliente LeerPorId(int id)
         {
             Cliente cliente = null;

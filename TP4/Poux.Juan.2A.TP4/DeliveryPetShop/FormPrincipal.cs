@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DeliveryPetShop;
 using Entidades;
@@ -12,44 +14,39 @@ namespace PruebaTp3Form
     {
         public List<Cliente> listaClientes;
         public List<Pedido> listaPedidosTotales;
-        //TODO revisar
-        DelegadoPruebas delegadoPruebas;
-        public delegate void PruebaEventos();
-        public event PruebaEventos pruebaEventos;
-        ///////////
+        DelegadoLeerArchivos delegadoLeerArchivos;
+        public event EventoEscribirArchivos eventoEscribirArchivos;
 
+        /// <summary>
+        /// unico constructor del FormPrincipal donde se instancian las listas, el delegado y el evento
+        /// aca uso delegados y eventos
+        /// </summary>
         public FormPrincipal()
         {
             InitializeComponent();
             this.listaPedidosTotales = new List<Pedido>();
             this.listaClientes = new List<Cliente>();
 
-            //TODO revisar
-            delegadoPruebas = LeerPedidos;
-            delegadoPruebas += LeerClientes;
-            ///////////
+            delegadoLeerArchivos = LeerPedidos;
+            delegadoLeerArchivos += LeerClientes;
+            eventoEscribirArchivos += EscribirArchivoTexto;
         }
 
         /// <summary>
         /// Carga la lista de clientes y pedidos desde archivos y carga el datagrid de pedidos
+        /// aca invoco un delegado 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            //TODO revisar
-            delegadoPruebas.Invoke();
-            ///////////
-
-            //this.LeerClientes();
-            //this.LeerPedidos();
-            this.dgvPedidosTotales.AutoGenerateColumns = true;
+            delegadoLeerArchivos.Invoke();
             this.Cargar();
         }
 
         /// <summary>
         /// Abre el formulario de clientes y si el DialogResult que devuelve es OK agrega el pedido a la lista, copia el pedido al portapapeles, lo muestra en un formulario, crea un archivo .txt con el pedido y sobrescribe el archivo con la lista de pedidos
-        /// Aca uso archivos
+        /// Aca uso archivos, hilos y eventos
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -62,18 +59,27 @@ namespace PruebaTp3Form
                 this.listaPedidosTotales.Add(formClientes.pedido);
                 string mensaje = formClientes.pedido.Cliente.MostrarCliente();
                 mensaje += formClientes.pedido.MostrarPedido();
-                Clipboard.SetText(mensaje);
 
                 string nombreArchivo = $"{formClientes.pedido.NombreCliente.Replace(' ', '-')}-{formClientes.pedido.DiaDeEntrega.ToShortDateString().Replace('/', '-')}";
-                this.EscribirArchivoTexto(nombreArchivo, mensaje);
-                this.EscribirPedidos();
+                this.MostrarMensajeDePedidoYCopiarAlPortapapeles(mensaje);
 
-                mensaje += "\n\n***MENSAJE COPIADO AL PORTAPAPELES***";
-                FormMostrador formMostrador = new FormMostrador(mensaje);
-                formMostrador.Show();
+                Task t = Task.Run(() =>
+                {
+                    this.EscribirPedidos();
+                    eventoEscribirArchivos.Invoke(nombreArchivo, mensaje);
+                });
             }
             this.Cargar();
         }
+
+        private void MostrarMensajeDePedidoYCopiarAlPortapapeles(string mensaje)
+        {
+            Clipboard.SetText(mensaje);
+            mensaje += "\n\n***MENSAJE COPIADO AL PORTAPAPELES***";
+            FormMostrador formMostrador = new FormMostrador(mensaje);
+            formMostrador.Show();
+        }
+
 
         /// <summary>
         /// Muestra la informacion del pedido seleccionado en un formulario
@@ -88,10 +94,7 @@ namespace PruebaTp3Form
                 {
                     string mensaje = ((Pedido)this.dgvPedidosTotales.CurrentRow.DataBoundItem).Cliente.MostrarCliente();
                     mensaje += ((Pedido)this.dgvPedidosTotales.CurrentRow.DataBoundItem).MostrarPedido();
-                    Clipboard.SetText(mensaje);
-                    mensaje += "\n\n***MENSAJE COPIADO AL PORTAPAPELES***";
-                    FormMostrador formMostrador = new FormMostrador(mensaje);
-                    formMostrador.Show();
+                    this.MostrarMensajeDePedidoYCopiarAlPortapapeles(mensaje);
                 }
                 catch (Exception)
                 {
@@ -115,24 +118,30 @@ namespace PruebaTp3Form
         }
 
         /// <summary>
-        /// Carga la lista de clientes desde el archivo JSON
-        /// Aca aplico serializacion
+        /// Carga la lista de clientes desde la base de datos
+        /// Aca aplico serializacion e hilos
         /// </summary>
         private void LeerClientes()
         {
-            try
+            Task t = Task.Run(() =>
             {
-                if (ClienteDao.ProbarConexion())
-                    this.listaClientes = ClienteDao.Leer();
+                try
+                {
+                    if (ClienteDao.ProbarConexion())
+                    {
+                        this.listaClientes = ClienteDao.Leer();
+                    }
+                }
+                catch (BaseDeDatosException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al intentar leer lista de clientes\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            catch (BaseDeDatosException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al intentar leer lista de clientes\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            );
         }
 
         /// <summary>
@@ -188,33 +197,36 @@ namespace PruebaTp3Form
         }
 
         /// <summary>
-        /// Crea una lista auxiliar con la lista de pedidos para mostrarlos en datagrid
+        /// limpio el datagrid poniendolo en null y luego lo cargo con la lista de pedidos
         /// </summary>
         private void Cargar()
         {
             this.dgvPedidosTotales.AutoGenerateColumns = true;
-            List<Pedido> listaAuxiliar = new List<Pedido>();
-            foreach (Pedido item in this.listaPedidosTotales)
-            {
-                listaAuxiliar.Add(item);
-            }
             this.dgvPedidosTotales.DataSource = null;
-            this.dgvPedidosTotales.DataSource = listaAuxiliar;
-            if (listaAuxiliar.Count > 0)
-            {
-                this.dgvPedidosTotales.ClearSelection();
-            }
+            this.OrdenarListaPorFecha();
+            this.dgvPedidosTotales.DataSource = this.listaPedidosTotales;
             this.OrdenarDGV();
         }
 
         /// <summary>
-        /// Ordena los datos que se muestran en el datagrid
+        /// Ordena la lista por fecha, para que los pedidos mas antiguos vayan quedando abajo y los mas nuevos y futuros mas arriba
+        /// </summary>
+        private void OrdenarListaPorFecha()
+        {
+            if (this.listaPedidosTotales.Count > 0)
+            {
+                this.listaPedidosTotales.Sort(Pedido.OrdenarPorFecha);
+            }
+        }
+
+        /// <summary>
+        /// Ordena y formateo la forma en que los datos se muestran en el datagrid
         /// </summary>
         private void OrdenarDGV()
         {
-            this.dgvPedidosTotales.Columns[0].Visible = false;
+            this.dgvPedidosTotales.Columns[1].Visible = false;
             this.dgvPedidosTotales.Columns[7].Visible = false;
-            this.dgvPedidosTotales.Columns[1].Width = 150;
+            this.dgvPedidosTotales.Columns[0].Width = 150;
             this.dgvPedidosTotales.Columns[2].Width = 200;
         }
 

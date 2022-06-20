@@ -118,8 +118,8 @@ namespace PruebaTp3Form
         /// </summary>
         private void ActualizarTotales()
         {
-            this.lblTotalTarjeta.Text = 0.ToString("C");
-            this.lblTotalEfectivo.Text = 0.ToString("C");
+            this.lblTotalTarjeta.Text = "$" + 0;
+            this.lblTotalEfectivo.Text = "$" + 0;
             if (this.alimentosPedido.Count > -1)
             {
                 this.acumuladorTarjeta = 0;
@@ -129,8 +129,8 @@ namespace PruebaTp3Form
                     this.acumuladorTarjeta += item.PrecioTarj;
                     this.acumuladorEfectivo += item.Precio;
                 }
-                this.lblTotalTarjeta.Text = this.acumuladorTarjeta.ToString("C");
-                this.lblTotalEfectivo.Text = this.acumuladorEfectivo.ToString("C");
+                this.lblTotalTarjeta.Text = "$ " + this.acumuladorTarjeta.ToString();
+                this.lblTotalEfectivo.Text = "$ " + this.acumuladorEfectivo.ToString();
             }
         }
 
@@ -263,6 +263,38 @@ namespace PruebaTp3Form
             else
             {
                 this.Cargar();
+            }
+        }
+
+        /// <summary>
+        /// No deja seleccionar fechas anteriores al dia de la fecha
+        /// aca utilizo metodos de extension
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            if(dateTimePicker1.Value.EsAnteriorAHoy())
+            {
+                MessageBox.Show("No podes elegir una fecha anterior a hoy");
+                dateTimePicker1.Value = DateTime.Now;
+            }
+        }
+
+        /// <summary>
+        /// cambia el texto del check box para identificar si el pedido esta pago o no
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbPagoElPedido_CheckedChanged(object sender, EventArgs e)
+        {
+            if(this.cbPagoElPedido.CheckState == CheckState.Unchecked)
+            {
+                this.cbPagoElPedido.Text = "No pagó!";
+            }
+            else
+            {
+                this.cbPagoElPedido.Text = "Pagó!";
             }
         }
     }

@@ -1,101 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfAlimento xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Alimento>
-    <Descripcion>Royal Canin Mini Adult</Descripcion>
-    <Kilos>3</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>3070</Precio>
-    <PrecioTarj>3070</PrecioTarj>
-  </Alimento>
-  <Alimento>
-    <Descripcion>Royal Canin Mini Adult</Descripcion>
-    <Kilos>7.5</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>6480</Precio>
-    <PrecioTarj>6050</PrecioTarj>
-  </Alimento>
-  <Alimento>
-    <Descripcion>Royal Canin Mini Puppy</Descripcion>
-    <Kilos>7.5</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>6150</Precio>
-    <PrecioTarj>6590</PrecioTarj>
-  </Alimento>
-  <Alimento>
-    <Descripcion>Royal Canin Mini Puppy</Descripcion>
-    <Kilos>15</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>10920</Precio>
-    <PrecioTarj>11690</PrecioTarj>
-  </Alimento>
-  <Alimento>
-    <Descripcion>Royal Canin Medium Adult</Descripcion>
-    <Kilos>15</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>9440</Precio>
-    <PrecioTarj>10100</PrecioTarj>
-  </Alimento>
-  <Alimento>
-    <Descripcion>Royal Canin Medium Puppy</Descripcion>
-    <Kilos>15</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>10640</Precio>
-    <PrecioTarj>11380</PrecioTarj>
-  </Alimento>
-  <Alimento>
-    <Descripcion>Royal Canin Maxi Adult</Descripcion>
-    <Kilos>15</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>9440</Precio>
-    <PrecioTarj>10100</PrecioTarj>
-  </Alimento>
-  <Alimento>
-    <Descripcion>Royal Canin Maxi Puppy</Descripcion>
-    <Kilos>15</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>10640</Precio>
-    <PrecioTarj>11380</PrecioTarj>
-  </Alimento>
-  <Alimento>
-    <Descripcion>Balanced Adulto Razas Medianas</Descripcion>
-    <Kilos>20</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>7170</Precio>
-    <PrecioTarj>7670</PrecioTarj>
-  </Alimento>
-  <Alimento>
-    <Descripcion>Balanced Adulto Razas Grandes</Descripcion>
-    <Kilos>20</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>7170</Precio>
-    <PrecioTarj>7670</PrecioTarj>
-  </Alimento>
-  <Alimento>
-    <Descripcion>Pro Plan Adulto Razas Pequeñas</Descripcion>
-    <Kilos>7.5</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>5210</Precio>
-    <PrecioTarj>5580</PrecioTarj>
-  </Alimento>
-  <Alimento>
-    <Descripcion>Pro Plan Adulto Razas Medianas</Descripcion>
-    <Kilos>15</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>8620</Precio>
-    <PrecioTarj>9230</PrecioTarj>
-  </Alimento>
-  <Alimento>
-    <Descripcion>Pro Plan Active Mind Razas Pequeñas</Descripcion>
-    <Kilos>7.5</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>5720</Precio>
-    <PrecioTarj>6130</PrecioTarj>
-  </Alimento>
-  <Alimento>
-    <Descripcion>Pro Plan Active Mind Razas Medianas</Descripcion>
-    <Kilos>15</Kilos>
-    <Cantidad>0</Cantidad>
-    <Precio>9470</Precio>
-    <PrecioTarj>10140</PrecioTarj>
-  </Alimento>
+	<Alimento>
+		<Descripcion>Royal Canin Mini Adult</Descripcion>
+		<Kilos>3</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>3070</Precio>
+		<PrecioTarj>3070</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Royal Canin Mini Adult</Descripcion>
+		<Kilos>7.5</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>6480</Precio>
+		<PrecioTarj>6050</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Royal Canin Mini Puppy</Descripcion>
+		<Kilos>7.5</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>6150</Precio>
+		<PrecioTarj>6590</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Royal Canin Mini Puppy</Descripcion>
+		<Kilos>15</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>10920</Precio>
+		<PrecioTarj>11690</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Royal Canin Medium Adult</Descripcion>
+		<Kilos>15</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>9440</Precio>
+		<PrecioTarj>10100</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Royal Canin Medium Puppy</Descripcion>
+		<Kilos>15</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>10640</Precio>
+		<PrecioTarj>11380</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Royal Canin Maxi Adult</Descripcion>
+		<Kilos>15</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>9440</Precio>
+		<PrecioTarj>10100</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Royal Canin Maxi Puppy</Descripcion>
+		<Kilos>15</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>10640</Precio>
+		<PrecioTarj>11380</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Balanced Adulto Razas Medianas</Descripcion>
+		<Kilos>20</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>7170</Precio>
+		<PrecioTarj>7670</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Balanced Adulto Razas Grandes</Descripcion>
+		<Kilos>20</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>7170</Precio>
+		<PrecioTarj>7670</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Pro Plan Adulto Razas Pequeñas</Descripcion>
+		<Kilos>7.5</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>5210</Precio>
+		<PrecioTarj>5580</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Pro Plan Adulto Razas Medianas</Descripcion>
+		<Kilos>15</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>8620</Precio>
+		<PrecioTarj>9230</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Pro Plan Active Mind Razas Pequeñas</Descripcion>
+		<Kilos>7.5</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>5720</Precio>
+		<PrecioTarj>6130</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Pro Plan Active Mind Razas Medianas</Descripcion>
+		<Kilos>15</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>9470</Precio>
+		<PrecioTarj>10140</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Pro Plan Gato Adulto</Descripcion>
+		<Kilos>15</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>12140</Precio>
+		<PrecioTarj>14450</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Pro Plan Kitten</Descripcion>
+		<Kilos>15</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>6790</Precio>
+		<PrecioTarj>7450</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Royal Canin Fit</Descripcion>
+		<Kilos>7.5</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>8050</Precio>
+		<PrecioTarj>8610</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Royal Canin Fit</Descripcion>
+		<Kilos>15</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>14270</Precio>
+		<PrecioTarj>15270</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Performance Adult Dog</Descripcion>
+		<Kilos>20</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>8870</Precio>
+		<PrecioTarj>9490</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Performance Junior Dog</Descripcion>
+		<Kilos>15</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>7760</Precio>
+		<PrecioTarj>8310</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Performance Weight Control Dog</Descripcion>
+		<Kilos>15</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>6930</Precio>
+		<PrecioTarj>7410</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Performance Adult Cat</Descripcion>
+		<Kilos>7.5</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>5630</Precio>
+		<PrecioTarj>6020</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Performance Kitten</Descripcion>
+		<Kilos>7.5</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>6380</Precio>
+		<PrecioTarj>6830</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Pedigree Adulto Carne, Pollo Y Cereales</Descripcion>
+		<Kilos>21</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>6070</Precio>
+		<PrecioTarj>6500</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Pedigree Adulto Carne Y Vegetales</Descripcion>
+		<Kilos>21</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>6070</Precio>
+		<PrecioTarj>6500</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Pedigree Adulto Razas Pequeñas</Descripcion>
+		<Kilos>15</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>4900</Precio>
+		<PrecioTarj>5250</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Whiskas Carne</Descripcion>
+		<Kilos>10</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>4530</Precio>
+		<PrecioTarj>4850</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Whiskas Pescado</Descripcion>
+		<Kilos>10</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>4530</Precio>
+		<PrecioTarj>4850</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Whiskas Pollo</Descripcion>
+		<Kilos>10</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>4530</Precio>
+		<PrecioTarj>4850</PrecioTarj>
+	</Alimento>
+	<Alimento>
+		<Descripcion>Whiskas Gatitos Carne Y Leche</Descripcion>
+		<Kilos>10</Kilos>
+		<Cantidad>0</Cantidad>
+		<Precio>4530</Precio>
+		<PrecioTarj>4850</PrecioTarj>
+	</Alimento>
 </ArrayOfAlimento>

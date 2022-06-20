@@ -68,7 +68,7 @@ namespace PruebaTp3Form
             this.cbPagoElPedido.Appearance = System.Windows.Forms.Appearance.Button;
             this.cbPagoElPedido.BackColor = System.Drawing.Color.Red;
             this.cbPagoElPedido.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cbPagoElPedido.FlatAppearance.BorderSize = 4;
+            this.cbPagoElPedido.FlatAppearance.BorderSize = 0;
             this.cbPagoElPedido.FlatAppearance.CheckedBackColor = System.Drawing.Color.Chartreuse;
             this.cbPagoElPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPagoElPedido.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -79,6 +79,7 @@ namespace PruebaTp3Form
             this.cbPagoElPedido.Text = "PAGO?";
             this.cbPagoElPedido.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cbPagoElPedido.UseVisualStyleBackColor = false;
+            this.cbPagoElPedido.CheckedChanged += new System.EventHandler(this.cbPagoElPedido_CheckedChanged);
             // 
             // lblTipoDePago
             // 
@@ -219,6 +220,7 @@ namespace PruebaTp3Form
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(285, 27);
             this.dateTimePicker1.TabIndex = 17;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // lblSeleccioneProducto
             // 

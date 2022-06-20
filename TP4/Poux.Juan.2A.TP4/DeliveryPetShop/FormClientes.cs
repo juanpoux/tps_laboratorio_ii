@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -36,7 +37,6 @@ namespace PruebaTp3Form
         private void FormClientes_Load(object sender, EventArgs e)
         {
             this.Cargar();
-            //this.EscribirClientes();
         }
 
         /// <summary>
@@ -48,7 +48,8 @@ namespace PruebaTp3Form
         {
             if (dgvClientes.SelectedRows.Count > 0)
             {
-                FormVentas formVentas = new FormVentas((Cliente)this.dgvClientes.CurrentRow.DataBoundItem);
+                this.cliente = (Cliente)this.dgvClientes.CurrentRow.DataBoundItem;
+                FormVentas formVentas = new FormVentas(this.cliente);
                 formVentas.ShowDialog();
                 switch (formVentas.DialogResult)
                 {
@@ -80,7 +81,6 @@ namespace PruebaTp3Form
                 if (formModificarCliente.DialogResult == DialogResult.OK)
                 {
                     ClienteDao.Modificar(formModificarCliente.clienteAux);
-                    //this.EscribirClientes();
                 }
                 this.Cargar();
             }
@@ -91,10 +91,35 @@ namespace PruebaTp3Form
         }
 
         /// <summary>
-        /// Crea una lista auxiliar con la lista de clientes para mostrarlos en datagrid
+        /// Carga la lista de clientes desde la base de datos
+        /// Aca aplico serializacion e hilos
+        /// </summary>
+        private void LeerClientes()
+        {
+            try
+            {
+                if (ClienteDao.ProbarConexion())
+                {
+                    this.listaClientes = ClienteDao.Leer();
+                }
+            }
+            catch (BaseDeDatosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al intentar leer lista de clientes\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        /// <summary>
+        /// limpio el datagrid poniendolo en null y luego lo cargo con la lista de clientes
         /// </summary>
         private void Cargar()
         {
+            this.dgvClientes.DataSource = null;
+            this.LeerClientes();
             List<Cliente> listaAuxiliar = new List<Cliente>();
             foreach (Cliente item in this.listaClientes)
             {
@@ -103,21 +128,16 @@ namespace PruebaTp3Form
                     listaAuxiliar.Add(item);
                 }
             }
-            this.dgvClientes.DataSource = null;
             this.dgvClientes.DataSource = listaAuxiliar;
-            if (listaAuxiliar.Count > 0)
-            {
-                this.dgvClientes.ClearSelection();
-            }
             this.OrdenarDGV();
         }
 
         /// <summary>
-        /// Ordena los datos que se muestran en el datagrid
+        /// Ordena y formateo la forma en que los datos se muestran en el datagrid
         /// </summary>
         private void OrdenarDGV()
         {
-            this.dgvClientes.Columns[0].Visible = false;
+            this.dgvClientes.Columns[0].Width = 30;
             this.dgvClientes.Columns[4].Visible = false;
         }
 
@@ -135,28 +155,12 @@ namespace PruebaTp3Form
                 this.listaClientes.Add(formNuevoCliente.cliente);
                 ClienteDao.Guardar(formNuevoCliente.cliente);
                 this.Cargar();
-                //this.EscribirClientes();
             }
         }
 
         /// <summary>
-        /// De no existir crea un archivo JSON con los datos de los clientes cargados en la lista
-        /// </summary>
-        //private void EscribirClientes()
-        //{
-        //    try
-        //    {
-        //        SerializacionConJson<List<Cliente>> serializacionConJson = new SerializacionConJson<List<Cliente>>();
-        //        serializacionConJson.Escribir(this.listaClientes, "ListaClientes");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error al intentar escribir lista de clientes\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //    }
-        //}
-
-        /// <summary>
         /// Muestra los pedidos realizados por el cliente seleccionado
+        /// Aca uso expresion lambda
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -164,16 +168,19 @@ namespace PruebaTp3Form
         {
             if (dgvClientes.SelectedRows.Count > 0)
             {
-                string mensaje = ((Cliente)this.dgvClientes.CurrentRow.DataBoundItem).MostrarCliente() + "\n";
+                this.cliente = (Cliente)this.dgvClientes.CurrentRow.DataBoundItem;
+                string mensaje = this.cliente.MostrarCliente() + "\n";
                 bool bandera = false;
-                foreach (Pedido item in this.listaPedidos)
+
+                this.listaPedidos.ForEach((item) =>
                 {
-                    if (item == (Cliente)this.dgvClientes.CurrentRow.DataBoundItem)
+                    if (item == this.cliente)
                     {
                         mensaje += item.MostrarPedido();
                         bandera = true;
                     }
-                }
+                });
+
                 if (!bandera)
                 {
                     mensaje += "***** No se encuentran pedidos registrados *****";
@@ -297,7 +304,6 @@ namespace PruebaTp3Form
                     this.cliente = ((Cliente)this.dgvClientes.CurrentRow.DataBoundItem);
                     cliente.Activo = false;
                     ClienteDao.Modificar(cliente);
-                    //this.EscribirClientes();
                 }
                 this.Cargar();
             }
@@ -306,5 +312,6 @@ namespace PruebaTp3Form
                 MessageBox.Show("Debe seleccionar un cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
     }
 }
